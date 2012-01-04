@@ -1,0 +1,249 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Digital Signature Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The DSIG table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>DSIG - Digital Signature Table
+</FONT>
+
+<P>
+The DSIG table contains the digital signature of the OpenType<FONT COLOR="#999999" STYLE="font-size: 7pt; color:#999999"><SUP>TM</SUP></FONT> font.
+Signature formats are widely documented and rely on a key pair architecture. Software developers, or publishers posting material on the Internet, create signatures using a private key. Operating systems or applications authenticate the signature using a public key.
+<P>
+The W3C and major software and operating system developers have specified security standards that describe signature formats, specify secure collections of web objects, and recommend authentication architecture.
+OpenType fonts with signatures will support these standards.
+<P>
+OpenType fonts offer many security features:
+<UL>
+<LI>Operating systems and browsing applications can identify the source and integrity of font files before using them,
+<LI>Font developers can specify embedding restrictions in OpenType fonts, and these restrictions cannot be altered in a font signed by the developer.
+</UL>
+<P>
+The enforcement of signatures is an administrative policy, enabled by the operating system. Windows will soon require installed software components, including fonts, to be signed. Internet browsers will also give users and administrators the ability to screen out unsigned objects obtained on-line, including web pages, fonts, graphics, and software components.
+<P>
+Anyone can obtain identity certificates and encryption keys from a certifying agency, such as Verisign or GTE's Cybertrust, free or at a very low cost.
+<P>
+The DSIG table is organized as follows. The first portion of the table is the header:
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>DSIG Header</CAPTION>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>ulVersion</TD>
+<TD CLASS=tab VALIGN=TOP>Version number of the DSIG table (0x00000001)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>usNumSigs</TD>
+<TD CLASS=tab VALIGN=TOP>Number of signatures in the table</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>usFlag</TD>
+<TD CLASS=tab VALIGN=TOP>permission flags<BR>Bit 0: cannot be resigned<BR>Bits 1-7: Reserved (Set to 0)</TD></TR>
+</TABLE>
+<P>
+The version of the DSIG table is expressed as a ULONG, beginning at 0. The version of the DSIG table currently used is version 1 (0x00000001).
+<P>
+Permission bit 0 allows a party signing the font to prevent any other parties from also signing the font (counter-signatures). If this bit is set to zero (0) the font may have a signature applied over the existing digital signature(s). A party who wants to ensure that their signature is the last signature can set this bit.
+
+<P>
+The DSIG header information is followed by entries for each of the signatures in the table specifying format and offset information:
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Format/Offset Table</CAPTION>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>ulFormat</TD>
+<TD CLASS=tab VALIGN=TOP>format of the signature</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>ulLength</TD>
+<TD CLASS=tab VALIGN=TOP>Length of signature in bytes</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>ulOffset</TD>
+<TD CLASS=tab VALIGN=TOP>Offset to the signature block from the beginning of the table</TD></TR>
+</TABLE>
+<P>
+This information is then followed by one or more signature blocks:
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Signature Block</CAPTION>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>usReserved1</TD>
+<TD CLASS=tab VALIGN=TOP>Reserved for later use; 0 for now</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>usReserved2</TD>
+<TD CLASS=tab VALIGN=TOP>Reserved for later use; 0 for now</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>cbSignature</TD>
+<TD CLASS=tab VALIGN=TOP>Length (in bytes) of the PKCS#7 packet in pbSignature</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE []</TD>
+<TD CLASS=tab VALIGN=TOP>bSignature</TD>
+<TD CLASS=tab VALIGN=TOP>PKCS#7 packet</TD></TR>
+</TABLE>
+<P>
+The format identifier specifies both the format of the signature object, as well as the hashing algorithm used to create and authenticate the signature. Currently only one format is defined, but at least one other format will soon be defined to handle subsetting scenarios. Format 1 supports PKCS#7 signatures with X.509 certificates and counter-signatures, as these signatures have been standardized for use by the W3C with the participation of numerous software developers.
+<P>
+For more information about PKCS#7 signatures, see <A HREF="ftp://ftp.rsa.com/pub/pkcs/ascii/pkcs-7.asc">ftp://ftp.rsa.com/pub/pkcs/ascii/pkcs-7.asc</A>
+<P>
+For more information about counter-signatures, see <A HREF="ftp://ftp.rsa.com/pub/pkcs/ascii/pkcs-9.asc">ftp://ftp.rsa.com/pub/pkcs/ascii/pkcs-9.asc</A>
+<P>
+<BR>
+<B>Format 1: For whole fonts, with either TrueType outlines and/or CFF data</B><P>
+PKCS#7 or PKCS#9. The signed content digest is created as follows:
+<OL>
+<LI>If there is an existing DSIG table in the font,
+<OL><LI>Remove DSIG table from font.
+<LI>Remove DSIG table entry from sfnt Table Directory.
+<LI>Adjust table offsets as necessary.
+<LI>Zero out the file checksum in the head table.
+<LI>Add the usFlag (reserved, set at 1 for now) to the stream of bytes</OL>
+<LI>Hash the full stream of bytes using a secure one-way hash (such as MD5) to create the content digest.
+<LI>Create the PKCS#7 signature block using the content digest.
+<LI>Create a new DSIG table containing the signature block.
+<LI>Add the DSIG table to the font, adjusting table offsets as necessary.
+<LI>Add a DSIG table entry to the sfnt Table Directory.
+<LI>Recalculate the checksum in the head table.
+</OL>
+<P>
+Prior to signing a font file, ensure that all the following attributes are true. <P>
+<UL>
+<LI>The magic number in the head table is correct.
+<LI>Given the number of tables value in the offset table, the other values in the offset table are consistent.
+<LI>The tags of the tables are ordered alphabetically and there are no duplicate tags.
+<LI>The offset of each table is a multiple of 4. (That is, tables are long word aligned.)
+<LI>The first actual table in the file comes immediately after the directory of tables.
+<LI>If the tables are sorted by offset, then for all tables i (where index 0 means the the table with the smallest offset), Offset[i] + Length[i] <= Offset[i+1] and Offset[i] + Length[i] >= Offset[i+1] - 3. In other words, the tables do not overlap, and there are at most 3 bytes of padding between tables.
+<LI>The pad bytes between tables are all zeros.
+<LI>The offset of the last table in the file plus its length is not greater than the size of the file.
+<LI>The checksums of all tables are correct.
+<LI>The head table's checkSumAdjustment field is correct.
+</UL>
+
+<B>Signatures for TrueType Collections</B>
+<P>The DSIG table for a TrueType Collection (TTC) must be the last table in the TTC file. The offset and checksum to the table is put in the TTCHeader (version 2). Signatures of TTC files are expected to be Format 1 signatures.
+
+<P>The signature of a TTC file applies to the entire file, not to the individual fonts contained within the TTC. Signing the TTC file ensures that other contents are not added to the TTC.
+
+<P>Individual fonts included in a TrueType collection should not be individually signed as the process of making the TTC could invalidate the signature on the font.</P>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 23 March 2002<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The DSIG table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+
+
+

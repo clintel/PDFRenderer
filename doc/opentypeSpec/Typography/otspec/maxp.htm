@@ -1,0 +1,215 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Maximum Profile Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The maxp table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>maxp - Maximum Profile</FONT>
+
+<P>
+This table establishes the memory requirements for this font. Fonts with CFF data must use Version 0.5 of this table, specifying only the numGlyphs field.  Fonts with TrueType outlines must use Version 1.0 of this table, where all data is required. Both formats of OpenType require a 'maxp' table because a number of applications call the Windows GetFontData( ) API on the 'maxp' table to determine the number of glyphs in the font.
+<P>
+Version 0.5
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD class=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>Fixed</TD>
+<TD class=tab VALIGN=TOP>Table version number</TD>
+<TD class=tab VALIGN=TOP>0x00005000 for version 0.5 <BR> (Note the difference in the representation of a non-zero fractional part, in Fixed numbers.) </TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>numGlyphs</TD>
+<TD class=tab VALIGN=TOP>The number of glyphs in the font.</TD>
+</TR>
+</TABLE>
+<P>
+Version 1.0<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD class=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>Fixed</TD>
+<TD class=tab VALIGN=TOP>Table version number</TD>
+<TD class=tab VALIGN=TOP>0x00010000 for version 1.0.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>numGlyphs</TD>
+<TD class=tab VALIGN=TOP>The number of glyphs in the font.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxPoints</TD>
+<TD class=tab VALIGN=TOP>Maximum points in a non-composite glyph.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxContours</TD>
+<TD class=tab VALIGN=TOP>Maximum contours in a non-composite glyph.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxCompositePoints</TD>
+<TD class=tab VALIGN=TOP>Maximum points in a composite glyph.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxCompositeContours</TD>
+<TD class=tab VALIGN=TOP>Maximum contours in a composite glyph.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxZones</TD>
+<TD class=tab VALIGN=TOP>1 if instructions do not use the twilight zone (Z0), or 2 if instructions do use Z0; should be set to 2 in most cases.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxTwilightPoints</TD>
+<TD class=tab VALIGN=TOP>Maximum points used in Z0.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxStorage</TD>
+<TD class=tab VALIGN=TOP>Number of Storage Area locations. </TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxFunctionDefs</TD>
+<TD class=tab VALIGN=TOP>Number of FDEFs.</TD>
+</TR>
+<TR><TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxInstructionDefs</TD>
+<TD class=tab VALIGN=TOP>Number of IDEFs.</TD>
+</TR>
+<TR>
+<TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxStackElements</TD>
+<TD class=tab VALIGN=TOP>Maximum stack depth<SUP>2</SUP>.</TD>
+</TR>
+<TR><TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxSizeOfInstructions</TD>
+<TD class=tab VALIGN=TOP>Maximum byte count for glyph instructions.</TD>
+</TR>
+<TR><TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxComponentElements</TD>
+<TD class=tab VALIGN=TOP>Maximum number of components referenced at &quot;top level&quot; for any composite glyph.</TD>
+</TR>
+<TR><TD class=tab VALIGN=TOP>USHORT</TD>
+<TD class=tab VALIGN=TOP>maxComponentDepth</TD>
+<TD class=tab VALIGN=TOP>Maximum levels of recursion; 1 for simple components.</TD>
+</TR>
+</TABLE>
+
+<SPAN CLASS=tab><SUP>2</SUP>This includes Font and CVT Programs, as well as the instructions for each glyph.</SPAN>
+<P>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 22 March 2001<BR>
+	&copy; 2001 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The MAXP table
+
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+
+
+
+

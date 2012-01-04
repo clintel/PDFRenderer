@@ -1,0 +1,164 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Index to Location Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The loca table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>loca - Index to Location</FONT>
+<P>
+The indexToLoc table stores the offsets to
+the locations of the glyphs in the font, relative to the beginning
+of the glyphData table. In order to compute the length of the
+last glyph element, there is an extra entry after the last valid
+index.
+<P>
+By definition, index zero points to the &quot;missing character,&quot;
+which is the character that appears if a character is not found
+in the font. The missing character is commonly represented by
+a blank box (such as <IMG  WIDTH=9 HEIGHT=13 ALT="DIAGRAM" SRC="IMG00286.GIF">) or a space. If
+the font does not contain an outline for the missing character,
+then the first and second offsets should have the same value.
+This also applies to any other character without an outline, such
+as the space character.
+<P>
+Most routines will look at the 'maxp' table to determine the number
+of glyphs in the font, but the value in the 'loca' table should
+agree.
+<P>
+There are two versions of this table, the short and the long.
+The version is specified in the indexToLocFormat entry in the
+'head' table. 
+<P><BR>
+<B>Short version</B>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=60% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>offsets[<I>n</I>]</TD>
+<TD CLASS=tab VALIGN=TOP>The actual local offset divided by 2 is stored. The value of <I>n</I> is numGlyphs + 1. The value for numGlyphs is found in the 'maxp' table.</TD>
+</TR>
+</TABLE>
+
+<P>
+<BR>
+<B>Long version</B>
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=60% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>offsets[<I>n</I>]</TD>
+<TD CLASS=tab VALIGN=TOP>The actual local offset is stored. The value of <I>n</I>  is numGlyphs + 1. The value for numGlyphs is found in the 'maxp' table.</TD>
+</TR>
+</TABLE>
+<P>
+
+Note that the local offsets should be long-aligned, i.e., multiples
+of 4. Offsets which are not long-aligned may seriously degrade
+performance of some processors.
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 22 March 2001<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The loca table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+
+

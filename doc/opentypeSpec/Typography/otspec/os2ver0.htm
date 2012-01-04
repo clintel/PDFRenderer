@@ -1,0 +1,1658 @@
+<HTML>
+<HEAD>
+<TITLE>The 'OS/2' & Windows Metrics Table (Version 0)</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1">
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+<BODY BGCOLOR="#FFFFFF" BOTTOMMARGIN="20" TOPMARGIN="0" LEFTMARGIN="0">
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+<CENTER>
+<P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>OS/2 - OS/2 and Windows Metrics (Version 0)</FONT>
+
+<p>NOTE: This is maintained for purposes of being able to validate
+version 0 OS/2 tables. </p>
+
+<P>
+The OS/2 table consists of a set of metrics
+that are required in OpenType fonts. The layout of version 0 of this table is as follows:
+
+<P><TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=TAB WIDTH=25% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=TAB WIDTH=25% BGCOLOR="#C0C0C0">Name of Entry</TD>
+<TD CLASS=TAB WIDTH=50% BGCOLOR="#C0C0C0">Comments</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#ver">version</a></TD>
+<TD CLASS=TAB VALIGN=TOP>0x0000</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#acw">xAvgCharWidth</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#wtc">usWeightClass</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href ="#wdc">usWidthClass</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><FONT COLOR="#CE5E5E">U</FONT>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#fst">fsType</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#subxs">ySubscriptXSize</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#subys">ySubscriptYSize</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#subxo">ySubscriptXOffset</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#subyo">ySubscriptYOffset</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#supxs">ySuperscriptXSize</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#supys">ySuperscriptYSize</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#supxo">ySuperscriptXOffset</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#supyo">ySuperscriptYOffset</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#ss">yStrikeoutSize</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#sp">yStrikeoutPosition</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#fc">sFamilyClass</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#pan">panose[10]</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#ur">ulCharRange[4]</a></TD>
+<TD CLASS=TAB VALIGN=TOP>Bits 0-31</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>CHAR</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#vendid">achVendID[4]</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#fss">fsSelection</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#fci">usFirstCharIndex</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#lci">usLastCharIndex</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#sta">sTypoAscender</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#std">sTypoDescender</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#tlg">sTypoLineGap</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#wa">usWinAscent</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP><a href="#wd">usWinDescent</a></TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+</TABLE>
+
+<P><BR><B><a name="ver">version</a></B>
+<P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte unsigned short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>n/a</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>OS/2 table version number. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The version number for this OS/2 table.
+</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>The version number allows for identification of the precise contents and layout for the OS/2 table. The version number for this layout is zero (0).</TD></TR>
+</TABLE> 
+
+<P><BR><B><a name="acw">xAvgCharWidth</a></B><P>
+
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Pels / em units</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Average weighted escapement. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The Average Character Width parameter specifies the arithmetic average of the escapement (width) of all of the 26 lowercase letters a through z of the Latin alphabet and the space character. If any of the 26 lowercase letters are not present, this parameter should equal the weighted average of <i>all</i> glyphs in the font. For non-UGL (platform 3, encoding 0) fonts, use the unweighted average.
+</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB> This parameter is a descriptive attribute of the font
+that specifies the spacing of characters for comparing one font
+to another for selection or substitution. For proportionally spaced
+fonts, this value is useful in estimating the length for lines
+of text.  The weighting factors provided with this example are
+only valid for Latin lowercase letters. If other character sets,
+or capital letters are used, the corresponding frequency of use values
+should be used.  One needs to be careful when comparing fonts
+that use different frequency of use values for font mapping. The
+average character width for the following set of upper and lowercase letters only, is calculated according to this formula: Sum the individual character
+widths multiplied by the following weighting factors and then
+divide by 1000. For example: </TD></TR>
+</TABLE>
+
+<P><TABLE WIDTH=300 BGCOLOR="#F0F0F0">
+
+<TR>
+<TD CLASS=TAB WIDTH=25% BGCOLOR="#C0C0C0">Letter</TD>
+<TD CLASS=TAB WIDTH=25% BGCOLOR="#C0C0C0">Weight Factor</TD>
+<TD CLASS=TAB WIDTH=25% BGCOLOR="#C0C0C0">Letter</TD>
+<TD CLASS=TAB WIDTH=25% BGCOLOR="#C0C0C0">Weight Factor</TD></TR>
+
+<TR>
+<TD CLASS=TAB VALIGN=TOP>a</TD>
+<TD CLASS=TAB VALIGN=TOP>64</TD>
+<TD CLASS=TAB VALIGN=TOP>o</TD>
+<TD CLASS=TAB VALIGN=TOP>56</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>b</TD>
+<TD CLASS=TAB VALIGN=TOP>14</TD>
+<TD CLASS=TAB VALIGN=TOP>p</TD>
+<TD CLASS=TAB VALIGN=TOP>17</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>c</TD>
+<TD CLASS=TAB VALIGN=TOP>27</TD>
+<TD CLASS=TAB VALIGN=TOP>q</TD>
+<TD CLASS=TAB VALIGN=TOP>4</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>d</TD>
+<TD CLASS=TAB VALIGN=TOP>35</TD>
+<TD CLASS=TAB VALIGN=TOP>r</TD>
+<TD CLASS=TAB VALIGN=TOP>49</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>e</TD>
+<TD CLASS=TAB VALIGN=TOP>100</TD>
+<TD CLASS=TAB VALIGN=TOP>s</TD>
+<TD CLASS=TAB VALIGN=TOP>56</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>f</TD>
+<TD CLASS=TAB VALIGN=TOP>20</TD>
+<TD CLASS=TAB VALIGN=TOP>t</TD>
+<TD CLASS=TAB VALIGN=TOP>71</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>g</TD>
+<TD CLASS=TAB VALIGN=TOP>14</TD>
+<TD CLASS=TAB VALIGN=TOP>u</TD>
+<TD CLASS=TAB VALIGN=TOP>31</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>h</TD>
+<TD CLASS=TAB VALIGN=TOP>42</TD>
+<TD CLASS=TAB VALIGN=TOP>v</TD>
+<TD CLASS=TAB VALIGN=TOP>10</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>i</TD>
+<TD CLASS=TAB VALIGN=TOP>63</TD>
+<TD CLASS=TAB VALIGN=TOP>w</TD>
+<TD CLASS=TAB VALIGN=TOP>18</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>j</TD>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>x</TD>
+<TD CLASS=TAB VALIGN=TOP>3</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>k</TD>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>y</TD>
+<TD CLASS=TAB VALIGN=TOP>18</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>l</TD>
+<TD CLASS=TAB VALIGN=TOP>35</TD>
+<TD CLASS=TAB VALIGN=TOP>z</TD>
+<TD CLASS=TAB VALIGN=TOP>2</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>m</TD>
+<TD CLASS=TAB VALIGN=TOP>20</TD>
+<TD CLASS=TAB VALIGN=TOP>space</TD>
+<TD CLASS=TAB VALIGN=TOP>166</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>n</TD>
+<TD CLASS=TAB VALIGN=TOP>56</TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD></TR>
+</TABLE>
+
+<P><BR><B><a name="wtc">usWeightClass</a></B><P>
+
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte unsigned short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Weight class. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>Indicates the visual weight (degree of blackness
+or thickness of strokes) of the characters in the font. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments: </TD></TR>
+</TABLE>
+
+<P><TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+
+<TR>
+<TD CLASS=TAB WIDTH=15% BGCOLOR="#C0C0C0">Value</TD>
+<TD CLASS=TAB WIDTH=35% BGCOLOR="#C0C0C0">Description</TD>
+<TD CLASS=TAB WIDTH=50% BGCOLOR="#C0C0C0">C Definition (from windows.h)</TD></TR>
+
+<TR>
+<TD CLASS=TAB VALIGN=TOP>100</TD>
+<TD CLASS=TAB VALIGN=TOP>Thin</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_THIN</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>200</TD>
+<TD CLASS=TAB VALIGN=TOP>Extra-light (Ultra-light)</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_EXTRALIGHT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>300</TD>
+<TD CLASS=TAB VALIGN=TOP>Light</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_LIGHT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>400</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal (Regular)</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_NORMAL</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>500</TD>
+<TD CLASS=TAB VALIGN=TOP>Medium</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_MEDIUM</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>600</TD>
+<TD CLASS=TAB VALIGN=TOP>Semi-bold (Demi-bold)</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_SEMIBOLD</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>700</TD>
+<TD CLASS=TAB VALIGN=TOP>Bold</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_BOLD</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>800</TD>
+<TD CLASS=TAB VALIGN=TOP>Extra-bold (Ultra-bold)</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_EXTRABOLD</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>900</TD>
+<TD CLASS=TAB VALIGN=TOP>Black (Heavy)</TD>
+<TD CLASS=TAB VALIGN=TOP>FW_BLACK</TD></TR>
+</TABLE>
+
+<P><BR><B><a name="wdc">usWidthClass</a></B>
+<P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte unsigned short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Width class. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>Indicates a relative change from the normal aspect
+ratio (width to height ratio) as specified by a font designer
+for the glyphs in a font. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments: </TD>
+<TD CLASS=TAB>Although every character in a font
+may have a different numeric aspect ratio, each character in a
+font of normal width has a relative aspect ratio of one.  When
+a new type style is created of a different width class (either
+by a font designer or by some automated means) the relative aspect
+ratio of the characters in the new font is some percentage greater
+or less than those same characters in the normal font -- it is
+this difference that this parameter specifies.</TD>
+</TR>
+</TABLE>
+
+<P><TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+
+<TR>
+<TD CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD CLASS=TAB BGCOLOR="#C0C0C0">Description</TD>
+<TD CLASS=TAB BGCOLOR="#C0C0C0">C Definition</TD>
+<TD CLASS=TAB BGCOLOR="#C0C0C0">% of normal</TD></TR>
+
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>Ultra-condensed</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_ULTRA_CONDENSED</TD>
+<TD CLASS=TAB VALIGN=TOP>50</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Extra-condensed</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_EXTRA_CONDENSED</TD>
+<TD CLASS=TAB VALIGN=TOP>62.5</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Condensed</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_CONDENSED</TD>
+<TD CLASS=TAB VALIGN=TOP>75</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Semi-condensed</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_SEMI_CONDENSED</TD>
+<TD CLASS=TAB VALIGN=TOP>87.5</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Medium (normal)</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_NORMAL</TD>
+<TD CLASS=TAB VALIGN=TOP>100</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Semi-expanded</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_SEMI_EXPANDED</TD>
+<TD CLASS=TAB VALIGN=TOP>112.5</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Expanded</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_EXPANDED</TD>
+<TD CLASS=TAB VALIGN=TOP>125</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>Extra-expanded</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_EXTRA_EXPANDED</TD>
+<TD CLASS=TAB VALIGN=TOP>150</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>9</TD>
+<TD CLASS=TAB VALIGN=TOP>Ultra-expanded</TD>
+<TD CLASS=TAB VALIGN=TOP>FWIDTH_ULTRA_EXPANDED</TD>
+<TD CLASS=TAB VALIGN=TOP>200</TD></TR>
+</TABLE><P>
+
+<P><BR><B><a name="fst">fsType</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte unsigned short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Type flags. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>Indicates font embedding licensing rights for the
+font. Embeddable fonts may be stored in a document. When a document
+with embedded fonts is opened on a system that does not have the
+font installed (the remote system), the embedded font may be loaded
+for temporary (and in some cases, permanent) use on that system
+by an embedding-aware application. Embedding licensing rights
+are granted by the vendor of the font. 
+<BR><BR>
+The <B>OpenType Font Embedding DLL Specification</B> and DLL
+release notes describe the APIs used to implement support for
+OpenType font embedding and loading. <I>Applications that implement
+support for font embedding, either through use of the Font Embedding
+DLL or through other means, must not embed fonts which are not
+licensed to permit embedding. Further, applications loading embedded
+fonts for temporary use (see Preview &amp; Print and Editable
+embedding below) <B>must</B> delete the fonts when the document
+containing the embedded font is closed.
+</I></TD></TR>
+</TABLE>
+
+<P><TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+
+<TR>
+<TD CLASS=TAB WIDTH=10% BGCOLOR="#C0C0C0">Bit</TD>
+<TD CLASS=TAB WIDTH=20% BGCOLOR="#C0C0C0">Bit Mask</TD>
+<TD CLASS=TAB WIDTH=70% BGCOLOR="#C0C0C0">Description</TD></TR>
+
+<TR>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB VALIGN=TOP>0x0000</TD>
+<TD CLASS=TAB VALIGN=TOP>Installable Embedding: No fsType bit is set. Thus fsType is zero. <BR> 
+Fonts with this setting indicate that they may be embedded and permanently installed on the remote system by an application. The user of the remote system acquires the identical rights, obligations and licenses for that font as the original purchaser of the font, and is subject to the same end-user license agreement, copyright, design patent, and/or trademark as was the original purchaser.</TD></TR>
+
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>0x0001</TD>
+<TD CLASS=TAB VALIGN=TOP>Reserved, must be zero. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>0x0002</TD>
+<TD CLASS=TAB VALIGN=TOP>Restricted License embedding: <BR> 
+Fonts that have <B> only </B> this bit set <B>must not be modified, embedded or exchanged in any manner</B> without first obtaining permission of the legal owner. <BR> <I>Caution: </I>For Restricted License embedding to take effect, it must be the only level of embedding selected.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>0x0004</TD>
+<TD CLASS=TAB VALIGN=TOP>Preview &amp; Print embedding: When this bit is set, the font may be embedded, and temporarily loaded on the remote system. Documents containing Preview &amp; Print fonts must be opened &quot;read-only;&quot; no edits can be applied to the document. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>0x0008</TD>
+<TD CLASS=TAB VALIGN=TOP>Editable embedding: When this bit is set, the font may be embedded but must only be installed <B> temporarily </B> on other systems. In contrast to Preview
+&amp; Print fonts, documents containing Editable fonts <I>may</I> be opened for reading, editing is permitted, and changes may be saved.
+ </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4-15</TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB VALIGN=TOP>Reserved, must be zero. </TD></TR>
+</TABLE><P>
+
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>If multiple embedding bits
+are set, the <I>least</I> restrictive license granted takes precedence.
+ For example, if bits 1 and 3 are set, bit 3 takes precedence
+over bit 1and the font may be embedded with Editable rights. For
+compatibility purposes, most vendors granting Editable embedding
+rights are also setting the Preview &amp; Print bit (0x000C).
+ This will permit an application that only supports Preview &amp;
+Print embedding to detect that font embedding is allowed. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB><B>Restricted License embedding (0x0002):</B> Fonts that have this bit set <B>must not be modified, embedded or exchanged in any manner</B> without first obtaining permission of the legal owner.  Caution: note that for Restricted License embedding to take effect, it must be the only level of embedding selected (as noted in the previous paragraph).
+</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB><B>Preview & Print embedding (0x0004):</B> Fonts with this bit set indicate that they may be embedded within documents but must only be installed temporarily on the remote system. Any document which includes a Preview & Print embedded font must be opened “read-only;” the application must not allow the user to edit the document; it can only be viewed and/or printed.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB><B>Editable embedding (0x0008):</B> Fonts with this bit set indicate that they may be embedded in documents, but must only be installed temporarily on the remote system. In contrast to Preview & Print fonts, documents containing Editable fonts may be opened “read-write;” editing is permitted, and changes may be saved.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB><B>Installable embedding (0x0000):</B> Fonts with this setting indicate that they may be embedded and permanently installed on the remote system by an application. The user of the remote system acquires the identical rights, obligations and licenses for that font as the original purchaser of the font, and is subject to the same end-user license agreement, copyright, design patent, and/or trademark as was the original purchaser.</TD></TR>
+</TABLE>
+
+<P><BR><B><a name="subxs">ySubscriptXSize</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB>Title:</TD>
+<TD CLASS=TAB> Subscript horizontal font size. </TD></TR>
+<TR>
+<TD CLASS=TAB>Description:</TD>
+<TD CLASS=TAB>The recommended horizontal
+size in font design units for subscripts for this font. </TD></TR>
+<TR>
+<TD VALIGN=TOP CLASS=TAB>Comments:</TD>
+<TD VALIGN=TOP CLASS=TAB>If a font has two recommended sizes for subscripts,
+e.g., numerics and other, the numeric sizes should be stressed.
+This size field maps to the em square size of the font being used
+for a subscript.  The horizontal font size specifies a font designer's
+recommended horizontal font size for subscript characters associated
+with this font.  If a font does not include all of the required
+subscript characters for an application, and the application can
+substitute characters by scaling the character of a font or by
+substituting characters from another font, this parameter specifies
+the recommended em square for those subscript characters.<BR><BR>For example, if the em square for a font is 2048 and ySubScriptXSize
+is set to 205, then the horizontal size for a simulated subscript
+character would be 1/10th the size of the normal character.
+</TD></TR>
+</TABLE>
+
+
+<P><BR><B><a name="subys">ySubscriptYSize</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Subscript vertical font size. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The recommended vertical
+size in font design units for subscripts for this font. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>If a font has two recommended sizes for subscripts,
+e.g. numerics and other, the numeric sizes should be stressed.
+This size field maps to the emHeight of the font being used for
+a subscript.  The horizontal font size specifies a font designer's
+recommendation for horizontal font size of subscript characters
+associated with this font.  If a font does not include all of
+the required subscript characters for an application, and the
+application can substitute characters by scaling the characters
+in a font or by substituting characters from another font, this
+parameter specifies the recommended horizontal EmInc for those
+subscript characters.
+<BR><BR>
+ For example, if the em square for a font is 2048 and ySubScriptYSize
+is set to 205, then the vertical size for a simulated subscript
+character would be 1/10th the size of the normal character.
+</TD></TR>
+</TABLE>
+
+
+
+<P><BR><B><a name="subxo">ySubscriptXOffset</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB  VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Subscript x offset.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The recommended horizontal
+offset in font design untis for subscripts for this font.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>The Subscript X Offset parameter specifies a font designer's
+recommended horizontal offset -- from the character origin of
+the font to the character origin of the subscript's character
+-- for subscript characters associated with this font.  If a font
+does not include all of the required subscript characters for
+an application, and the application can substitute characters,
+this parameter specifies the recommended horizontal position from
+the character escapement point of the last character before the
+first subscript character.  For upright characters, this value
+is usually zero; however, if the characters of a font have an
+incline (italic characters) the reference point for subscript
+characters is usually adjusted to compensate for the angle of
+incline.</TD></TR>
+</TABLE>
+
+
+<P><BR><B><a name="subyo">ySubscriptYOffset</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB  VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Subscript y offset. </TD></TR>
+<TR>
+<TD CLASS=TAB  VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The recommended vertical offset in font design units
+from the baseline for subscripts for this font. </TD></TR>
+<TR>
+<TD CLASS=TAB  VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>The Subscript Y Offset parameter specifies a font designer's
+recommended vertical offset from the character baseline to the
+character baseline for subscript characters associated with this
+font.  Values are expressed as a positive offset below the character
+baseline.  If a font does not include all of the required subscript
+for an application, this parameter specifies the recommended vertical
+distance below the character baseline for those subscript characters. </TD></TR>
+</TABLE>
+
+<P><BR><B><a name="supxs">ySuperscriptXSize</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB VALIGN=TOP>Superscript horizontal font
+size.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The recommended horizontal
+size in font design units for superscripts for this font.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>If a font has two recommended sizes for subscripts,
+e.g., numerics and other, the numeric sizes should be stressed.
+This size field maps to the em square size of the font being used
+for a subscript.  The horizontal font size specifies a font designer's
+recommended horizontal font size for superscript characters associated
+with this font.  If a font does not include all of the required
+superscript characters for an application, and the application
+can substitute characters by scaling the character of a font or
+by substituting characters from another font, this parameter specifies
+the recommended em square for those superscript characters.
+<BR><BR>
+ For example, if the em square for a font is 2048 and ySuperScriptXSize
+is set to 205, then the horizontal size for a simulated superscript
+character would be 1/10th the size of the normal character. </TD></TR>
+</TABLE>
+
+
+<P><BR><B><a name="supys">ySuperscriptYSize</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Superscript vertical font size.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The recommended vertical
+size in font design units for superscripts for this font.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>If a font has two recommended sizes for subscripts,
+e.g., numerics and other, the numeric sizes should be stressed.
+This size field maps to the emHeight of the font being used for
+a subscript.  The vertical font size specifies a font designer's
+recommended vertical font size for superscript characters associated
+with this font.  If a font does not include all of the required
+superscript characters for an application, and the application
+can substitute characters by scaling the character of a font or
+by substituting characters from another font, this parameter specifies
+the recommended EmHeight for those superscript characters.
+<BR><BR>
+ For example, if the em square for a font is 2048 and ySuperScriptYSize
+is set to 205, then the vertical size for a simulated superscript
+character would be 1/10th the size of the normal character. </TD></TR>
+</TABLE>
+
+
+<P><BR><B><a name="supxo">ySuperscriptXOffset</a></B><P>
+<TABLE>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Superscript x offset.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The recommended horizontal
+offset in font design units for superscripts for this font.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>The Superscript X Offset parameter specifies a font
+designer's recommended horizontal offset -- from the character
+origin to the superscript  character's origin for the superscript
+characters associated with this font.  If a font does not include
+all of the required superscript characters for an application,
+this parameter specifies the recommended horizontal position from
+the escapement point of the character before the first superscript
+character.  For upright characters, this value is usually zero;
+however, if the characters of a font have an incline (italic characters)
+the reference point for superscript characters is usually adjusted
+to compensate for the angle of incline.
+</TD></TR>
+</TABLE>
+
+<P><BR><B><a name="supyo">ySuperscriptYOffset</a></B><P>
+<TABLE>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB  VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Superscript y offset.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The recommended vertical offset in font design units
+from the baseline for superscripts for this font.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>The Superscript Y Offset parameter specifies a font
+designer's recommended vertical offset -- from the character baseline
+to the superscript character's baseline associated with this font.
+ Values for this parameter are expressed as a positive offset
+above the character baseline.  If a font does not include all
+of the required superscript characters for an application, this
+parameter specifies the recommended vertical distance above the
+character baseline for those superscript characters. </TD></TR>
+</TABLE>
+
+
+<P><BR><B><a name="ss">yStrikeoutSize</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Strikeout size.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>Width of the strikeout
+stroke in font design units.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>This field should normally be the width of the em dash
+for the current font. If the size is one, the strikeout line will
+be the line represented by the strikeout position field. If the
+value is two, the strikeout line will be the line represented
+by the strikeout position and the line immediately <I>above</I>
+the strikeout position. For a Roman font with a 2048 em square,
+102 is suggested. </TD></TR>
+</TABLE>
+
+
+<P><BR><B><a name="sp">yStrikeoutPosition</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Units:</TD>
+<TD CLASS=TAB>Font design units</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB> Strikeout position.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The position of the top of the strikeout
+stroke relative to the baseline in font design units.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>Positive values represent distances above the baseline,
+while negative values represent distances below the baseline.
+ A value of zero falls directly on the baseline, while a value
+of one falls one pel above the baseline. The value of strikeout
+position should not interfere with the recognition of standard
+characters, and therefore should not line up with crossbars in
+the font.  For a Roman font with a 2048 em square, 460 is suggested. </TD></TR>
+</TABLE>
+
+
+
+<P><BR><B><a name="fc">sFamilyClass</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte signed short</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Font-family class and subclass.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>This parameter is a classification
+of font-family design. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>The font class and font subclass are registered values
+assigned by IBM to each font family.  This parameter is intended
+for use in selecting an alternate font when the requested font
+is not available. The font class is the most general and the font
+subclass is the most specific. The high byte of this field contains
+the family class, while the low byte contains the family subclass.
+</TD></TR>
+</TABLE>
+
+<P><BR><B><a name="pan">Panose</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>10 byte array</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>PANOSE classification number</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>International:</TD>
+<TD CLASS=TAB>Additional specifications are required for PANOSE
+to classify non-Latin character sets.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>This 10 byte series of numbers is used to describe
+the visual characteristics of a given typeface. These characteristics
+are then used to associate the font with other fonts of similar
+appearance having different names. The variables for each digit
+are listed below. The Panose values are fully described in the Panose "greybook" reference, currently owned by Agfa-Monotype.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>The PANOSE definition contains ten digits each of which
+currently describes up to sixteen variations. Windows uses
+bFamilyType, bSerifStyle and bProportion in the font mapper to
+determine family type. It also uses bProportion to determine
+if the font is monospaced. If the font is a symbol font, the first byte of the PANOSE number (bFamilyType) must be set to &quot;pictorial.&quot; Good PANOSE values in fonts are very valuable to users of the Windows fonts folder. The specification for assigning PANOSE values is located at http://www.fonts.com/hp/panose/greybook/</TD></TR>
+</TABLE>
+
+<P><TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>PANOSE</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Type</TD>
+<TD WIDTH=30% CLASS=TAB BGCOLOR="#C0C0C0">Name</TD>
+<TD WIDTH=50% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bFamilyType;</TD>
+<TD CLASS=TAB VALIGN=TOP>Family Type</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bSerifStyle;</TD>
+<TD CLASS=TAB VALIGN=TOP>Serif Style</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bWeight;</TD>
+<TD CLASS=TAB VALIGN=TOP>Weight</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bProportion;</TD>
+<TD CLASS=TAB VALIGN=TOP>Proportion</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bContrast;</TD>
+<TD CLASS=TAB VALIGN=TOP>Contrast</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bStrokeVariation;</TD>
+<TD CLASS=TAB VALIGN=TOP>Stroke Variation</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bArmStyle;</TD>
+<TD CLASS=TAB VALIGN=TOP>Arm Style</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bLetterform;</TD>
+<TD CLASS=TAB VALIGN=TOP>Letterform</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bMidline;</TD>
+<TD CLASS=TAB VALIGN=TOP>Midline</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>bXHeight;</TD>
+<TD CLASS=TAB VALIGN=TOP>X Height</TD></TR>
+</TABLE><P>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Family Type</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Text and Display</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Script</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Decorative</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Pictorial</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Serif Style</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Cove</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Obtuse Cove</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Square Cove</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Obtuse Square Cove</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Square</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Thin</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>Bone</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>9</TD>
+<TD CLASS=TAB VALIGN=TOP>Exaggerated</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>10</TD>
+<TD CLASS=TAB VALIGN=TOP>Triangle</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>11</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal Sans</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>12</TD>
+<TD CLASS=TAB VALIGN=TOP>Obtuse Sans</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>13</TD>
+<TD CLASS=TAB VALIGN=TOP>Perp Sans</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>14</TD>
+<TD CLASS=TAB VALIGN=TOP>Flared</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>15</TD>
+<TD CLASS=TAB VALIGN=TOP>Rounded</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Weight</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Very Light</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Light</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Thin</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Book</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Medium</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Demi</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>Bold</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>9</TD>
+<TD CLASS=TAB VALIGN=TOP>Heavy</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>10</TD>
+<TD CLASS=TAB VALIGN=TOP>Black</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>11</TD>
+<TD CLASS=TAB VALIGN=TOP>Nord</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Proportion </CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Old Style</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Modern</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Even Width</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Expanded</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Condensed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Very Expanded</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>Very Condensed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>9</TD>
+<TD CLASS=TAB VALIGN=TOP>Monospaced</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Contrast </CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>None</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Very Low</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Low</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Medium Low</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Medium</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Medium High</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>High</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>9</TD>
+<TD CLASS=TAB VALIGN=TOP>Very High</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Stroke Variation</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Gradual/Diagonal</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Gradual/Transitional</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Gradual/Vertical</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Gradual/Horizontal</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Rapid/Vertical</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Rapid/Horizontal</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>Instant/Vertical</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Arm Style</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Straight Arms/Horizontal</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Straight Arms/Wedge</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Straight Arms/Vertical</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Straight Arms/Single Serif</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Straight Arms/Double Serif</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Non-Straight Arms/Horizontal</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>Non-Straight Arms/Wedge</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>9</TD>
+<TD CLASS=TAB VALIGN=TOP>Non-Straight Arms/Vertical</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>10</TD>
+<TD CLASS=TAB VALIGN=TOP>Non-Straight Arms/Single Serif</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>11</TD>
+<TD CLASS=TAB VALIGN=TOP>Non-Straight Arms/Double Serif</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Letterform</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal/Contact</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal/Weighted</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal/Boxed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal/Flattened</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal/Rounded</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal/Off Center</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>Normal/Square</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>9</TD>
+<TD CLASS=TAB VALIGN=TOP>Oblique/Contact</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>10</TD>
+<TD CLASS=TAB VALIGN=TOP>Oblique/Weighted</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>11</TD>
+<TD CLASS=TAB VALIGN=TOP>Oblique/Boxed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>12</TD>
+<TD CLASS=TAB VALIGN=TOP>Oblique/Flattened</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>13</TD>
+<TD CLASS=TAB VALIGN=TOP>Oblique/Rounded</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>14</TD>
+<TD CLASS=TAB VALIGN=TOP>Oblique/Off Center</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>15</TD>
+<TD CLASS=TAB VALIGN=TOP>Oblique/Square</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Midline</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Standard/Trimmed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Standard/Pointed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Standard/Serifed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>High/Trimmed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>High/Pointed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>High/Serifed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>8</TD>
+<TD CLASS=TAB VALIGN=TOP>Constant/Trimmed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>9</TD>
+<TD CLASS=TAB VALIGN=TOP>Constant/Pointed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>10</TD>
+<TD CLASS=TAB VALIGN=TOP>Constant/Serifed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>11</TD>
+<TD CLASS=TAB VALIGN=TOP>Low/Trimmed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>12</TD>
+<TD CLASS=TAB VALIGN=TOP>Low/Pointed</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>13</TD>
+<TD CLASS=TAB VALIGN=TOP>Low/Serifed</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>X-height</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=TAB BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=80% CLASS=TAB BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>Any</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>No Fit</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>Constant/Small</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>Constant/Standard</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>Constant/Large</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>Ducking/Small</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>Ducking/Standard</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>7</TD>
+<TD CLASS=TAB VALIGN=TOP>Ducking/Large</TD></TR>
+</TABLE>
+
+
+<P><BR><B><a name="ur"></a>ulCharRange</B>
+<BR>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>16-byte unsigned long array (4 elements)</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Character Range</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>This field is split conceptually into two bit fields of 96 and 32 bits each. The low 96 bits are used to specify the Unicode blocks encompassed by the font file.  The high 32 bits are used to specify the character or script sets that are covered by the font file. The actual bit assignments are not yet completed; <B>presently, all bits must be set to zero (0).</B></TD></TR>
+</TABLE>
+
+
+<BR>
+
+<P><BR><A NAME="vendid"><B>achVendID</B><P></A>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>4-byte character array</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Font Vendor Identification</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The four character identifier
+for the vendor of the given type face.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>This is not the royalty owner of the original artwork.
+This is the company responsible for the marketing and distribution
+of the typeface that is being classified. It is reasonable to
+assume that there will be 6 vendors of ITC Zapf Dingbats for use
+on desktop platforms in the near future (if not already).  It
+is also likely that the vendors will have other inherent benefits
+in their fonts (more kern pairs, unregularized data, hand hinted,
+etc.). This identifier will allow for the correct vendor's type
+to be used over another, possibly inferior, font file. The Vendor
+ID value is not required.
+<BR><BR>
+Microsoft has assigned values for some font suppliers as listed
+below. Uppercase vendor ID's are reserved by Microsoft. Other
+suppliers can choose their own mixed case or lowercase ID's, or
+leave the field blank.</TD></TR>
+</TABLE>
+
+
+<P>
+<BR>
+<B><a name="fss">fsSelection</a></B>
+<P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte bit field.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Title:</TD>
+<TD CLASS=TAB>Font selection flags.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>Contains information concerning
+the nature of the font patterns, as follows: </TD></TR>
+</TABLE>
+
+<P><TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+
+<TR>
+<TD CLASS=TAB WIDTH=10% BGCOLOR="#C0C0C0">Bit #</TD>
+<TD CLASS=TAB WIDTH=20% BGCOLOR="#C0C0C0">macStyle bit</TD>
+<TD CLASS=TAB WIDTH=20% BGCOLOR="#C0C0C0">C definition</TD>
+<TD CLASS=TAB WIDTH=50% BGCOLOR="#C0C0C0">Description</TD></TR>
+
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=TAB VALIGN=TOP>bit 1</TD>
+<TD CLASS=TAB VALIGN=TOP>ITALIC</TD>
+<TD CLASS=TAB VALIGN=TOP>Font contains Italic characters, otherwise they are upright.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB VALIGN=TOP>UNDERSCORE</TD>
+<TD CLASS=TAB VALIGN=TOP>Characters are underscored.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>2</TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB VALIGN=TOP>NEGATIVE</TD>
+<TD CLASS=TAB VALIGN=TOP>Characters have their foreground and background reversed.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>3</TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB VALIGN=TOP>OUTLINED</TD>
+<TD CLASS=TAB VALIGN=TOP>Outline (hollow) characters, otherwise they are solid.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>4</TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB VALIGN=TOP>STRIKEOUT</TD>
+<TD CLASS=TAB VALIGN=TOP>Characters are overstruck.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>5</TD>
+<TD CLASS=TAB VALIGN=TOP>bit 0</TD>
+<TD CLASS=TAB VALIGN=TOP>BOLD</TD>
+<TD CLASS=TAB VALIGN=TOP>Characters are emboldened.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>6</TD>
+<TD CLASS=TAB VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=TAB VALIGN=TOP>REGULAR</TD>
+<TD CLASS=TAB VALIGN=TOP>Characters are in the standard weight/style for the font. </TD></TR>
+</TABLE><P>
+<P>
+
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Comments:</TD>
+<TD CLASS=TAB>All undefined bits must be
+zero.
+<BR><BR>
+ This field contains information on the original design of the
+font.  Bits 0 &amp; 5 can be used to determine if the font was
+designed with these features or whether some type of machine simulation
+was performed on the font to achieve this appearance. Bits 1-4
+are rarely used bits that indicate the font is primarily a decorative
+or special purpose font.
+<BR><BR>
+ If bit 6 is set, then bits 0 and 5 must be clear, else the behavior
+is undefined. As noted above, the settings of bits 0 and 1 must
+be reflected in the macStyle bits in the 'head' table. While bit
+6 on implies that bits 0 and 1 of macStyle are clear (along with
+bits 0 and 5 of fsSelection), the reverse is not true. Bits 0
+and 1 of macStyle (and 0 and 5 of fsSelection) may be clear and
+that does not give any indication of whether or not bit 6 of fsSelection
+is clear (e.g., Arial Light would have all bits cleared; it is
+not the regular version of Arial). </TD></TR>
+</TABLE>
+
+<P><BR><B><a name="fci">usFirstCharIndex</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte USHORT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The minimum Unicode index (character code) in this
+font, according to the cmap subtable for platform ID 3 and platform- specific encoding
+ID 0 or 1. For most fonts supporting Win-ANSI or other character
+sets, this value would be 0x0020. </TD></TR>
+</TABLE>
+
+<P><BR><B><a name="lci">usLastCharIndex</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte USHORT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The maximum Unicode index (character code) in this
+font, according to the cmap subtable for platform ID 3 and encoding
+ID 0 or 1. This value depends on which character sets the font
+supports. </TD></TR>
+</TABLE>
+
+<P><BR><B><a name="sta">sTypoAscender</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>SHORT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The typographic ascender for this font. Remember
+that this is not the same as the Ascender value in the 'hhea'
+table, which Apple defines in a far different manner. One good
+source for sTypoAscender in Latin based fonts is the Ascender value from an AFM file. For CJK fonts see below.
+<BR><BR>
+The suggested usage for sTypoAscender is that it be used in
+conjunction with unitsPerEm to compute a typographically correct
+default line spacing. The goal is to free applications from Macintosh
+or Windows-specific metrics which are constrained by backward
+compatibility requirements. These new metrics, when combined with
+the character design widths, will allow applications to lay out
+documents in a typographically correct and portable fashion. These
+metrics will be exposed through Windows APIs. Macintosh applications
+will need to access the 'sfnt' resource and parse it to extract
+this data from the &quot;OS/2&quot; table.
+<BR><BR>
+For CJK (Chinese, Japanese, and Korean) fonts that are intended to be used for vertical writing (in addition to horizontal writing), the required value for sTypoAscender is that which describes the top of the of the ideographic em-box. For example, if the ideographic em-box of the font extends from coordinates 0,-120 to 1000,880 (that is, a 1000x1000 box set 120 design units below the Latin baseline), then the value of sTypoAscender must be set to 880. Failing to adhere to these requirements will result in incorrect vertical layout. 
+</TD>
+</TR>
+</TABLE>
+
+<P><BR><B><a name="std">sTypoDescender</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>SHORT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The typographic descender for this font. Remember
+that this is not the same as the Descender value in the 'hhea'
+table, which Apple defines in a far different manner. One good
+source for sTypoDescender in Latin based fonts is the Descender value from an AFM
+file. For CJK fonts see below.
+<BR><BR>
+ The suggested usage for sTypoDescender is that it be used in
+conjunction with unitsPerEm to compute a typographically correct
+default line spacing. The goal is to free applications from Macintosh
+or Windows-specific metrics which are constrained by backward
+compatability requirements. These new metrics, when combined with
+the character design widths, will allow applications to lay out
+documents in a typographically correct and portable fashion. These
+metrics will be exposed through Windows APIs. Macintosh applications
+will need to access the 'sfnt' resource and parse it to extract
+this data from the &quot;OS/2&quot; table (unless Apple exposes
+the 'OS/2' table through a new API).
+<BR><BR>
+For CJK (Chinese, Japanese, and Korean) fonts that are intended to be used for vertical writing (in addition to horizontal writing), the required value for sTypoDescender is that which describes the bottom of the of the ideographic em-box. For example, if the ideographic em-box of the font extends from coordinates 0,-120 to 1000,880 (that is, a 1000x1000 box set 120 design units below the Latin baseline), then the value of sTypoDescender must be set to -120. Failing to adhere to these requirements will result in incorrect vertical layout.
+</TD></TR>
+</TABLE>
+
+<P><BR><B><a name="tlg">sTypoLineGap</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte SHORT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The typographic line gap for this font. Remember
+that this is not the same as the LineGap value in the 'hhea' table,
+which Apple defines in a far different manner.
+<BR><BR>
+ The suggested usage for usTypoLineGap is that it be used in
+conjunction with unitsPerEm to compute a typographically correct
+default line spacing. Typical values average 7-10% of units per
+em. The goal is to free applications from Macintosh or Windows-specific
+metrics which are constrained by backward compatability requirements
+(see chapter, &quot;Recommendations for Windows Fonts). These
+new metrics, when combined with the character design widths, will
+allow applications to lay out documents in a typographically correct
+and portable fashion. These metrics will be exposed through Windows
+APIs. Macintosh applications will need to access the 'sfnt' resource
+and parse it to extract this data from the &quot;OS/2&quot; table
+(unless Apple exposes the 'OS/2' table through a new API) </TD></TR>
+</TABLE>
+
+<P><BR><B><a name="wa">usWinAscent</a></B><P>
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte USHORT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The ascender metric for Windows. This, too, is distinct
+from Apple's Ascender value and from the usTypoAscender values.
+usWinAscent is computed as the yMax for all characters in the
+Windows ANSI character set. usWinAscent is used to compute the
+Windows font height and default line spacing. For platform 3 encoding
+0 fonts, it is the same as yMax. Windows will clip the bitmap of any portion of a glyph that appears above this value. Some applications use this value to determine default line spacing. This is strongly discouraged. The typographic ascender, descender and line gap fields in conjunction with unitsPerEm should be used for this purpose. Developers should set this field keeping the above factors in mind. 
+<BR> 
+If any clipping is unacceptable, then the value should be set to yMax. 
+<BR> 
+However, if a developer desires to provide appropriate default line spacing using this field, for those applications that continue to use this field for doing so (against OpenType recommendations), then the value should be set appropriately. In such a case, it may result in some glyph bitmaps being clipped. </TD></TR>
+</TD></TR>
+</TABLE>
+
+<P><BR><B><a name="wd">usWinDescent</a></B><P>
+
+<TABLE CELLPADDING=2>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Format:</TD>
+<TD CLASS=TAB>2-byte USHORT</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Description:</TD>
+<TD CLASS=TAB>The descender metric for Windows. This, too, is distinct
+from Apple's Descender value and from the usTypoDescender values.
+usWinDescent is computed as the -yMin for all characters in the
+Windows ANSI character set. usWinDescent is used to compute the
+Windows font height and default line spacing. For platform 3 encoding
+0 fonts, it is the same as -yMin. Windows will clip the bitmap of any portion of a glyph that appears below this value. Some applications use this value to determine default line spacing. This is strongly discouraged. The typographic ascender, descender and line gap fields in conjunction with unitsPerEm should be used for this purpose. Developers should set this field keeping the above factors in mind. 
+<BR>
+If any clipping is unacceptable, then the value should be set to yMin. 
+<BR>
+However, if a developer desires to provide appropriate default line spacing using this field, for those applications that continue to use this field for doing so (against OpenType recommendations), then the value should be set appropriately. In such a case, it may result in some glyph bitmaps being clipped. </TD></TR>
+</TABLE>
+
+
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+
+
+
+

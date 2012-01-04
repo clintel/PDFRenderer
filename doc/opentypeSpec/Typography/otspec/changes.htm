@@ -1,0 +1,726 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>OpenType specification change log</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+href="otspec.css" rel=STYLESHEET type=text/css>
+<META content="MSHTML 5.00.2920.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff bottomMargin=20 leftMargin=0 topMargin=0><!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END-->
+<P><BR>
+<CENTER>
+<P>
+<TABLE border=0 cellPadding=0 cellSpacing=0 width=580>
+  <TBODY>
+  <TR>
+    <TD height=1 width=20><IMG alt="" height=1 src="pixel.gif" width=20></TD>
+    <TD height=1 width=60><IMG alt="" height=1 src="pixel.gif" width=60></TD>
+    <TD height=1 width=480><IMG alt="" height=1 src="pixel.gif" width=480></TD>
+    <TD height=1 width=20><IMG alt="" height=1 src="pixel.gif" width=20></TD></TR>
+  <TR>
+    <TD colSpan=4 height=5 width=580><IMG height=5 src="toprule.gif" 
+    width=580></TD></TR>
+  <TR>
+    <TD width=20></TD>
+    <TD colSpan=3 vAlign=top width=560><FONT class=detail 
+      face="Verdana, Arial, Helvetica" size=1><A 
+      href="http://www.microsoft.com/typography/default.asp">Microsoft 
+      Typography</A> | <A 
+      href="http://www.microsoft.com/typography/creators.htm">Developer...</A> | 
+      <A href="default.htm">OpenType specification</A> | OpenType specification 
+      change log </FONT></TD></TR>
+  <TR>
+    <TD colSpan=4 height=10 width=580><IMG alt="" height=10 src="midrule.gif" 
+      width=580></TD></TR>
+  <TR>
+    <TD width=20></TD>
+    <TD vAlign=top width=60></TD>
+    <TD vAlign=top width=480>
+      <P><BR><FONT class=heading face="Verdana, Arial, Helvetica" 
+      size=5>OpenType specification change log</FONT> 
+      <P><BR><B><A name=v1.0>Version 1.0</A></B> - released April, 1997 
+      <P><B><A name=v1.01>Version 1.01</A></B> - released October, 
+      1997<BR><I>Summary of Changes:</I> 
+      <UL>
+        <LI>mmfx.htm, fvar.htm, mmsd.htm, otover.htm, recom.htm - edits 
+        throughout 
+        <LI>loca.htm - changed long-aligned to word-aligned for local offsets 
+        <LI>wgl4.htm - added reference to Euro symbol 
+        <LI>dsig.htm - added note about system use of dsig table to distinguish 
+        OT from TT fonts 
+        <LI>ttoreg.htm - added VIT, TRK, and ROM lang sys tags 
+        <LI>otff.htm - rearranged table list 
+        <LI>base.htm - change to basecoordformat3 data type 
+        <LI>gpos.htm - pairposformat1 subtable valuerecord becomes offset 
+        <LI>kern.htm - gpos clarification 
+        <LI>name.htm - added name id's 13 and 14 
+        <LI>ltsh.htm - clarified option for fixed-pitch fonts 
+        <LI>vdmx.htm - version 1 added to vdmx table 
+        <LI>os2.htm - added codepage range 8 for Vietnamese; added new vendor 
+        id's, including UNKN </LI></UL>
+      <P><B><A name=v1.1>Version 1.1</A></B> - released April, 
+      1998<BR><I>Summary of Changes:</I> 
+      <UL>
+        <LI>CFF and Type2 specs updated 
+        <LI>chapter2.htm - corrected typo in figure 2d (fig2d.gif) 
+        <LI>dsig.htm - added info about location of DSIG table; added list of 
+        sfnt structural requirements 
+        <LI>feattags.htm - created more comprehensive list and description of 
+        layout feature tags 
+        <LI>gpos.htm - corrected illustration 4f (fig4f.gif) 
+        <LI>head.htm - added bit 12 (converted) to flags field 
+        <LI>hhea.htm - removed CFF restriction listed in numberOfHMetrics field; 
+        added caretOffset field. 
+        <LI>maxp.htm - added version 0.5 table (numGlyphs field); general 
+        editing 
+        <LI>name.htm - added name id's 16, 17, and 18; corrected name id example 
+
+        <LI>os2.htm - added new version (2), adding new fields sxHeight, 
+        sCapHeight, usDefaultChar, usBreakChar, usMaxLookup; clarified 
+        sTypoAscender and sTypoDescender fields; changed some Unicode range 
+        values to reflect Unicode 2; updated registered vendors 
+        <LI>otff.htm - general editing; added description of two types of TTC 
+        headers, and DSIG table location 
+        <LI>recom.htm - general editing </LI></UL>
+      <P><B><A name=v1.2>Version 1.2</A></B> - released November, 
+      1998<BR><I>Summary of Changes:</I> 
+      <UL>
+        <LI>Data type notation and spelling corrected throughout 
+        <LI>base.htm - added BaseCoord Table Format 4 
+        <LI>chapter2.htm - corrected example 3; refined description of next 
+        glyph; reserved RightToLeft lookup flag; corrected descriptions of 
+        LookupFlag bits 
+        <LI>cmap.htm - removed legacy encodings 
+        <LI>dsig.htm - updated field names and format of signature record; added 
+        step to creation of content digest 
+        <LI>feattags.htm - registered new features crcy, dnom, jajp, kokr, lfbd, 
+        numr, rtbd, vivn, vrt2, zhcn, zhtw; removed features trak, vrot; edited 
+        and clarified descriptions of features afrc, altv, c2sc, calt, case, 
+        cpsp, dlig, dpng, expt, fina, frac, fwid, halt, hlig, lngl, hwid, init, 
+        ital, jp78, jp90, kern, lnum, medi, mgrk, onum, opbd, ordn, ornm, palt, 
+        pnum, pwid, qwid, smcp, smpl, sups, tnam, tnum, trad, twid, vert 
+        <LI>gdef.htm - added MarkAttachClassDef to header, and 
+        MarkAttachmentType bit setting to LookupFlag bits; added CaretValue 
+        Table Format 4 
+        <LI>glyf.htm - added table detailing component record structure 
+        <LI>gsub.htm - added format 6, for chaining contextual substitution; 
+        general editing 
+        <LI>gpos.htm - added format 8, for chaining contextual positioning; 
+        clarified pair positioning operations; corrected Example 10; clarified 
+        coordinate system description; refined description of when a lookup is 
+        finished; added AnchorTable Format 4; general editing 
+        <LI>head.htm - added note about fontRevision field; clarified 
+        description of compression flag 
+        <LI>hhea.htm - corrected description of numberOfHMetrics 
+        <LI>mmfx.htm - corrections throughout; added MMFXIdZero 
+        <LI>name.htm - general editing 
+        <LI>os2.htm - renamed usMaxLookup to usMaxContext; edited descriptions 
+        of defaultChar and breakChar; updated registered vendors 
+        <LI>otff.htm - general editing; added ulDsigTag and related fields to 
+        TTC header; added datatypes LONGDATETIME; clarified checksum 
+        calculations; added tag name restrictions; clarified use of version 
+        numbers 
+        <LI>post.htm - renamed FormatType to Version 
+        <LI>vhea.htm - replaced mention of centerline with vertical baseline; 
+        corrected description of numOfLongVerMetrics 
+        <LI>CFF.pdf and Type2.pdf updated (December 1998) 
+        <LI>Several PostScript glyph names corrected in the WGL tables (18 
+        December 1998) 
+        <LI>name.htm - Descriptions of name ID 13 and 14 corrected (29 January 
+        1999) 
+        <LI>mmsd.htm - Attribute flags corrected (29 January 1999) 
+        <LI>head.htm - Data type of xMin corrected (29 January 1999) </LI></UL>
+      <P><B><A name=v1.25>Version 1.25</A></B> - released July, 
+      2000<BR><I>Summary of Changes:</I> 
+      <UL>
+        <LI><A href="feattags.htm">feattags.htm</A> (Feature Tags) - 
+        <UL>
+          <LI><I>Features added:</I><BR>abvm (Above-base Mark Positioning); abvs 
+          (Above-base Substitutions); akhn (Akhand); blwf (Below-base Forms); 
+          blws (Below-base Substitutions); clig (Contextual Ligatures); cswh 
+          (Contextual Swash); curs (Cursive Positioning); dist (Distances); falt 
+          (Final Glyph on Line Alternates); half (Half Forms); haln (Halant 
+          Forms); hkna (Horizontal Kana Alternates); isol (Isolated Forms); jalt 
+          (Justification Alternates); locl (Localized Forms) (replaces jajp, 
+          kokr, vivn, zhch, and zhtw); mkmk (Mark to Mark Positioning); nukt 
+          (Nukta Forms); pres (Pre-base substitutions); pstf (Post-base Forms); 
+          psts (Post-base Substitutions); rphf (Reph Forms); ruby (Ruby Notation 
+          Forms); size (Optical Size); vatu (Vattu Variants); vhal (Alternate 
+          Vertical Half Metrics); vkna (Vertical Kana Alternates); vkrn 
+          (Vertical Kerning) vpal (Proportional Alternate Vertical Metrics).<BR>
+          <LI><I>Features removed:</I><BR>crcy (Currency), dpng (Diphthongs), 
+          jajp (Japanese Forms), kokr (Korean Forms), vivn (Vietnamese Forms), 
+          zhcn (Simplified Chinese Forms), zhtw (Traditional Chinese Forms).<BR>
+          <LI><I>Features modified:</I><BR>aalt: Added ordering suggestion, 
+          reworked user interface suggestions, clarified implementation 
+          recommendation, feature interaction and function.<BR>altv: changed tag 
+          to valt.<BR>c2sc, dlig: Clarified function, example and feature 
+          interaction.<BR>calt, case, dnom, expt, halt, hist, hwid, jp78, jp83, 
+          jp90, kern, lfbd, liga, lnum, numr, onum, pwid, qwid, rtbd, smpl, 
+          sups, titl, twid, valt: Clarified feature interaction.<BR>fina, init, 
+          medi, rand, salt, swsh: Clarified user interface suggestion and 
+          feature interaction.<BR>frac: Added numr and dnom extensions, 
+          clarified feature interaction.<BR>fwid, palt: Clarified feature 
+          interaction and function.<BR>hngl: Clarified feature interaction and 
+          implementation recommendation.<BR>ital: Clarified function and feature 
+          interaction.<BR>mark: Added example, application interface, user 
+          interface suggestion, script sensitivity, feature interaction. 
+          Modified recommended implementation.<BR>mset: Added example.<BR>nalt: 
+          Clarified user interface suggestion, implementation recommendation and 
+          feature interaction.<BR>opbd: Added lfbd and rtbd extensions; 
+          clarified user interface suggestion and feature interaction.<BR>ordn: 
+          Clarified script sensitivity, corrected lookup type, clarified 
+          implementation recommendation and feature interaction.<BR>ornm: 
+          Clarified user interface suggestion, implementation recommendation, 
+          feature interaction and function description.<BR>smcp: Added note 
+          about dotlessi; clarified function and feature interaction.<BR>trad: 
+          corrected terminology (hanzi, not hanja), clarified user interface 
+          suggestion and implementation recommendation.<BR>vert: Clarified 
+          feature interaction and added ordering recommendation; extended 
+          application interface notes.<BR>vrt2: Changed 'friendly' name, 
+          clarified feature interaction and added ordering recommendation; added 
+          ATM/OTF driver information and descriptions of how to construct the 
+          rotated glyphs in the Function section.<BR>zero: Clarified user 
+          interface suggestion.<BR>
+          <LI><I>Features relocated:</I><BR>mark and mset have been moved from 
+          the Metric Behaviors category, to the Other Substitutions category for 
+          consistency in classification. <BR></LI></UL>
+        <LI><A href="chapter2.htm">chapter2.htm</A> - modified description of 
+        FeatureParams field for a non-null offset (the size feature uses it). </LI></UL>
+        <P><B><A name=v1.3>Version 1.3</A></B> - released April, 
+        2001<BR><I>Summary of Changes:</I> 
+        <UL>
+          <LI>Multiple Master support in OpenType, discontinued. The following 
+          tables pertaining to it have been removed from this version of the 
+          OpenType specification: 'fvar', 'MMSD', 'MMFX'. </LI></UL>
+        <UL>
+          <LI><A href="base.htm">base.htm</A> 
+          <UL>
+            <LI><I>BaseTagList Table</I><BR>Added a sentence with a link to the 
+            baseline tags in the tags registry. 
+            <LI><I>BaseCoord Format 4 </I><BR>Removed. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="cff.htm">cff.htm</A> 
+          <UL>
+            <LI>Removed references to MM fonts in the CFF and Type 2 Charstring Format specifications. See the change log in each specification for additional changes made.</LI></UL></LI></UL>
+        <UL>
+          <LI><A href="chapter2.htm">chapter2.htm</A> <BR>
+          <UL>
+            <LI><I>Table Organisation</I><BR>In paragraph 3, changed the number 
+            of types of GSUB and GPOS lookups. Phrase added to Paragraph 4 to 
+            exclude the Extension lookup. 
+            <LI><I>LookupFlag bit enumeration </I><BR>Name of the first bit 
+            reverted back to RightToLeft. Provided newer description of its use. 
+
+            <LI><I>Coverage Table</I><BR>Phrase added to exclude the Extension 
+            lookup. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="cmap.htm">cmap.htm</A> <BR>
+          <UL>
+            <LI>Merged paragraph 3 and 4 in the introduction section.
+            <LI>Added notes that fonts for Windows that support UCS-4 characters 
+            (surrogates), need to use an encoding ID 10 and format 12. 
+            <LI>The version field has been renamed as 'language', to align it 
+            with Apple's TT spec. Added a note to clarify the use of this field. 
+
+            <LI>Added information that platform ID 3, encoding ID 7,8 and 9 are reserved. 
+	<LI>Added platform ID 3, encoding ID 10.
+            <LI>Swapped the description of encoding ID 3 and 4. They were 
+            incorrectly mapped to Big5 and PRC respectively, in earlier versions 
+            of the specification. 
+            <LI>Added a note on OTF Windows compatibility mapping.<BR>
+            <LI><I>Formats 2, 4, 6.</I><BR>Made the description of the 'length' 
+            field in these formats consistent with the rest of the formats. 
+	<LI><I>Format 2</I><BR>Removed the duplicate entry for subHeaders[ ]. 
+            <LI><I>Format 4</I><BR>Corrected 'endCode' and 'startCode' values in 
+            the example for this format. 
+            <LI><I>Supporting 4-byte character codes (Formats 8, 10, 
+            12)</I><BR>Added these new formats. </LI></UL></LI></UL>
+	<UL>
+          <LI><A href="ebdt.htm">ebdt.htm</A> 
+          <UL>
+            <LI>Minor typo in the name of ebdtComponent corrected. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="feattags.htm">feattags.htm</A> <BR>
+          <UL>
+            <LI>Added features 'ccmp', 'fin2', 'fin3', med2' and 'rlig'. 
+	<LI>Clarified the Feature Interaction sections for 'kern', 'vkrn'.
+	<LI>Updated GSUB lookup type to be used, in the Recommended implementation section of 'ordn'.
+          </LI></UL></LI></UL>
+        <UL>
+          <LI>fvar.htm<BR>
+          <UL>
+            <LI>This table removed.<BR></LI></UL></LI></UL>
+        <UL>
+          <LI><A href="gdef.htm">gdef.htm</A> <BR>
+          <UL>
+            <LI><I>Introduction</I><BR>Added information on the 
+            MarkAttachClassDef field. 
+            <LI><I>Overview</I><BR>Updated image to contain MarkAttachClassDef. 
+            <LI><I>GDEF Header</I><BR>Added missing information on the 
+            MarkAttachClassDef field. 
+            <LI><I>GDEF Header Table</I><BR>Added the note that offsets might be 
+            null for the GlyphClassDef, AttachList, LigCaretList, 
+            MarkAttachClassDef 
+            <LI><I>GlyphClassDef Enumeration List </I><BR>An explanatory note 
+            added for definition of ligatures and component glyphs. 
+            <LI><I>Mark Attachment Class Definition Table </I><BR>An explanatory 
+            section and example 7 added. 
+            <LI><I>CaretValue: Format 4</I><BR>This format used by MM fonts 
+            removed. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="gpos.htm">gpos.htm</A> <BR>
+          <UL>
+            <LI>Corrected the link "Common Table Formats" to read "OpenType 
+            Common Table Formats"; throughout table. 
+            <LI><I>Table Organization </I><BR>Updated the image. Added links for 
+            all lookup types. Added Extension positioning as LookupType 9, types 
+            10+ are now Reserved. 
+	<LI><I>PairPosFormat1 subtable </I><BR> PairSet field corrected to specify it as an array of Offsets.
+            <LI><I>Lookup Type 6</I><BR>Sentence added to clarify input context 
+            for MarkToBase, MarkToLigature and MarkToMark positioning tables. 
+            <LI><I>LookupType 9: Extension Positioning</I><BR>This new lookup 
+            type added. 
+            <LI><I>ValueRecord table </I><BR>Removed XIdPlacement, YIdPlacement, 
+            XIdAdvance, YIdAdvance and the sentence following the table. 
+            <LI><I>ValueFormat bit enumeration </I><BR>Removed XIdPlacement, 
+            YIdPlacement, XIdAdvance, YIdAdvance and the sentence following the 
+            table. 
+            <LI><I>Anchor Table: Format 4</I><BR>Removed. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="gsub.htm">gsub.htm</A> <BR>
+          <UL>
+            <LI>Corrected the link "Common Table Formats" to read "OpenType 
+            Common Table Formats"; throughout table. 
+            <LI><I>Substituting Glyphs with OpenTypeTM </I><BR>Types of lookups 
+            corrected to six. Added an explanation to the ligature substitution 
+            section, to clarify the location occupied by a ligature glyph when 
+            it replaces a sequence of glyphs. Missing paragraph on Chaining 
+            contextual substitution added. 
+            <LI><I>Table Organization</I><BR>Updated image. 
+            <LI><I>LookupType Enumeration table for glyph 
+            substitution</I><BR>Added links for all lookup types. Added 
+            Extension Substitution as the 7th lookup type. This hence classifies 
+            types 8+ as Reserved. 
+            <LI><I>LookupType 2:</I><BR>Prohibited the deletion of an input glyph, and added that GlyphCount should always be greater than 0.   
+            <LI><I>Chaining Context Substitution Format 1: Simple Chaining 
+            Context Glyph Substitution</I><BR>Added that the match for the 
+            string 'backtrack sequence + input sequence + lookahead sequence' 
+            takes place in the simplest of cases; and that lookup flag values 
+            affect backtrack/lookahead sequences. Since the input sequence 
+            includes the covered glyph, removed "covered glyph" from the above 
+            string. 
+            <LI><I>LookupType 7: Extension Substitution </I><BR>This new lookup 
+            type added. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="head.htm">head.htm</A> <BR>
+          <UL>
+            <LI><I>table </I><BR>Clarified description for bit 1, 5-10.<BR>Added specification for bit 13. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="hhea.htm">hhea.htm</A> <BR>
+          <UL>
+            <LI><I>table </I><BR>Added a footnote for the fields Ascender, 
+            Descender and LineGap. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="hmtx.htm">hmtx.htm</A> <BR>
+          <UL>
+            <LI>Added a note that the advanceWidth for each glyph in CFF 
+            OpenType fonts must match its x width in the CFF table. 
+          </LI></UL></LI></UL>
+         <UL>
+          <LI><A href="loca.htm">loca.htm</A> <BR>
+          <UL>
+            <LI>Corrected minor typo.
+          </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="maxp.htm">maxp.htm</A> <BR>
+          <UL>
+            <LI>Added a note to indicate the difference in representing the 
+            fractional part of a version number when it is non-zero. 
+          </LI></UL></LI></UL>
+        <UL>
+          <LI>mmfx.htm<BR>
+          <UL>
+            <LI>This table removed.<BR></LI></UL></LI></UL>
+        <UL>
+          <LI>mmsd.htm<BR>
+          <UL>
+            <LI>This table removed.<BR></LI></UL></LI></UL>
+        <UL>
+          <LI><A href="name.htm">name.htm</A> <BR>
+          <UL>
+            <LI>Minor rewording of text done in the introduction section related 
+            to fonts for the Macintosh. 
+            <LI><I>Platform ID, specific encoding ID and languageId information 
+            combined into one table.</I><BR>
+            <LI><I>Unicode platform-specific encoding IDs (platform ID = 0) 
+            </I><BR>This new table added. 
+            <LI><I>Microsoft platform-specific encoding IDs</I><BR>This table 
+            replaced with a more comprehensive table from the cmap.htm. 
+	<LI><I>Mac platform-specific encoding IDs:</I><BR>Clarified IDs 2 and 25. Corrected typo in ID 32.
+            <LI><I>Mac language IDs:</I><BR>Newer IDs added 23-150. 
+            <LI><I>ISO specific encodings (platform ID=2)</I><BR>Marked as 
+            deprecated. Minor typo in the sentence below the table corrected. 
+            <LI><I>Custom platform-specific encoding IDs (platform ID = 4) 
+            </I><BR>Newer platform ID added. 
+            <LI><I>Name IDs</I><BR>Added newer description for nameID 5. Added 
+            nameID 19 and 20. 
+            <LI><I>Examples</I><BR>Added example for nameID 19. 
+            <LI><I>LCID-CP list</I> <BR>Updated this list. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="os2.htm">os2.htm</A> <BR>
+          <UL>
+            <LI><I>xAvgCharWidth.description</I><BR>Comments for 
+            this field updated. 
+            <LI><I>fsType.table</I><BR>Added Bit Mask and description details 
+            for the case when no bit is set; added Bit Mask value 0x0001. 
+            <LI><I>fsType.comments</I><BR>Information on setting Bit Masks 
+            consolidated into the description column of the table. Removed the 
+            redundant section below the table. 
+            <LI><I>yStrikeoutPosition.description</I><BR>Added that this is the 
+            distance of the top of the strikeout stroke. 
+            <LI><I>panose.description</I><BR>Removed dead url for the PANOSE evaluation document, added that the "greybook" reference could be used instead. 
+            <LI><I>ulUnicodeRange.table</I><BR>Updated the Unicode standard 
+            version number to 3.0 in the description for these fields. Added 
+            bits 70- 127. Added a footnote for setting bit 57 (Surrogates). 
+            <LI><I>usFirstCharIndex.description</I><BR>Minor correction-- added 
+            the word platform specific. 
+            <LI><I>sTypoAscender and sTypodescender</I><BR>Minor corrections done; "design space" now referred to as "ideo em box" in the descriptions; added a links to recom.htm for these fields. 
+            <LI><I>usWinAscent</I><BR>Explanatory note added to explain the 
+            circumstances in which clipping will take place. 
+            <LI><I>usWinDescent</I><BR>Explanatory note added to explain the 
+            circumstances in which clipping will take place. 
+            <LI><I>sxHeight</I><BR>Added a note that this metric can be used in 
+            font substitution. 
+            <LI><I>usDefaultChar</I><BR>Added that for a given font, missing 
+            glyphs will be displayed using the content of glyph 0 in the 
+            selected font. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="otff.htm">otff.htm</A> <BR>
+          <UL>
+            <LI><I>Version Numbers</I><BR>Added explanation that representation 
+            of a non-zero fractional part in version numbers, differs from the 
+            representation of the matissa. 
+            <LI><I>Tables Related to PostScript Outlines</I><BR>Removed links 
+            and description details for the fvar, MMSD and MMFX tables. 
+            <LI><I>Advanced Typographic Tables</I><BR>Added a link to OpenType 
+            Layout Common Table Formats. 
+            <LI><I>Other OpenType Tables</I><BR>Added the VORG table name to the 
+            list. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="otover.htm">otover.htm</A> <BR>
+          <UL>
+            <LI><I>Related documentation </I><BR>Removed sections in the 
+            description related to MM fonts. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="post.htm">post.htm</A> <BR>
+          <UL>
+            <LI><I>table.version.description</I><BR>Added versions 2.5 and 3.0 
+            <LI><I>table.underlinePosition.description</I><BR>PostScript 
+            information added. 
+            <LI><I>version2.0</I><BR>Updated name and description details in the 
+            table contents 
+            <LI><I>version2.5</I><BR>Updated table contents, added that this 
+            version has been deprecated. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="recom.htm">recom.htm</A> <BR>
+          <UL>
+            <LI><I>'BASE' Table</I><BR>This section added. 
+            <LI><I>'cmap' table</I><BR>Added details on requirements that need 
+            to be satisfied by surrogate fonts on Windows. 
+            <LI><I>'head' Table</I><BR>Added details regarding usage of the 
+            fontRevision value. 
+            <LI><I>'hhea' Table</I><BR>Removed sentence which incorrectly stated that OpenType fonts that include CFF data must set numberOfHMetrics equal to the number of glyphs in the font. 
+            <LI><I>'post' Table</I><BR>Updated content related to glyph names in 
+            the post table. 
+	<LI><I>'os/2' Table</I><BR>Added section on sTypoAscender, sTypoDescender, sTypoLineGap. 
+            <LI><I>General Recommendations</I><BR>Updated the table ordering list for OpenType fonts containing CFF data by adding the 'maxp' table; and, removing the 'fvar' and 'MMSD' tables. 
+            <LI><I>Baseline to Baseline Distances</I><BR>Added a paragraph on 
+            the recommended use of sTypoAscender, sTypoDescender, and 
+            sTypoLineGap. 
+            <LI><I>OpenType CJK Font Guidelines</I><BR>This new section added. 
+            </LI></UL></LI></UL>
+
+         <UL>
+          <LI><A href="ttochap1.htm">ttochap1.htm</A> <BR>
+          <UL>
+            <LI><I>Introduction </I><BR>Removed 'MMSD' reference. <BR>Expanded 
+            the brief description of the content of Registered OpenType Layout 
+            Tags to reflect all OpenType tags: scripts, languages, baselines, 
+            features. 
+            <LI><I>How Multiple Master OpenType Fonts Use OpenType Layout 
+            Tables</I><BR>This section removed. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="ttoreg.htm">ttoreg.htm</A> <BR>
+          <UL>
+	<LI>Added links in the introduction section, to help jump to the script, language, baseline and feature tag sections.
+            <LI><I>Script tags</I><BR>Corrected script tag length description. <BR>Added newer script tags. 
+            <LI><I>Language system tags</I><BR>Added newer language tags. 
+            <LI><I>Baseline tags</I><BR>Added newer baseline tags: "icfb", "icft" and 
+            "idtp". Expanded the description of existing tags into two 
+            categories:"Baseline for HorizAxis" and "Baseline for VertAxis". 
+            <LI><I>Ideographic Em-Box </I><BR>This new section added. 
+            <LI><I>Ideographic Character Face </I><BR>This new section added. 
+            </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="vhea.htm">vhea.htm</A> <BR>
+          <UL>
+            <LI><I>Introduction</I><BR>Added a link each for the vmtx table and 
+            the CJK guidelines section. 
+            <LI><I>table.version.description</I><BR>Version number increased to 
+            1.1. Added a note to indicate the difference in representing the 
+            fractional part of a version number when it is non-zero. 
+            <LI><I>table.ascent</I><BR>Replaced by vertTypoAscender. 
+            <LI><I>table.descent </I><BR>Replaced by vertTypoDescender. 
+            <LI><I>table.lineGap</I><BR>Replaced by vertTypoLineGap. 
+            <LI><I>Vertical Header Table Example </I><BR>Changed version value 
+            to 1.1. Corrected the name for vertTypoLineGap </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="vmtx.htm">vmtx.htm</A> <BR>
+          <UL>
+            <LI><I>Introduction</I><BR>Added a link for accessing the CJK 
+            guidelines section. 
+            <LI><I>Vertical Origin and Advance Height </I><BR>This new section 
+            added. 
+            <LI><I>Vertical Metrics Table Format </I><BR>Added note on the 
+            calculating the top side bearing. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="vorg.htm">vorg.htm</A> <BR>
+          <UL>
+            <LI>This new table added. This is needed by CFF OpenType fonts to 
+            locate the origin of vertical glyphs. </LI></UL></LI></UL>
+        <UL>
+          <LI><A href="wgl4d.htm">wgl4d.htm</A> <BR>
+          <UL>
+            <LI>Added a missing asterisk for PostScriptName.macron 
+            <LI>Added the U+02dc (tilde)-- was missing from the list. 
+          </LI></UL></LI></UL>
+
+<P><B><A name=v1.4>Version 1.4</A></B> - released 11 October 2002<BR><I>Summary of Changes:</I> 
+        <UL>
+<LI><A href="baselinetags.htm">baselinetags.htm</A>
+	<UL>
+	  <LI>Corrected typographic error.</LI>
+	  <LI>Changed hanging baseline references from Hindi to Tibetan.</LI>
+	</UL>
+
+</LI>
+          
+<LI><A href="chapter2.htm">chapter2.htm</A>
+	<UL>
+	  <LI>Corrected link to GDEF table.</LI>
+	  <LI>Add documentation on new script tag 'DFLT'.</LI>
+	</UL>
+
+</LI>
+
+<LI><A href="cmap.htm">cmap.htm</A>
+	<UL>
+	  <LI>Add Name column to tabular data to make consistent with other parts of spec.</LI>
+	  <LI>Correct description of Encoding Record.</LI>
+	</UL>
+
+</LI>
+
+<LI><A href="cvt.htm">cvt.htm</A>
+	<UL>
+	  <LI>Indicate that length must be integral value of FWORD units.</LI>
+	</UL>
+
+</LI>
+
+<LI><A href="default.htm">default.htm</A>
+	<UL>
+	  <LI>Update the version number to 1.4.</LI>
+	</UL>
+
+</LI>
+
+<LI><A href="dsig.htm">dsig.htm</A>
+	<UL>
+	  <LI>Provide information for ulVersion to be 0x00000001.</LI>
+	  <LI>Update to show usFlag bits that are assigned.</LI>
+	  <LI>Add section on signatures for TrueType Collections.</LI>
+	</UL>
+
+</LI>
+
+<LI><A href="ebdt.htm">ebdt.htm</A> 
+          <UL>
+            <LI>Change wording to indicate 'EBDT' is superset of 'bdat'. These are not the same.</LI> 
+        </UL> 
+</LI>
+
+<LI><A href="featurelist.htm">featurelist.htm</A> 
+          <UL>
+            <LI>Added new features: abvf, c2pc, ljmo, nlck, pcap, pref, rtla, tjmo, unic, and vjmo.</LI> 
+            <LI>Change friendly name of 'calt' from Connection Forms to Contextual Alternates.</LI>
+        </UL>
+</LI>
+
+<LI><A href="fpgm.htm">fpgm.htm</A> 
+          <UL>
+            <LI>Add comment that array size <i>n</i> is the number of bytes in the table.</LI> 
+        </UL>
+</LI>
+
+<LI><A href="gdef.htm">gdef.htm</A> 
+          <UL>
+            <LI>Example 6, typos in the comments column for increasing 15 and 16ppem corrected. </LI> 
+        </UL>
+</LI>
+
+<LI><A href="gpos.htm">gpos.htm</A> 
+          <UL>
+            <LI>Clarify origin of Cartesian coordinate system at baseline of the left side. </LI> 
+            <LI>Specify all values are done in font unit measurements. </LI> 
+            <LI>Update images for better presentation. </LI> 
+	    <LI>PairPosFormat1 subtable ValueRecord changed to Offset, PairSetOffset[PairSetCount].</LI>
+	    <LI>Update wording on MarkToMark attachment.</LI>
+        </UL>
+</LI>
+
+<LI><A href="gsub.htm">gsub.htm</A> 
+          <UL>
+            <LI>Add Lookup Type 8, Reverse Chaining contextual single substitution. </LI> 
+        </UL>
+</LI>
+
+<LI><A href="hdmx.htm">hdmx.htm</A> 
+          <UL>
+            <LI>Remove references to EGA.</LI> 
+            <LI>Add statement that bit 2 of head.flag must be set to 1.</LI>
+	    <LI>Add Name columns to tabular data for consistency with spec.</LI>
+        </UL> 
+</LI>
+
+<LI><A href="head.htm">head.htm</A> 
+          <UL>
+            <LI>Updated macStyle bit descriptions for bits 2 to 15.</LI> 
+            <LI>unitsPerEm annotated that it should be a power of 2.</LI>
+        </UL> 
+</LI>
+
+<LI><A href="hhea.htm">hhea.htm</A> 
+          <UL>
+            <LI>Change FWord to FWORD for correct data type spelling.</LI> 
+        </UL> 
+</LI>
+
+<LI><A href="ibmfc.htm">ibmfc.htm</A> 
+          <UL>
+            <LI>Fix formatting to indent subclasses for better readability.</LI> 
+        </UL> 
+</LI>
+
+<LI><A href="name.htm">name.htm</A> 
+          <UL>
+	    <LI>Add Name column to tabular data for consistency with spec.</LI>
+	    <LI>Correct descriptions in Naming Table for count and nameRecord[count].</LI>
+            <LI>Clarified description of encoding ID 0/3. Added encoding ID 0/4. Changed description of encoding ID 3/10 to UTF-32. </LI> 
+	    <LI>Added description and example, for use of name ID 4 in CFF fonts.</LI> 
+            <LI>Clarified working for use of name ID 5 (Version string).</LI>
+	    <LI>Changed wording for name ID 16 (Preferred Family) and name ID 17 (Preferred Subfamily).</LI>
+	    <LI>Suggest that style strings (name ID 2 or 17) match with OS/2.usWeightClass and OS/2.usWidthClass.</LI>
+        </UL> 
+</LI>
+
+<LI><A href="os2.htm">os2.htm</A> 
+          <UL>
+	    <LI>Updated version number to 0x0003</LI>
+	    <LI>Updated Unicode sub-range bits to be aligned with Unicode 3.2.</LI>
+	    <LI>Remove weighted calculation of xAvgCharWidth. </LI>
+	    <LI>Make fsType bits 0-3 to be mutually exclusive. In other words, only one of those bits may be set to "1" at a time. This is to avoid problems of ambiguity in what the font designer intends.</LI>
+	    <LI>Change link to PANOSE specification.</LI>
+            <LI>Updated description of usFirstCharIndex, usLastCharIndex, usDefaultChar, usBreakChar; in context of fonts that provide surrogate character support.</LI> 
+        </UL> 
+</LI>
+
+<LI><A href="otff.htm">otff.htm</A> 
+          <UL>
+	    <LI>Update filename information for TrueType outline fonts.</LI>
+	    <LI>Add data types for FWORD and UFWORD.</LI>
+            <LI>Corrected content and description of TTC header v1 and v2.</LI> 
+            <LI>Moved VORG table to PostScript Outlines group.</LI>
+        </UL> 
+</LI>
+
+<LI><A href="pclt.htm">pclt.htm</A> 
+          <UL>
+            <LI>Change to discourage use of this table.</LI> 
+        </UL> 
+</LI>
+
+<LI><A href="proposals.htm">proposals.htm</A> 
+          <UL>
+            <LI>Remove proposed feature tags that were incorporated into this version.</LI> 
+        </UL> 
+</LI>
+
+<LI><A href="recom.htm">recom.htm</A> 
+          <UL>
+            <LI>Added recommendation for first four glyphs in font.</LI> 
+            <LI>Added recommendation for shape of .notdef glyph.</LI> 
+        </UL> 
+</LI>
+
+<LI><A href="scripttags.htm">scripttags.htm</A> 
+          <UL>
+            <LI>Add script tags for Byzantine Music and Default.</LI> 
+        </UL> 
+</LI>
+
+<LI><A href="ttinst2.doc">ttinst2.doc</A> 
+          <UL>
+            <LI>Corrected description in Logical_Functions.Greater_Than.</LI> 
+        </UL>
+</LI>
+
+
+<LI><A href="ttoreg.htm">ttoreg.htm</A> 
+          <UL>
+            <LI>Reworded and reorganized for better readability.</LI> 
+        </UL> 
+</LI>
+
+
+<LI><A href="vdmx.htm">vdmx.htm</A> 
+          <UL>
+            <LI>Change ratio record and vTable record to tabular format.</LI> 
+	    <LI>Recommend use of version 1 vdmx.</LI>
+        </UL> 
+</LI>
+
+<LI><A href="wgl4e.htm">wgl4e.htm</A> 
+          <UL>
+            <LI>Optional glyphs identified and marked. Added a footnote. </LI> 
+        </UL>
+</LI>
+
+
+</UL> 
+
+        <P><FONT face="Verdana, Arial, Helvetica" size=1>
+        <P class=detail><BR><BR>this page was last updated 10 October 2002<BR>© 
+        2001 Microsoft Corporation. All rights reserved. <A 
+        href="http://www.microsoft.com/Misc/cpyright.htm">Terms of 
+        use</A>.<BR>comments to the MST group: 
+       	<A HREF="/typography/about.htm">how to contact us</A>.
+        <P>&nbsp; </FONT></P></LI></UL></TD>
+    <TD width=20></TD></TR>
+  <TR>
+    <TD width=20></TD>
+    <TD colSpan=2 width=540></TD>
+    <TD width=20></TD></TR>
+  <TR>
+    <TD colSpan=4 height=10 width=580><IMG alt="" height=10 src="midrule.gif" 
+      width=580></TD></TR>
+  <TR>
+    <TD width=20></TD>
+    <TD colSpan=3 vAlign=top width=560><FONT class=detail 
+      face="Verdana, Arial, Helvetica" size=1><A 
+      href="http://www.microsoft.com/typography/default.asp">Microsoft 
+      Typography</A> | <A 
+      href="http://www.microsoft.com/typography/creators.htm">Developer...</A> | 
+      <A href="default.htm">OpenType specification</A> | OpenType specification 
+      change log </FONT></TD></TR>
+  <TR>
+    <TD colSpan=4 height=20 width=580><IMG height=20 src="baserule.gif" 
+      width=580></TD></TR></TBODY></TABLE></CENTER></P></BODY></HTML>

@@ -1,0 +1,1092 @@
+From: <Saved by Windows Internet Explorer 7>
+Subject: Character to Glyph Mapping Table
+Date: Sun, 15 Feb 2009 11:37:22 -0700
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01C98F61.C48C52A0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.3790.4325
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C98F61.C48C52A0
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://developer.apple.com/textfonts/TTRefMan/RM06/Chap6cmap.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Character to Glyph Mapping Table</TITLE><!-- =0A=
+=0A=
+	$Log: Chap6cmap.html,v $=0A=
+	Revision 1.4  2003/12/18 16:04:38  jenkins=0A=
+	Updated to correct the sample code used to interpret type 4 cmaps.=0A=
+	=0A=
+-->
+<META http-equiv=3Dcontent-type =
+content=3Dtext/html;charset=3Diso-8859-1>
+<META content=3D"MSHTML 6.00.6000.16809" name=3DGENERATOR><LINK =
+rev=3Dmade=20
+href=3D"mailto:applefonts@apple.com"></HEAD>
+<BODY bgColor=3Dwhite>
+<H1><A name=3Dcmap></A>The <CODE>'cmap'</CODE> table</H1>
+<H2><IMG height=3D30=20
+src=3D"http://developer.apple.com/textfonts/TTRefMan/Images/Font.gif" =
+width=3D32=20
+align=3Dmiddle>General table information</H2>
+<P>The <CODE>'cmap'</CODE> table maps character codes to glyph indices. =
+The=20
+choice of encoding for a particular font is dependent upon the =
+conventions used=20
+by the intended platform. A font intended to run on multiple platforms =
+with=20
+different encoding conventions will require multiple encoding tables. As =
+a=20
+result, the <CODE>'cmap'</CODE> table may contain multiple subtables, =
+one for=20
+each supported encoding scheme.</P>
+<P>Character codes that do not correspond to any glyph in the font =
+should be=20
+mapped to glyph index 0. At this location in the font there must be a =
+special=20
+glyph representing a missing character, typically a box. No character =
+code=20
+should be mapped to glyph index -1, which is a special value reserved in =
+
+processing to indicate the position of a glyph deleted from the glyph=20
+stream.</P>
+<P>The <CODE>'cmap'</CODE> table begins with an index containing the =
+table=20
+version number followed by the number of encoding tables. The encoding =
+subtables=20
+follow.</P>
+<P>The original definition of the <CODE>'cmap'</CODE> table only allowed =
+for=20
+mappings from traditional character set standards, which used eight, a =
+mixture=20
+of eight and sixteen, or sixteen bits for each character. With the =
+introduction=20
+of ISO/IEC 10646-1 and the use of <A=20
+href=3D"http://developer.apple.com/textfonts/TTRefMan/RM06/Chap6cmap.html=
+#Surrogates">surrogates</A>=20
+in versions of Unicode from 2.0 onwards, it is possible that fonts may =
+require=20
+references to data that uses a mixture of sixteen and thirty-two or =
+thirty-two=20
+bits per character.</P>
+<P>It was originally suggested that a version number of 0 is used to =
+indicate=20
+that only encoding subtables of types 0 through 6 are present in the=20
+<CODE>'cmap'</CODE> table. If the<CODE> 'cmap'</CODE> table contains =
+encoding=20
+subtables of types 8.0 or higher, the version number would then be set =
+to 1.=20
+These latter encoding subtable types have been introduced to provide =
+better=20
+support for Unicode text encoded using surrogates.</P>
+<P>This suggestion is now dropped. All <CODE>'cmap'</CODE> tables should =
+set the=20
+version number to 0.</P>
+<P><FONT size=3D2><B>Table 6</B></FONT><FONT size=3D2>: The =
+<CODE>'cmap'</CODE>=20
+index</FONT>=20
+<TABLE cellSpacing=3D2 cellPadding=3D0 border=3D1>
+  <TBODY>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TH align=3Dleft>Type</TH>
+    <TH align=3Dleft>Name</TH>
+    <TH align=3Dleft>Description</TH></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>version</TD>
+    <TD>Version number (Set to zero)</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>numberSubtables</TD>
+    <TD>Number of encoding subtables</TD></TR></TBODY></TABLE></P>
+<H2>The <CODE>'cmap'</CODE> encoding subtables</H2>
+<P>Each <CODE>'cmap'</CODE> encoding subtable begins with a=20
+<VAR>platformID</VAR> which specifies the environment in which the =
+encoding will=20
+be used. The <VAR>platformSpecificID</VAR> follows. This identifies the=20
+particular encoding chosen among the possible alternatives for the =
+specified=20
+platform. For example, MacRoman is one of several possible Mac OS =
+standard=20
+encoding schemes. A list of standard platform identifiers and platform =
+specific=20
+identifiers can be found in the section on the <A=20
+href=3D"http://developer.apple.com/textfonts/TTRefMan/RM06/Chap6name.html=
+#ID"><CODE>'name'</CODE>=20
+table</A>. The third entry is the offset of the actual mapping =
+table.</P>
+<P><FONT size=3D2><B>Table 7</B></FONT><FONT size=3D2>: =
+<CODE>'cmap'</CODE> encoding=20
+subtable</FONT>=20
+<TABLE cellSpacing=3D2 cellPadding=3D0 border=3D1>
+  <TBODY>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TH align=3Dleft>Type</TH>
+    <TH align=3Dleft>Name</TH>
+    <TH align=3Dleft>Description</TH></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>platformID</TD>
+    <TD>Platform identifier</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>platformSpecificID</TD>
+    <TD>Platform-specific encoding identifier</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt32</TD>
+    <TD>offset</TD>
+    <TD>Offset of the mapping table</TD></TR></TBODY></TABLE></P>
+<P>The <CODE>'cmap'</CODE> encoding subtables must be sorted first in =
+ascending=20
+by platform identifier and then by platform-specific encoding =
+identifier.</P>
+<P>Each <CODE>'cmap'</CODE> subtable is in one of seven currently =
+available=20
+formats. These are format 0, format 2, format 4, format 6, format 8.0, =
+format=20
+10.0, and format 12.0 described in the next section.</P>
+<H2>The <CODE>'cmap'</CODE> formats</H2>
+<P>The Macintosh standard character to glyph mapping is supported by =
+format 0.=20
+Format 2 supports a mixed 8/16 bit mapping useful for Japanese, Chinese =
+and=20
+Korean. Format 4 is used for 16 bit mappings. Format 6 is used for dense =
+16 bit=20
+mappings.</P>
+<P>Formats 8, 10, and 12 (properly 8.0, 10.0, and 12.0) are used for =
+mixed=20
+16/32-bit and pure 32-bit mappings. This supports text encoded with =
+surrogates=20
+in Unicode 2.0 and later.</P>
+<H3><CODE>'cmap'</CODE> format 0</H3>
+<P>Format 0 is suitable for fonts whose character codes and glyph =
+indices are=20
+restricted to a single byte. It is the standard Apple character to glyph =
+index=20
+mapping table.</P>
+<P><FONT size=3D2><B>Table 8</B></FONT><FONT size=3D2>: =
+<CODE>'cmap'</CODE> format=20
+0</FONT>=20
+<TABLE cellSpacing=3D2 cellPadding=3D0 border=3D1>
+  <TBODY>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TH align=3Dleft>Type</TH>
+    <TH align=3Dleft>Name</TH>
+    <TH align=3Dleft>Description</TH></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>format</TD>
+    <TD>Set to 0</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>length</TD>
+    <TD>Length in bytes of the subtable (set to 262 for format =
+0)</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>language</TD>
+    <TD>Language code for this encoding subtable, or zero if=20
+      language-independent</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt8</TD>
+    <TD>glyphIndexArray[256]</TD>
+    <TD>An array that maps character codes to glyph index=20
+values</TD></TR></TBODY></TABLE></P>
+<H3><CODE>'cmap'</CODE> format 2</H3>
+<P>The format 2 mapping subtable type is used for fonts containing =
+Japanese,=20
+Chinese, or Korean characters. The code standards used in this table are =
+
+supported on Macintosh systems in Asia. These fonts contain a mixed =
+8/16-bit=20
+encoding, in which certain byte values are set aside to signal the first =
+byte of=20
+a 2-byte character. These special values are also legal as the second =
+byte of a=20
+2-byte character.</P>
+<P>Table 9 shows the format of a format 2 encoding subtable. The=20
+<CODE>subHeaderKeys</CODE> array maps each possible high byte into a =
+particular=20
+member of the suborders array. This allows the determination of whether =
+or not a=20
+second byte is used. In either case, the path leads into the=20
+<CODE>glyphIndexArray</CODE> from which the mapped glyph index is =
+obtained. The=20
+sequence of operations is as follows:</P>
+<P>Consider a high byte, <CODE>i</CODE>, designating an integer between =
+0 and=20
+255. The value <CODE>subHeaderKeys[i]</CODE>, divided by 8, is the index =
+
+<CODE>k</CODE> into the <CODE>subHeaders</CODE> array. The value =
+<CODE>k</CODE>=20
+equals 0 is special. It means that <CODE>i</CODE> is a one-byte code and =
+no=20
+second byte will be referenced. If <CODE>k</CODE> is positive, then=20
+<CODE>i</CODE> is the high-byte of a two-byte code and its second byte=20
+<CODE>j</CODE> will be consumed.</P>
+<P><FONT size=3D2><B>Table 9</B></FONT><FONT size=3D2>: =
+<CODE>'cmap'</CODE> format=20
+2</FONT>=20
+<TABLE cellSpacing=3D2 cellPadding=3D0 border=3D1>
+  <TBODY>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TH align=3Dleft>Type</TH>
+    <TH align=3Dleft>Name</TH>
+    <TH align=3Dleft>Description</TH></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>format</TD>
+    <TD>Set to 2</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>length</TD>
+    <TD>Total table length in bytes</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>language</TD>
+    <TD>Language code for this encoding subtable, or zero if=20
+      language-independent</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>subHeaderKeys[256]</TD>
+    <TD>Array that maps high bytes to subHeaders: value is index * =
+8</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16 * 4</TD>
+    <TD>subHeaders[variable]</TD>
+    <TD>Variable length array of subHeader structures</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>glyphIndexArray[variable]</TD>
+    <TD>Variable length array containing =
+subarrays</TD></TR></TBODY></TABLE></P>
+<P>The subHeader data type is a 4-word structure defined by the =
+C-language=20
+structure shown below:</P>
+<P>&nbsp;</P><PRE><CODE>typedef struct {</CODE>
+<CODE>    UInt16  firstCode;</CODE>
+<CODE>    UInt16  entryCount;</CODE>
+<CODE>    int16   idDelta;</CODE>
+<CODE>    UInt16  idRangeOffset;</CODE>
+<CODE>} subheader;</CODE></PRE>
+<P>If <CODE>k</CODE> is positive, then the four values belonging to=20
+<CODE>subheaders[k]</CODE> are used as follows with =
+<CODE>firstCode</CODE> and=20
+<CODE>entryCount</CODE> defining the allowable range for the second byte =
+
+<CODE>j</CODE>:</P>
+<P><CODE>firstCode &lt;=3D j &lt; (firstCode + entryCount)</CODE></P>
+<P>If <CODE>j</CODE> is outside this range, index 0 (the missing =
+character=20
+glyph) is returned. Otherwise, <CODE>idRangeOffset</CODE> is used to =
+identify=20
+the associated range within the <CODE>glyphIndexArray</CODE>. The=20
+<CODE>glyphIndexArray</CODE> immediately follows the =
+<CODE>subHeaders</CODE>=20
+array and may be loosely viewed as an extension to it. The value of the=20
+<CODE>idRangeOffset</CODE> is the number of bytes past the actual =
+location of=20
+the <CODE>idRangeOffset</CODE> word where the =
+<CODE>glyphIndexArray</CODE>=20
+element corresponding to <CODE>firstCode</CODE> appears. If =
+<CODE>p</CODE> is=20
+zero, it is returned directly. If <CODE>p</CODE> is nonzero, <CODE>p =3D =
+p +=20
+idDelta</CODE> is returned. The sum is reduced modulo 65536, if =
+necessary.</P>
+<P>For the one-byte case with <CODE>k</CODE> =3D 0, the structure=20
+<CODE>subHeaders[0]</CODE> will show <CODE>firstCode</CODE> =3D 0,=20
+<CODE>entryCount</CODE> =3D 256, and <CODE>idDelta</CODE> =3D 0. The=20
+<CODE>idRangeOffset</CODE> will point, as previously discussed, to the =
+beginning=20
+of the <CODE>glyphIndexArray</CODE>. Indexing <CODE>i</CODE> words into =
+this=20
+array gives the returned value <CODE>p =3D =
+glyphIndexArray[i]</CODE>.</P>
+<H3><CODE>'cmap'</CODE> format 4</H3>
+<P>Format 4 is a two-byte encoding format. It should be used when the =
+character=20
+codes for a font fall into several contiguous ranges, possibly with =
+holes in=20
+some or all of the ranges. That is, some of the codes in a range may not =
+be=20
+associated with glyphs in the font. Two-byte fonts that are densely =
+mapped=20
+should use Format 6.</P>
+<P>The table begins with the format number, the length and language. The =
+
+format-dependent data follows. It is divided into three parts:</P>
+<UL>
+  <LI>A four-word header giving parameters needed for an optimized =
+search of the=20
+  segment list=20
+  <LI>Four parallel arrays describing the segments (one segment for each =
+
+  contiguous range of codes)=20
+  <LI>A variable-length array of glyph IDs </LI></UL>
+<P><FONT size=3D2><B>Table 10</B></FONT><FONT size=3D2>: Format 4</FONT> =
+
+<TABLE cellSpacing=3D2 cellPadding=3D0 border=3D1>
+  <TBODY>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TH align=3Dleft>Type</TH>
+    <TH align=3Dleft>Name</TH>
+    <TH align=3Dleft>Description</TH>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>format</TD>
+    <TD>Format number is set to 4</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>length</TD>
+    <TD>Length of subtable in bytes</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>language</TD>
+    <TD>Language code for this encoding subtable, or zero if=20
+      language-independent</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>segCountX2</TD>
+    <TD>2 * segCount</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>searchRange</TD>
+    <TD>2 * (2**FLOOR(log<SUB>2</SUB>(segCount)))</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>entrySelector</TD>
+    <TD>log<SUB>2</SUB>(searchRange/2)</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>rangeShift</TD>
+    <TD>(2 * segCount) - searchRange</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>endCode[segCount]</TD>
+    <TD>Ending character code for each segment, last =3D 0xFFFF.</TD>
+    <TD width=3D"25%"></TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>reservedPad</TD>
+    <TD>This value should be zero</TD>
+    <TD width=3D"25%"></TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>startCode[segCount]</TD>
+    <TD>Starting character code for each segment</TD>
+    <TD width=3D"25%"></TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>idDelta[segCount]</TD>
+    <TD>Delta for all character codes in segment</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>idRangeOffset[segCount]</TD>
+    <TD>Offset in bytes to glyph indexArray, or 0</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>glyphIndexArray[variable]</TD>
+    <TD>Glyph index array</TD>
+    <TD width=3D"25%">&nbsp;</TD></TR></TBODY></TABLE></P>
+<P>The number of segments is specified by the variable =
+<CODE>segCount</CODE>.=20
+This variable is not explicitly used in the Format 4 table, however it =
+is the=20
+number from which all of the table parameters are derived. The=20
+<CODE>segCount</CODE> is the number of contiguous code ranges in the =
+font. The=20
+<CODE>searchRange</CODE> value is twice the largest power of 2 that is =
+less than=20
+or equal to <CODE>segCount</CODE>.</P>
+<P>Example Format 4 subtable values are shown in this table:</P>
+<P>
+<TABLE cellSpacing=3D2 cellPadding=3D0 width=3D"80%" border=3D1>
+  <TBODY>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>segCount</TD>
+    <TD>39</TD>
+    <TD>Not calculated; determined from the organization of the glyph=20
+    indices</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>searchRange</TD>
+    <TD>64</TD>
+    <TD>(2 * (largest power of 2 &lt;=3D 39)) =3D 2 * 32</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>entrySelector</TD>
+    <TD>5</TD>
+    <TD>(log<SUB>2</SUB>(the largest power of 2 &lt; =
+segCount))</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>rangeShift</TD>
+    <TD>14</TD>
+    <TD>(2 * segCount) - searchRange =3D (2 * 39) - =
+64</TD></TR></TBODY></TABLE></P>
+<P>Each segment is described by a <CODE>startCode</CODE>, an=20
+<CODE>endCode</CODE>, an <CODE>idDelta</CODE> and an =
+<CODE>idRangeOffset</CODE>.=20
+These are used for mapping the character codes in the segment. The =
+segments are=20
+sorted in order of increasing endCode values.</P>
+<P>To use these arrays, it is necessary to search for the first=20
+<CODE>endCode</CODE> that is greater than or equal to the character code =
+to be=20
+mapped. If the corresponding <CODE>startCode</CODE> is less than or =
+equal to the=20
+character code, then use the corresponding <CODE>idDelta</CODE> and=20
+<CODE>idRangeOffset</CODE> to map the character code to the glyph index. =
+
+Otherwise, the missing character glyph is returned. To ensure that the =
+search=20
+will terminate, the final <CODE>endCode</CODE> value must be=20
+<CODE>0xFFFF</CODE>. This segment need not contain any valid mappings. =
+It can=20
+simply map the single character code <CODE>0xFFFF</CODE> to the missing=20
+character glyph, glyph 0.</P>
+<P>If the <CODE>idRangeOffset</CODE> value for the segment is not 0, the =
+mapping=20
+of the character codes relies on the <CODE>glyphIndexArray</CODE>. The =
+character=20
+code offset from <CODE>startCode</CODE> is added to the=20
+<CODE>idRangeOffset</CODE> value. This sum is used as an offset from the =
+current=20
+location within <CODE>idRangeOffset</CODE> itself to index out the =
+correct=20
+<CODE>glyphIdArray</CODE> value. This indexing method works because=20
+<CODE>glyphIdArray</CODE> immediately follows <CODE>idRangeOffset</CODE> =
+in the=20
+font file. The address of the glyph index is given by the following=20
+equation:</P>
+<P><CODE>glyphIndexAddress =3D idRangeOffset[i] + 2 * (c - startCode[i]) =
++ (Ptr)=20
+&amp;idRangeOffset[i]</CODE></P>
+<P>Multiplication by 2 in this equation is required to convert the value =
+into=20
+bytes.</P>
+<P>Alternatively, one may use an expression such as:</P>
+<P><CODE>glyphIndex =3D *( &amp;idRangeOffset[i] + idRangeOffset[i] / 2 =
++ (c -=20
+startCode[i]) )</CODE></P>
+<P>This form depends on <CODE>idRangeOffset</CODE> being an array of=20
+<CODE>UInt16</CODE>'s.</P>
+<P>If the <CODE>idRangeOffset</CODE> is 0, the <CODE>idDelta</CODE> =
+value is=20
+added directly to the character code to get the corresponding glyph =
+index:</P>
+<P><CODE>glyphIndex =3D idDelta[i] + c</CODE></P>
+<P><STRONG>NOTE</STRONG>: All <CODE>idDelta[i]</CODE> arithmetic is =
+modulo=20
+65536.</P>
+<P>The following table gives an example of the parameters required to =
+map=20
+characters 10-20, 30-90, and 100-153 to a contiguous range of glyph =
+indices. The=20
+parameter <CODE>segCount</CODE> =3D 4 for this example. This table gives =
+the=20
+mapping variant parameter values for a Format 4 subtable example. The =
+example=20
+data demonstrates how the character-to glyph index mapping values are=20
+calculated. Assumptions for this table are that <CODE>segCountX2</CODE> =
+is 8,=20
+<CODE>searchRange</CODE> is 8, <CODE>entrySelector</CODE> is 2,=20
+<CODE>rangeShift</CODE> is 0.</P>
+<P>
+<TABLE cellSpacing=3D2 cellPadding=3D0 border=3D1>
+  <TBODY>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TH align=3Dleft>Name</TH>
+    <TH>Segment 1<BR>Chars 10-20</TH>
+    <TH>Segment 2<BR>Chars 30-90</TH>
+    <TH>Segment 3<BR>Chars 100-153</TH>
+    <TH>Segment 4<BR>Missing Glyph</TH></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>endCode</TD>
+    <TD>20</TD>
+    <TD>90</TD>
+    <TD>153</TD>
+    <TD>0xFFFF</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>startCode</TD>
+    <TD>10</TD>
+    <TD>30</TD>
+    <TD>100</TD>
+    <TD>0xFFFF</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>idDelta</TD>
+    <TD>-9</TD>
+    <TD>-18</TD>
+    <TD>-27</TD>
+    <TD>1</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>idRangeOffset</TD>
+    <TD>0</TD>
+    <TD>0</TD>
+    <TD>0</TD>
+    <TD>0</TD></TR></TBODY></TABLE></P>
+<P>This table performs the following mappings:</P>
+<P>&nbsp;</P><PRE><CODE>        10 is mapped to 10-9 or 1</CODE>
+<CODE>        20 is mapped to 20-9 or 11</CODE>
+<CODE>        30 is mapped to 30-18 or 12</CODE>
+<CODE>        90 is mapped to 90-18 or 72</CODE></PRE>
+<P>and so on.</P>
+<H3><CODE>'cmap'</CODE> format 6</H3>
+<P>Format 6 is used to map 16-bit, 2-byte, characters to glyph indexes. =
+It is=20
+sometimes called the trimmed table mapping. It should be used when =
+character=20
+codes for a font fall into a single contiguous range. This results in =
+what is=20
+termed a<DEF><DEF>dense mapping</DEF></DEF>. Two-byte fonts that are not =
+densely=20
+mapped (due to their multiple contiguous ranges) should use Format 4.=20
+Character-to-glyph index mapping subtable Format 6 is shown in the =
+following=20
+table:</P>
+<P><FONT size=3D2><B>Table 11</B></FONT><FONT size=3D2>: =
+<CODE>'cmap'</CODE> format=20
+6</FONT>=20
+<TABLE cellSpacing=3D2 cellPadding=3D0 border=3D1>
+  <TBODY>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TH align=3Dleft>Type</TH>
+    <TH align=3Dleft>Name</TH>
+    <TH align=3Dleft>Description</TH></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>format</TD>
+    <TD>Format number is set to 6</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>length</TD>
+    <TD>Length in bytes</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>language</TD>
+    <TD>Language code for this encoding subtable, or zero if=20
+      language-independent</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>firstCode</TD>
+    <TD>First character code of subrange</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>entryCount</TD>
+    <TD>Number of character codes in subrange</TD></TR>
+  <TR vAlign=3Dcenter align=3Dleft>
+    <TD>UInt16</TD>
+    <TD>glyphIndexArray[entryCount]</TD>
+    <TD>Array of glyph index values for character codes in the=20
+  range</TD></TR></TBODY></TABLE></P>
+<P>The <CODE>firstCode</CODE> and <CODE>entryCount</CODE> values in the =
+subtable=20
+specify the useful subrange within the range of possible character =
+codes. The=20
+range begins with <CODE>firstCode</CODE> and has a length equal to=20
+<CODE>entryCount</CODE>. Codes outside of this subrange are assumed to =
+be=20
+missing and are mapped to the glyph with index 0. For a code within the=20
+subrange, its offset from the <CODE>firstCode</CODE> in the subrange is =
+used as=20
+an index into the <CODE>glyphIndexArray</CODE>. That array provides the =
+glyph=20
+index associated with that character code.</P>
+<H3><CODE>'cmap'</CODE> format 8.0=96Mixed 16-bit and 32-bit =
+coverage</H3>
+<P>Format 8.0 is a bit like format 2, in that it provides for =
+mixed-length=20
+character codes. If a font contains Unicode surrogates, it's likely that =
+it will=20
+also include other, regular 16-bit Unicodes as well. This requires a =
+format to=20
+map a mixture of 16-bit and 32-bit character codes, just as format 2 =
+allows a=20
+mixture of 8-bit and 16-bit codes. A simplifying assumption is made: =
+namely,=20
+that there are no 32-bit character codes which share the same first 16 =
+bits as=20
+any 16-bit character code. This means that the determination as to =
+whether a=20
+particular 16-bit value is a standalone character code or the start of a =
+32-bit=20
+character code can be made by looking at the 16-bit value directly, with =
+no=20
+further information required.</P>
+<P>Here's the format 8 subtable format:</P>
+<P>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD width=3D56>Type</TD>
+    <TD width=3D75>Name</TD>
+    <TD>Description</TD></TR>
+  <TR>
+    <TD width=3D56>Fixed32</TD>
+    <TD width=3D75>format</TD>
+    <TD>Subtable format; set to 8.0</TD></TR>
+  <TR>
+    <TD width=3D56>UInt32</TD>
+    <TD width=3D75>length</TD>
+    <TD>Byte length of this subtable (including the header)</TD></TR>
+  <TR>
+    <TD width=3D56>UInt32</TD>
+    <TD width=3D75>language</TD>
+    <TD>Language code for this encoding subtable, or zero if=20
+      language-independent</TD></TR>
+  <TR>
+    <TD width=3D56>UInt8</TD>
+    <TD width=3D75>is32[65536]</TD>
+    <TD>Tightly packed array of bits (8K bytes total) indicating whether =
+the=20
+      particular 16-bit (index) value is the start of a 32-bit character =
+
+  code</TD></TR>
+  <TR>
+    <TD width=3D56>UInt32</TD>
+    <TD width=3D75>nGroups</TD>
+    <TD>Number of groupings which follow</TD></TR></TBODY></TABLE></P>
+<P>Here follow the individual groups. Each group has the following =
+format:</P>
+<P>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD width=3D55>Type</TD>
+    <TD width=3D99>Name</TD>
+    <TD>Description</TD></TR>
+  <TR>
+    <TD width=3D55>UInt32</TD>
+    <TD width=3D99>startCharCode</TD>
+    <TD>First character code in this group; note that if this group is =
+for one=20
+      or more 16-bit character codes (which is determined from the is32 =
+array),=20
+      this 32-bit value will have the high 16-bits set to zero</TD></TR>
+  <TR>
+    <TD width=3D55>UInt32</TD>
+    <TD width=3D99>endCharCode</TD>
+    <TD>Last character code in this group; same condition as listed =
+above for=20
+      the startCharCode</TD></TR>
+  <TR>
+    <TD width=3D55>UInt32</TD>
+    <TD width=3D99>startGlyphCode</TD>
+    <TD>Glyph index corresponding to the starting character=20
+code</TD></TR></TBODY></TABLE></P>
+<P>A few notes here. The <CODE>endCharCode</CODE> is used, rather than a =
+count,=20
+because comparisons for group matching are usually done on an existing =
+character=20
+code, and having the <CODE>endCharCode</CODE> be there explicitly saves =
+the=20
+necessity of an addition per group.</P>
+<P>The presence of the packed array of bits indicating whether a =
+particular=20
+16-bit value is the start of a 32-bit character code is useful even when =
+the=20
+font contains no glyphs for a particular 16-bit start value. This is =
+because the=20
+system software often needs to know how many bytes ahead the next =
+character=20
+begins, even if the current character maps to the missing glyph. By =
+including=20
+this information explicitly in this table, no "secret" knowledge needs =
+to be=20
+encoded into the OS.</P>
+<P>Thus, although cmap format 8.0 is well-suited for Unicode text =
+encoded using=20
+surrogates, it also has the flexibility to be used with other character =
+set=20
+encodings.</P>
+<P>To determine if a particular word (<CODE>cp</CODE>) is the first half =
+of=20
+thirty-two bit code points, one can use an expression such as <CODE>( =
+is32[ cp /=20
+8 ] &amp; ( 1 &lt;&lt; ( cp % 8 ) ) )</CODE>. If this is non-zero, then =
+the word=20
+is the first half of a thirty-two bit code point.</P>
+<P>0 is <I>not</I> a special value for the high word of a 32-bit code =
+point. A=20
+font may <I>not</I> have both a glyph for the code point =
+<CODE>0x0000</CODE> and=20
+glyphs for code points with a high word of <CODE>0x0000</CODE>.</P>
+<H3><CODE>'cmap'</CODE> format 10.0=96Trimmed array</H3>
+<P>Format 10.0 is a bit like format 6, in that it defines a trimmed =
+array for a=20
+tight range of 32-bit character codes:</P>
+<P>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD width=3D56>Type</TD>
+    <TD width=3D88>Name</TD>
+    <TD>Description</TD></TR>
+  <TR>
+    <TD width=3D56>Fixed32</TD>
+    <TD width=3D88>format</TD>
+    <TD>Subtable format; set to 10.0</TD></TR>
+  <TR>
+    <TD width=3D56>UInt32</TD>
+    <TD width=3D88>length</TD>
+    <TD>Byte length of this subtable (including the header)</TD></TR>
+  <TR>
+    <TD width=3D56>UInt32</TD>
+    <TD width=3D88>language</TD>
+    <TD>0 if don't care</TD></TR>
+  <TR>
+    <TD width=3D56>UInt32</TD>
+    <TD width=3D88>startCharCode</TD>
+    <TD>First character code covered</TD></TR>
+  <TR>
+    <TD width=3D56>UInt32</TD>
+    <TD width=3D88>numChars</TD>
+    <TD>Number of character codes covered</TD></TR>
+  <TR>
+    <TD width=3D56>UInt16</TD>
+    <TD width=3D88>glyphs[]</TD>
+    <TD>Array of glyph indices for the character codes=20
+covered</TD></TR></TBODY></TABLE></P>
+<H3><CODE>'cmap'</CODE> format 12.0=96Segmented coverage</H3>
+<P>Format 12.0 is a bit like format 4, in that it defines segments for =
+sparse=20
+representation in 4-byte character space. Here's the subtable =
+format:</P>
+<P>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD width=3D57>Type</TD>
+    <TD width=3D63>Name</TD>
+    <TD>Description</TD></TR>
+  <TR>
+    <TD width=3D57>Fixed32</TD>
+    <TD width=3D63>format</TD>
+    <TD>Subtable format; set to 12.0</TD></TR>
+  <TR>
+    <TD width=3D57>UInt32</TD>
+    <TD width=3D63>length</TD>
+    <TD>Byte length of this subtable (including the header)</TD></TR>
+  <TR>
+    <TD width=3D57>UInt32</TD>
+    <TD width=3D63>language</TD>
+    <TD>0 if don't care</TD></TR>
+  <TR>
+    <TD width=3D57>UInt32</TD>
+    <TD width=3D63>nGroups</TD>
+    <TD>Number of groupings which follow</TD></TR></TBODY></TABLE></P>
+<P>Here follow the individual groups, each of which has the following=20
+format:</P>
+<P>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD width=3D51>Type</TD>
+    <TD width=3D101>Name</TD>
+    <TD>Description</TD></TR>
+  <TR>
+    <TD width=3D51>UInt32</TD>
+    <TD width=3D101>startCharCode</TD>
+    <TD>First character code in this group</TD></TR>
+  <TR>
+    <TD width=3D51>UInt32</TD>
+    <TD width=3D101>endCharCode</TD>
+    <TD>Last character code in this group</TD></TR>
+  <TR>
+    <TD width=3D51>UInt32</TD>
+    <TD width=3D101>startGlyphCode</TD>
+    <TD>Glyph index corresponding to the starting character=20
+code</TD></TR></TBODY></TABLE></P>
+<P>Again, the <CODE>endCharCode</CODE> is used, rather than a count, =
+because=20
+comparisons for group matching are usually done on an existing character =
+code,=20
+and having the <CODE>endCharCode</CODE> be there explicitly saves the =
+necessity=20
+of an addition per group.</P>
+<P>&nbsp;</P>
+<H2><IMG height=3D32=20
+src=3D"http://developer.apple.com/textfonts/TTRefMan/Images/MacOS.gif" =
+width=3D32=20
+align=3Dmiddle>Mac OS-specific information</H2>
+<P>All cmap subtable formats are supported on Mac OS X 10.2 and later. =
+The Mac=20
+OS does not require specific formats for any particular cmap =
+subtable.</P>
+<H2><IMG height=3D32=20
+src=3D"http://developer.apple.com/textfonts/TTRefMan/Images/Newton.gif" =
+width=3D22=20
+align=3Dmiddle>Newton-specific information</H2>
+<P>Newton fonts use the older, format 0, 2, 4, and 6 encoding subtables =
+only.=20
+Formats 8.0, 10.0, and 12.0 are not supported.</P>
+<H2><IMG height=3D28=20
+src=3D"http://developer.apple.com/textfonts/TTRefMan/Images/Dependencies.=
+gif"=20
+width=3D32 align=3Dmiddle>Dependencies</H2>
+<P>The <CODE>'cmap'</CODE> table references glyph indices. As such, the =
+glyph=20
+indices must be valid for the particular font and cannot exceed the =
+number of=20
+glyphs, which is found in the <A=20
+href=3D"http://developer.apple.com/textfonts/TTRefMan/RM06/Chap6maxp.html=
+">maximum=20
+profile table</A>.</P>
+<H2><IMG height=3D32=20
+src=3D"http://developer.apple.com/textfonts/TTRefMan/Images/Tool.gif" =
+width=3D31=20
+align=3Dmiddle>Tools</H2>
+<P>The main tool for editing <CODE>'cmap'</CODE> tables is=20
+<B>ftxdumperfuser</B>. Note that <B>ftxdumperfuser</B> supports all =
+seven=20
+<CODE>'cmap'</CODE> subtable formats and supports supplementary Unicode=20
+characters using their Unicode scalar values.</P>
+<HR>
+
+<H1><A name=3DSurrogates></A>An Aside: Unicode and Surrogates</H1>
+<P>The original architecture of the Unicode Standard allowed for all =
+encoded=20
+characters to be represented using sixteen bit code points. This allowed =
+for up=20
+to 65,354 characters to be encoded. (Unicode code points =
+<CODE>U+FFFE</CODE> and=20
+<CODE>U+FFFF</CODE> are reserved and unavailable to represent =
+characters. For=20
+more details, see <I>The Unicode Standard</I>.) As such, Unicode =
+differed from=20
+other character set encodings, some of which represent all characters =
+with eight=20
+bits, and others of which have some characters eight bits in size and =
+others=20
+sixteen.</P>
+<P>During the course of development of version 2.0 of Unicode, it became =
+clear=20
+that this would not provide sufficient code points to cover the entire =
+repetoire=20
+of required characters. To solve the problem, an extension mechanism was =
+adopted=20
+which involved <I>surrogates</I>. These are special Unicode code points =
+which=20
+come in pairs, a <I>high surrogate</I> (<CODE>U+D800</CODE> through=20
+<CODE>U+DBFF</CODE>)and a <I>low surrogate</I> (<CODE>U+DC00</CODE> =
+through=20
+<CODE>U+DFFF</CODE>). An algorithm is defined to map properly paired =
+surrogates=20
+to a single 32-bit entitle called a <I>scalar value</I>, which =
+represents a=20
+single character.</P>
+<P>Unicode 2.0 and 3.0 do not actually encode any characters using =
+surrogates,=20
+but Unicode 3.1 was published in March 2001 and includes over 40,000 =
+characters=20
+encoded requiring surrogates. Later versions of the Unicode standard =
+include=20
+still more characters encoded using surrogates.</P>
+<P>Unicode text encoded using sixteen-bit code points and surrogates is =
+referred=20
+to as <I>UTF-16</I>. The cmap format 8.0 is appropriate to use for =
+UTF-16 text.=20
+Note that in this case, <CODE>0x0000</CODE> is always a code point in =
+its own=20
+right and never the first half of a two-word sequence.</P>
+<P>The Unicode Technical Committee has adopted a 32-bit form of Unicode =
+text=20
+whereby every character is represented by a single 32-bit code. This is =
+referred=20
+to as <I>UTF-32</I>. Cmap formats 10.0 and 12.0 are appropriate for =
+UTF-32=20
+text.</P>
+<P>There is also an eight-bit representation of Unicode text, referred =
+to as=20
+<I>UTF-8</I>. UTF-8 is frequently used in exchange protocols that assume =
+C-like=20
+strings, where a zero byte is used as a string terminator (along with =
+other=20
+single bytes with special interpretations). There are no cmap formats =
+defined=20
+appropriate for use with UTF-8 text.</P>
+<HR>
+
+<H1>Change Log</H1>
+<DL>
+  <DT>18 December 2003=20
+  <DD>Updated to correct the sample code used to interpret type 4 cmaps. =
+
+  <DT>12 December 2002=20
+  <DD>Updated to take into account Mac OS X 10.2, Unicode 3.1 and later, =
+and the=20
+  new Mac OS X font tool suite.=20
+  <DT>7 November 2000=20
+  <DD>Swapped formats 10.0 and 12.0. Dropped the suggestion that the =
+version=20
+  should be reset to 1 for <CODE>'cmap'</CODE> tables containing format =
+8.0,=20
+  10.0, or 12.0 data. Changed references to <B>DumpCMAP</B> and =
+<B>FuseCMAP</B>=20
+  to <B>DumperFuser</B>. Updated information on Unicode 3.1 publication. =
+Fixed=20
+  some typos.=20
+  <DT>18 November 1999=20
+  <DD>Updated with information on Unicode and surrogates.=20
+  <DT>30 August 1999=20
+  <DD>Updated with formats 8.0, 10.0, and 12.0.=20
+  <DT>1 October 1996=20
+  <DD>Created unified TrueType book. </DD></DL>
+<ADDRESS>applefonts@apple.com</ADDRESS>
+<P>[<A=20
+href=3D"http://developer.apple.com/textfonts/TTRefMan/RM06/Chap6.html">Ta=
+ble of=20
+Contents</A>]</P>
+<CENTER>
+<P><FONT size=3D1>Last updated: JHJ
+<SCRIPT language=3DJavaScript><!--=0A=
+document.writeln("- " + document.lastModified);=0A=
+// -->=0A=
+			</SCRIPT>
+ </FONT></CENTER></P></BODY></HTML>
+
+------=_NextPart_000_0000_01C98F61.C48C52A0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://developer.apple.com/textfonts/TTRefMan/Images/Font.gif
+
+R0lGODlhIAAeAPcAAP//////zP//mf//Zv//M///AP/M///MzP/Mmf/MZv/MM//MAP+Z//+ZzP+Z
+mf+ZZv+ZM/+ZAP9m//9mzP9mmf9mZv9mM/9mAP8z//8zzP8zmf8zZv8zM/8zAP8A//8AzP8Amf8A
+Zv8AM/8AAMz//8z/zMz/mcz/Zsz/M8z/AMzM/8zMzMzMmczMZszMM8zMAMyZ/8yZzMyZmcyZZsyZ
+M8yZAMxm/8xmzMxmmcxmZsxmM8xmAMwz/8wzzMwzmcwzZswzM8wzAMwA/8wAzMwAmcwAZswAM8wA
+AJn//5n/zJn/mZn/Zpn/M5n/AJnM/5nMzJnMmZnMZpnMM5nMAJmZ/5mZzJmZmZmZZpmZM5mZAJlm
+/5lmzJlmmZlmZplmM5lmAJkz/5kzzJkzmZkzZpkzM5kzAJkA/5kAzJkAmZkAZpkAM5kAAGb//2b/
+zGb/mWb/Zmb/M2b/AGbM/2bMzGbMmWbMZmbMM2bMAGaZ/2aZzGaZmWaZZmaZM2aZAGZm/2ZmzGZm
+mWZmZmZmM2ZmAGYz/2YzzGYzmWYzZmYzM2YzAGYA/2YAzGYAmWYAZmYAM2YAADP//zP/zDP/mTP/
+ZjP/MzP/ADPM/zPMzDPMmTPMZjPMMzPMADOZ/zOZzDOZmTOZZjOZMzOZADNm/zNmzDNmmTNmZjNm
+MzNmADMz/zMzzDMzmTMzZjMzMzMzADMA/zMAzDMAmTMAZjMAMzMAAAD//wD/zAD/mQD/ZgD/MwD/
+AADM/wDMzADMmQDMZgDMMwDMAACZ/wCZzACZmQCZZgCZMwCZAABm/wBmzABmmQBmZgBmMwBmAAAz
+/wAzzAAzmQAzZgAzMwAzAAAA/wAAzAAAmQAAZgAAM+4AAN0AALsAAKoAAIgAAHcAAFUAAEQAACIA
+ABEAAADuAADdAAC7AACqAACIAAB3AABVAABEAAAiAAARAAAA7gAA3QAAuwAAqgAAiAAAdwAAVQAA
+RAAAIgAAEe7u7t3d3bu7u6qqqoiIiHd3d1VVVURERCIiIhEREQAAACwAAAAAIAAeAAcI/QABCATQ
+j5+/fgIL+vuHcKDDhxAL9suHz58/gvlW3OvHEKLHhPz64cNXkOLBf/8ybuz40SG/evj07RtZsp8+
+jhM1/mvp0p49mDJp9ts38R5DfDt5CuTn0yfQfRv98eNnMl9SpUybOo3J716+gwb1XeWZVetWmV4t
+7vu3sOHHsmbPQgVrkiVEuHHlei1Z0e5AvHnl0qRa0e3SwIGfDtZ3sSfiprD2NX2az2bjv499/ots
+tt5Eyw8Bm0UZGZ/WjZUZh378b23p059VO87b2t7mmbBTXz5MW7Lt101Rg3aZ797ofchd4w4e+6BD
+jlSN/4ZFHdZt08x199v+/B/V2k1mlWP3KZzx9vPd9xW3N/T3cvLNz3NP2BonVM3A4WuXT/88Ue/F
+XZebZfIhhNNQbnFE2kwjmVbeQfKhhJJhAlVnoW8P8qfUQNCtZ49wa6G34UMd3iMcQ/ONGBGABaFI
+oYokSijiQAEBACH+HWNsaXAyZ2lmIDAuNy4yIGJ5IFl2ZXMgUGlndWV0ADs=
+
+------=_NextPart_000_0000_01C98F61.C48C52A0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://developer.apple.com/textfonts/TTRefMan/Images/MacOS.gif
+
+R0lGODlhIAAgAPcAAP//////zP//mf//Zv//M///AP/M///MzP/Mmf/MZv/MM//MAP+Z//+ZzP+Z
+mf+ZZv+ZM/+ZAP9m//9mzP9mmf9mZv9mM/9mAP8z//8zzP8zmf8zZv8zM/8zAP8A//8AzP8Amf8A
+Zv8AM/8AAMz//8z/zMz/mcz/Zsz/M8z/AMzM/8zMzMzMmczMZszMM8zMAMyZ/8yZzMyZmcyZZsyZ
+M8yZAMxm/8xmzMxmmcxmZsxmM8xmAMwz/8wzzMwzmcwzZswzM8wzAMwA/8wAzMwAmcwAZswAM8wA
+AJn//5n/zJn/mZn/Zpn/M5n/AJnM/5nMzJnMmZnMZpnMM5nMAJmZ/5mZzJmZmZmZZpmZM5mZAJlm
+/5lmzJlmmZlmZplmM5lmAJkz/5kzzJkzmZkzZpkzM5kzAJkA/5kAzJkAmZkAZpkAM5kAAGb//2b/
+zGb/mWb/Zmb/M2b/AGbM/2bMzGbMmWbMZmbMM2bMAGaZ/2aZzGaZmWaZZmaZM2aZAGZm/2ZmzGZm
+mWZmZmZmM2ZmAGYz/2YzzGYzmWYzZmYzM2YzAGYA/2YAzGYAmWYAZmYAM2YAADP//zP/zDP/mTP/
+ZjP/MzP/ADPM/zPMzDPMmTPMZjPMMzPMADOZ/zOZzDOZmTOZZjOZMzOZADNm/zNmzDNmmTNmZjNm
+MzNmADMz/zMzzDMzmTMzZjMzMzMzADMA/zMAzDMAmTMAZjMAMzMAAAD//wD/zAD/mQD/ZgD/MwD/
+AADM/wDMzADMmQDMZgDMMwDMAACZ/wCZzACZmQCZZgCZMwCZAABm/wBmzABmmQBmZgBmMwBmAAAz
+/wAzzAAzmQAzZgAzMwAzAAAA/wAAzAAAmQAAZgAAM+4AAN0AALsAAKoAAIgAAHcAAFUAAEQAACIA
+ABEAAADuAADdAAC7AACqAACIAAB3AABVAABEAAAiAAARAAAA7gAA3QAAuwAAqgAAiAAAdwAAVQAA
+RAAAIgAAEe7u7t3d3bu7u6qqqoiIiHd3d1VVVURERCIiIhEREQAAACwAAAAAIAAgAAcI/QABCBxI
+cGA/fv3+9SvIsGHDg/3y3cvH759ChxgNIpQosJ49fBQvZiwIUaI9AB7tqfwYcuFIgfwo3ju5sqZK
+kBVdZuR3byLPlDZX4hTpkGdPn/eA2lwB0uLOe6yMIlVqb8XEf6z+PWVF5eBRmR6t5lPIL+tWKlRW
+ee1JMd8+hfv2ldWKkSdXtGn9SZ0YN+7cjKxW9MNLxU/atW77/q0LlTDhVTwT+zXL+G7hy378sOKr
+mHLRe/9UOUarmfNkukVDY8ZcWrJczxZjy55t0XDrvq9R//vDu/c/FcCDqwidebPrxQB2847H+/dw
+4apvd9bdm7nz58GxFjede6By38KGoasS1C/wcdi9m4fPruoo97kuv6tfP5xVv6+44fdLmP6P7PCh
+7RPRe1ntx19//q0XmnvnKbSfcvEwN59FwC2I32kOHrhchLGJx6BfCWWoYXrXsccgQhYZuF9ytLVo
+UTz/7CNRRQ6mqJOKKoqIYz/+1JjhSwmtaOA//gwp4ksOGejPkjgWFBAAIf4dY2xpcDJnaWYgMC43
+LjIgYnkgWXZlcyBQaWd1ZXQAOw==
+
+------=_NextPart_000_0000_01C98F61.C48C52A0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://developer.apple.com/textfonts/TTRefMan/Images/Newton.gif
+
+R0lGODlhFgAgAPcAAP//////zP//mf//Zv//M///AP/M///MzP/Mmf/MZv/MM//MAP+Z//+ZzP+Z
+mf+ZZv+ZM/+ZAP9m//9mzP9mmf9mZv9mM/9mAP8z//8zzP8zmf8zZv8zM/8zAP8A//8AzP8Amf8A
+Zv8AM/8AAMz//8z/zMz/mcz/Zsz/M8z/AMzM/8zMzMzMmczMZszMM8zMAMyZ/8yZzMyZmcyZZsyZ
+M8yZAMxm/8xmzMxmmcxmZsxmM8xmAMwz/8wzzMwzmcwzZswzM8wzAMwA/8wAzMwAmcwAZswAM8wA
+AJn//5n/zJn/mZn/Zpn/M5n/AJnM/5nMzJnMmZnMZpnMM5nMAJmZ/5mZzJmZmZmZZpmZM5mZAJlm
+/5lmzJlmmZlmZplmM5lmAJkz/5kzzJkzmZkzZpkzM5kzAJkA/5kAzJkAmZkAZpkAM5kAAGb//2b/
+zGb/mWb/Zmb/M2b/AGbM/2bMzGbMmWbMZmbMM2bMAGaZ/2aZzGaZmWaZZmaZM2aZAGZm/2ZmzGZm
+mWZmZmZmM2ZmAGYz/2YzzGYzmWYzZmYzM2YzAGYA/2YAzGYAmWYAZmYAM2YAADP//zP/zDP/mTP/
+ZjP/MzP/ADPM/zPMzDPMmTPMZjPMMzPMADOZ/zOZzDOZmTOZZjOZMzOZADNm/zNmzDNmmTNmZjNm
+MzNmADMz/zMzzDMzmTMzZjMzMzMzADMA/zMAzDMAmTMAZjMAMzMAAAD//wD/zAD/mQD/ZgD/MwD/
+AADM/wDMzADMmQDMZgDMMwDMAACZ/wCZzACZmQCZZgCZMwCZAABm/wBmzABmmQBmZgBmMwBmAAAz
+/wAzzAAzmQAzZgAzMwAzAAAA/wAAzAAAmQAAZgAAM+4AAN0AALsAAKoAAIgAAHcAAFUAAEQAACIA
+ABEAAADuAADdAAC7AACqAACIAAB3AABVAABEAAAiAAARAAAA7gAA3QAAuwAAqgAAiAAAdwAAVQAA
+RAAAIgAAEe7u7t3d3bu7u6qqqoiIiHd3d1VVVURERCIiIhEREQAAACwAAAAAFgAgAAcI6gAB/BtI
+sKBBggAS/rOHL18+ffr2SdzHr2LFif8U2vPXr6PHjx/97csocCPEkyhTiiS50J++ezBjyoSpb2U/
+f//uuZzJ817Nkftw6nzZU+bPf0Fz7iwa82jSoUybrny6NKpTnPiqMr36LytRq1Oxai3K1WtUmmH/
+5RvbsyxbnlzXft2aVu5Zn2nNno37dibfuWTzHhw8sO5Soohp8vXHuLHjx0CF3pUZuSu+AuPwad7M
+efNIxmrzYcPmsLTDfvlQO/ws0CEwdqZPp56db6TC2hNzS+y3jzfG2xaDCw9uu/Xj448HJhRIuPny
+gAAh/h1jbGlwMmdpZiAwLjcuMiBieSBZdmVzIFBpZ3VldAA7
+
+------=_NextPart_000_0000_01C98F61.C48C52A0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://developer.apple.com/textfonts/TTRefMan/Images/Dependencies.gif
+
+R0lGODlhIAAcAPcAAP//////zP//mf//Zv//M///AP/M///MzP/Mmf/MZv/MM//MAP+Z//+ZzP+Z
+mf+ZZv+ZM/+ZAP9m//9mzP9mmf9mZv9mM/9mAP8z//8zzP8zmf8zZv8zM/8zAP8A//8AzP8Amf8A
+Zv8AM/8AAMz//8z/zMz/mcz/Zsz/M8z/AMzM/8zMzMzMmczMZszMM8zMAMyZ/8yZzMyZmcyZZsyZ
+M8yZAMxm/8xmzMxmmcxmZsxmM8xmAMwz/8wzzMwzmcwzZswzM8wzAMwA/8wAzMwAmcwAZswAM8wA
+AJn//5n/zJn/mZn/Zpn/M5n/AJnM/5nMzJnMmZnMZpnMM5nMAJmZ/5mZzJmZmZmZZpmZM5mZAJlm
+/5lmzJlmmZlmZplmM5lmAJkz/5kzzJkzmZkzZpkzM5kzAJkA/5kAzJkAmZkAZpkAM5kAAGb//2b/
+zGb/mWb/Zmb/M2b/AGbM/2bMzGbMmWbMZmbMM2bMAGaZ/2aZzGaZmWaZZmaZM2aZAGZm/2ZmzGZm
+mWZmZmZmM2ZmAGYz/2YzzGYzmWYzZmYzM2YzAGYA/2YAzGYAmWYAZmYAM2YAADP//zP/zDP/mTP/
+ZjP/MzP/ADPM/zPMzDPMmTPMZjPMMzPMADOZ/zOZzDOZmTOZZjOZMzOZADNm/zNmzDNmmTNmZjNm
+MzNmADMz/zMzzDMzmTMzZjMzMzMzADMA/zMAzDMAmTMAZjMAMzMAAAD//wD/zAD/mQD/ZgD/MwD/
+AADM/wDMzADMmQDMZgDMMwDMAACZ/wCZzACZmQCZZgCZMwCZAABm/wBmzABmmQBmZgBmMwBmAAAz
+/wAzzAAzmQAzZgAzMwAzAAAA/wAAzAAAmQAAZgAAM+4AAN0AALsAAKoAAIgAAHcAAFUAAEQAACIA
+ABEAAADuAADdAAC7AACqAACIAAB3AABVAABEAAAiAAARAAAA7gAA3QAAuwAAqgAAiAAAdwAAVQAA
+RAAAIgAAEe7u7t3d3bu7u6qqqoiIiHd3d1VVVURERCIiIhEREQAAACwAAAAAIAAcAAcI/QABCBz4
+r+C/gQgTKlwo8N+9h/cOMhw4YiIAgxgzFlQ4oiLDf/ZCggxpb6S9iAk7quyI8B+/lzBjwkRJceVK
+gvVy6tyZkx/NmjY9XuSpE1ZOAD4lImQJQCVOorCM9vy5VKDThlDrSa2X1OLVoTujRtXZdeLXf2GL
+kqVqEWvOrVrXKm3rVuzbsVzZZlyxoiVRovzmFsxHmHDBvg01Km75L19jvv9WHOZLN+FgyI4XVyaY
+j69nyZAjI978WHJnyRpHf11Y2jTo15GBWmztWbFqpkJbnv5cG/Jtj0x1f25sG6hNy7td+wZt/Lhw
+18WbByfY2PHuyJMZTmdc+rD3uVUOJw4unLkv5c0K944GEBAAIf4dY2xpcDJnaWYgMC43LjIgYnkg
+WXZlcyBQaWd1ZXQAOw==
+
+------=_NextPart_000_0000_01C98F61.C48C52A0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://developer.apple.com/textfonts/TTRefMan/Images/Tool.gif
+
+R0lGODlhHwAgAPcAAP//////zP//mf//Zv//M///AP/M///MzP/Mmf/MZv/MM//MAP+Z//+ZzP+Z
+mf+ZZv+ZM/+ZAP9m//9mzP9mmf9mZv9mM/9mAP8z//8zzP8zmf8zZv8zM/8zAP8A//8AzP8Amf8A
+Zv8AM/8AAMz//8z/zMz/mcz/Zsz/M8z/AMzM/8zMzMzMmczMZszMM8zMAMyZ/8yZzMyZmcyZZsyZ
+M8yZAMxm/8xmzMxmmcxmZsxmM8xmAMwz/8wzzMwzmcwzZswzM8wzAMwA/8wAzMwAmcwAZswAM8wA
+AJn//5n/zJn/mZn/Zpn/M5n/AJnM/5nMzJnMmZnMZpnMM5nMAJmZ/5mZzJmZmZmZZpmZM5mZAJlm
+/5lmzJlmmZlmZplmM5lmAJkz/5kzzJkzmZkzZpkzM5kzAJkA/5kAzJkAmZkAZpkAM5kAAGb//2b/
+zGb/mWb/Zmb/M2b/AGbM/2bMzGbMmWbMZmbMM2bMAGaZ/2aZzGaZmWaZZmaZM2aZAGZm/2ZmzGZm
+mWZmZmZmM2ZmAGYz/2YzzGYzmWYzZmYzM2YzAGYA/2YAzGYAmWYAZmYAM2YAADP//zP/zDP/mTP/
+ZjP/MzP/ADPM/zPMzDPMmTPMZjPMMzPMADOZ/zOZzDOZmTOZZjOZMzOZADNm/zNmzDNmmTNmZjNm
+MzNmADMz/zMzzDMzmTMzZjMzMzMzADMA/zMAzDMAmTMAZjMAMzMAAAD//wD/zAD/mQD/ZgD/MwD/
+AADM/wDMzADMmQDMZgDMMwDMAACZ/wCZzACZmQCZZgCZMwCZAABm/wBmzABmmQBmZgBmMwBmAAAz
+/wAzzAAzmQAzZgAzMwAzAAAA/wAAzAAAmQAAZgAAM+4AAN0AALsAAKoAAIgAAHcAAFUAAEQAACIA
+ABEAAADuAADdAAC7AACqAACIAAB3AABVAABEAAAiAAARAAAA7gAA3QAAuwAAqgAAiAAAdwAAVQAA
+RAAAIgAAEe7u7t3d3bu7u6qqqoiIiHd3d1VVVURERCIiIhEREQAAACwAAAAAHwAgAAcI0gABCBxI
+sKBBgf8SHlzIMKHDhwwjIgTwsKLEhf8oKiyY8SJHjR0/ekSY0SHGkRRJhjS4MmJHkw09vtwY0+XM
+lgdxEgwJUyI2bCdVevwJlOXAnhGB/txJEynDoksR3rt3c+jAqBSnlqSZlGDUimB1CiRKtui/FWjT
+/qtXTyyAol7NplXLVizcuAjnol3b9uBdvBT1rrB4lWxBw2cFq0W5U/FixnkdD4asMixXyon3UuZo
+2a3Eh3MhQk6YL1/Cvf9KX75I2nTi1qtZOwztFGVnzwwDAgAh/h1jbGlwMmdpZiAwLjcuMiBieSBZ
+dmVzIFBpZ3VldAA7
+
+------=_NextPart_000_0000_01C98F61.C48C52A0--

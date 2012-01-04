@@ -1,0 +1,1504 @@
+<HTML>
+<HEAD>
+<TITLE>OpenType Layout Common Table Formats</TITLE>
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | Common table formats
+
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>OpenType<FONT COLOR="#999999" STYLE="font-size: 7pt; color:#999999"><SUP>TM</SUP></FONT> Layout Common Table Formats</FONT>
+
+
+<P>OpenType Layout consists of five tables: the Glyph Substitution table (GSUB), the Glyph Positioning table (GPOS), the Baseline table (BASE), the Justification table (JSTF), and the Glyph Definition table (GDEF). These tables use some of the same data formats.
+ 
+<P>This chapter explains the conventions used in all OpenType Layout tables, and it describes the common table formats. Separate chapters provide complete details about the <A HREF="GSUB.htm">GSUB</A>, <A HREF="GPOS.htm">GPOS</A>, <A HREF="BASE.htm">BASE</A>, <A HREF="JSTF.htm">JSTF</A>, and <A HREF="GDEF.htm">GDEF</A> tables. 
+<P><BR>
+<B>Overview</B>
+
+<P>The OpenType Layout tables provide typographic information for properly positioning and substituting glyphs, operations that are required for accurate typography in many language environments. OpenType Layout data is organized by script, language system, typographic feature, and lookup.
+<P>Scripts are defined at the top level. A <I>script</I> is a collection of glyphs used to represent one or more languages in written form (see Figure 2a). For instance, a single script-Latin-is used to write English, French, German, and many other languages. In contrast, three scripts-Hiragana, Katakana, and Kanji-are used to write Japanese. With OpenType Layout, multiple scripts may be supported by a single font.
+<P>
+<TABLE CELLPADDING=10 BGCOLOR=#F0F0F0 width=460><TR><TD align=center>
+<IMG  WIDTH=172 HEIGHT=53 ALT="DIAGRAM" SRC="fig2a.gif" ><BR></TD></TR>
+</TABLE>
+<P>
+<Div CLASS=caption>Figure 2a. Glyphs in the Latin, Kanji, and Arabic scripts</DIV>
+
+<P>A <I>language system</I> may modify the functions or appearance of glyphs in a script to represent a particular language. For example, the eszet ligature is used in the German language system, but not in French or English (see Figure 2b). And the Arabic script contains different glyphs for writing the Farsi and Urdu languages. In OpenType Layout, language systems are defined within scripts.
+
+<P>
+<TABLE CELLPADDING=10 BGCOLOR=#F0F0F0 width=460><TR><TD align=center>
+<IMG  WIDTH=316 HEIGHT=152 ALT="DIAGRAM" SRC="fig2b.gif"><BR>
+</TABLE>
+<P> 
+<DIV CLASS=caption>Figure 2b. Differences in the English, French, and German language systems</DIV>
+
+<P>A language system defines <I>features</I>, which are typographic rules for using glyphs to represent a language. Sample features are a &quot;vert&quot; feature that substitutes vertical glyphs in Japanese, a &quot;liga&quot; feature for using ligatures in place of separate glyphs, and a &quot;mark&quot; feature that positions diacritical marks with respect to base glyphs in Arabic (see Figure 2c). In the absence of language-specific rules, default language system features apply to the entire script. For instance, a default language system feature for the Arabic script substitutes initial, medial, and final glyph forms based on a glyph's position in a word.<BR>
+<P>
+
+<TABLE CELLPADDING=10 BGCOLOR=#F0F0F0 width=460><TR><TD align=center>
+<IMG   ALT="DIAGRAM" SRC="fig2c.gif"><BR>
+</TABLE>
+<P>
+<DIV CLASS=caption>Figure 2c. A ligature glyph feature substitutes the &lt;etc&gt; ligature for individual glyphs, and a mark feature positions diacritical marks above an Arabic ligature glyph.</DIV>
+
+<P>Features are implemented with lookup data that the text-processing client uses to substitute and position glyphs. <I>Lookups</I> describe the glyphs affected by an operation, the type of operation to be applied to these glyphs, and the resulting glyph output.
+<P>
+<BR>
+<B>Table Organization</B>
+
+<P>Two OpenType Layout tables, GSUB and GPOS, use the same data formats to describe the typographic functions of glyphs and the languages and scripts that they support: a ScriptList table, a FeatureList table, and a LookupList table. In GSUB, the tables define glyph substitution data. In GPOS, they define glyph positioning data. This chapter describes these common table formats.
+
+<P>The ScriptList identifies the scripts in a font, each of which is represented by a Script table that contains script and language-system data. Language system tables reference features, which are defined in the FeatureList. Each feature table references the lookup data defined in the LookupList that describes how, when, and where to implement the feature.<P>
+
+<P>
+<TABLE CELLPADDING=10 BGCOLOR=#F0F0F0 width=460><TR><TD align=center>
+<IMG  WIDTH=368 HEIGHT=531 ALT="DIAGRAM" SRC="fig2d.gif"><BR>
+</TABLE>
+<P>
+<DIV CLASS=caption>Figure 2d. The relationship of scripts, language systems, features, and lookups for substitution and positioning tables</DIV>
+
+
+<BLOCKQUOTE>
+<I>Note:</I> The data in the BASE and JSTF tables also is organized by script and language system. However, the data formats differ from those in GSUB and GPOS, and they do not include a FeatureList or LookupList. The BASE and JSTF data formats are described in the BASE and JSTF chapters.
+</BLOCKQUOTE>
+
+<P>The information used to substitute and position glyphs is defined in Lookup subtables. Each subtable supplies one type of information, depending upon whether the lookup is part of a GSUB or GPOS table. For instance, a GSUB lookup might specify the glyphs to be substituted and the context in which a substitution occurs, and a GPOS lookup might specify glyph position adjustments for kerning. OpenType Layout has seven types of GSUB lookups (described in the GSUB chapter) and nine types of GPOS lookups (described in the GPOS chapter).
+
+<P>Each subtable (except for an Extension LookupType subtable) includes a Coverage table that lists the &quot;covered&quot; glyphs that will result in a glyph substitution or positioning operation. The Coverage table formats are described in this chapter.
+
+<P>Some substitution or positioning operations may apply to groups, or classes, of glyphs. GSUB and GPOS Lookup subtables use the Class Definition table to assign glyphs to classes. This chapter includes a description of the Class Definition table formats.
+
+<P>Lookup subtables also may contain device tables, described in this chapter, to adjust scaled contour glyph coordinates for particular output sizes and resolutions. This chapter also describes the data types used in OpenType Layout. Sample tables and lists that illustrate the common data formats are supplied at the end of this chapter.
+
+<P><BR>
+<B>Scripts and Languages</B>
+
+<P>Three tables and their associated records apply to scripts and languages: the Script List table (ScriptList) and its script record (ScriptRecord), the Script table and its language system record (LangSysRecord), and the Language System table (LangSys).
+
+<P><BR>
+<B>Script List Table and Script Record</B>
+
+<P>OpenType Layout fonts may contain one or more groups of glyphs used to render various scripts, which are enumerated in a ScriptList table. Both the GSUB and GPOS tables define Script List tables (ScriptList):
+
+<UL>
+<LI>The GSUB table uses the ScriptList table to access the glyph substitution features that apply to a script. For details, see the chapter, The Glyph Substitution Table (GSUB).
+<LI>The GPOS table uses the ScriptList table to access the glyph positioning features that apply to a script. For details, see the chapter, The Glyph Positioning Table (GPOS).
+</UL>
+
+<P>A ScriptList table consists of a count of the scripts represented by the glyphs in the font (ScriptCount) and an array of records (ScriptRecord), one for each script for which the font defines script-specific features (a script without script-specific features does not need a ScriptRecord). 
+
+<P>If a Script table with the script tag 'DFLT' (default) is present in the ScriptList table, it must have a non-NULL DefaultLangSys and LangSysCount must be equal to 0. The 'DFLT' Script table should be used if there is not an explicit entry for the script being formatted.
+ 
+<P>The ScriptRecord array stores the records alphabetically by a ScriptTag that identifies the script. Each ScriptRecord consists of a ScriptTag and an offset to a Script table.
+
+<P>Example 1 at the end of this chapter shows a ScriptList table and ScriptRecords for a Japanese font 
+that uses three scripts.
+
+<P><BR>
+<I>ScriptList table</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>ScriptCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of ScriptRecords</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>struct</TD>
+<TD CLASS=tab VALIGN=TOP ROWSPAN=2>ScriptRecord<BR>[ScriptCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of ScriptRecords<BR>-listed alphabetically by ScriptTag</TD></TR>
+</TABLE>
+
+
+<P><BR>
+<I>ScriptRecord</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Tag</TD>
+<TD CLASS=tab VALIGN=TOP>ScriptTag</TD>
+<TD CLASS=tab VALIGN=TOP>4-byte ScriptTag identifier</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>Script</TD>
+<TD CLASS=tab VALIGN=TOP>Offset to Script table-from beginning of ScriptList</TD></TR>
+</TABLE>
+<P>
+<BR>
+	
+<B>Script Table and Language System Record</B>
+
+<P>A Script table identifies each language system that defines how to use the glyphs in a script for a particular language. It also references a default language system that defines how to use the script's glyphs in the absence of language-specific knowledge.
+
+<P>A Script table begins with an offset to the Default Language System table (DefaultLangSys), which defines the set of features that regulate the default behavior of the script. Next, Language System Count (LangSysCount) defines the number of language systems (excluding the DefaultLangSys) that use the script. In addition, an array of Language System Records (LangSysRecord) defines each language system (excluding the default) with an identification tag (LangSysTag) and an offset to a Language System table (LangSys). The LangSysRecord array stores the records alphabetically by LangSysTag.
+
+<P>If no language-specific script behavior is defined, the LangSysCount is set to zero (0), and no LangSysRecords are allocated. 
+
+<P><BR><I>Script table</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>DefaultLangSys</TD>
+<TD CLASS=tab VALIGN=TOP>Offset to DefaultLangSys table-from beginning of Script table-may be NULL</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LangSysCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of LangSysRecords for this script-excluding the DefaultLangSys</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>struct</TD>
+<TD CLASS=tab VALIGN=TOP>LangSysRecord<BR>[LangSysCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of LangSysRecords-listed alphabetically by LangSysTag</TD></TR>
+</TABLE>
+	
+
+<P><BR><I>LangSysRecord</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Tag</TD>
+<TD CLASS=tab VALIGN=TOP>LangSysTag</TD>
+<TD CLASS=tab VALIGN=TOP>4-byte LangSysTag identifier</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>LangSys</TD>
+<TD CLASS=tab VALIGN=TOP>Offset to LangSys table-from beginning of Script table</TD></TR>
+</TABLE>
+
+<P><BR>	
+<B>Language System Table</B>
+
+<P>The Language System table (LangSys) identifies language-system features used to render the glyphs in a script. (The LookupOrder offset is reserved for future use.)
+
+<P>Optionally, a LangSys table may define a Required Feature Index (ReqFeatureIndex) to specify one feature as required within the context of a particular language system. For example, in the Cyrillic script, the Serbian language system always renders certain glyphs differently than the Russian language system.
+
+<P>Only one feature index value can be tagged as the ReqFeatureIndex. This is not a functional limitation, however, because the feature and lookup definitions in OpenType Layout are structured so that one feature table can reference many glyph substitution and positioning lookups. When no required features are defined, then the ReqFeatureIndex is set to 0xFFFF. 
+
+<P>All other features are optional. For each optional feature, a zero-based index value references a record (FeatureRecord) in the FeatureRecord array, which is stored in a Feature List table (FeatureList). The feature indices themselves (excluding the ReqFeatureIndex) are stored in arbitrary order in the FeatureIndex array. The FeatureCount specifies the total number of features listed in the FeatureIndex array.
+
+<P>Features are specified in full in the FeatureList table, FeatureRecord, and Feature table, which are described later in this chapter. 
+Example 2 at the end of this chapter shows a Script table, LangSysRecord, and LangSys table used for contextual positioning in the Arabic script.
+
+<P><BR><I>LangSys table</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>LookupOrder</TD>
+<TD CLASS=tab VALIGN=TOP>= NULL (reserved for an offset to a reordering table)</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>ReqFeatureIndex</TD>
+<TD CLASS=tab VALIGN=TOP>Index of a feature required for this language system- if no required features = 0xFFFF</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of FeatureIndex values for this language system-excludes the required feature</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureIndex[FeatureCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of indices into the FeatureList-in arbitrary order</TD></TR>
+</TABLE>
+	
+<P><BR>
+<B>Features and Lookups</B>
+
+<P>Features define the functionality of an OpenType Layout font and they are named to convey meaning to the text-processing client. Consider a feature named &quot;liga&quot; to create ligatures. Because of its name, the client knows what the feature does and can decide whether to apply it. For more information, see the <A HREF="TTOREG.htm">&quot;OpenType Layout Registered Features&quot;</A> chapter. Font developers can use these features, as well as create their own.
+
+<P>After choosing which features to use, the client assembles all lookups from the selected features. Multiple lookups may be needed to define the data required for different substitution and positioning actions, as well as to control the sequencing and effects of those actions.
+ 
+<P>To implement features, a client applies the lookups in the order the lookup definitions occur in the LookupList. As a result, within the GSUB or GPOS table, lookups from several different features may be interleaved during text processing. A lookup is finished when the client locates a target glyph or glyph context and performs a substitution (if specified) or a positioning (if specified). 
+
+<P><I>Note:</I> The substitution (GSUB) lookups always occur before the positioning (GPOS) lookups. The lookup sequencing mechanism in TrueType relies on the font to determine the proper order of text-processing operations.
+
+<P>Lookup data is defined in one or more subtables that contain information about specific glyphs and the operations to be performed on them. Each type of lookup has one or more corresponding subtable definitions. The choice of a subtable format depends upon two factors: the precise content of the information being applied to an operation, and the required storage efficiency. (For complete definitions of all lookup types and subtables, see the the GSUB and GPOS chapters of this document.)
+
+<P>OpenType Layout features define information that is specific to the layout of the glyphs in a font. They do not encode information that is constant within the conventions of a particular language or the typography of a particular script. Information that would be replicated across all fonts in a given language belongs in the text-processing application for that language, not in the fonts.
+
+<P><BR>
+<B>Feature List Table</B>
+
+<P>The headers of the GSUB and GPOS tables contain offsets to Feature List tables (FeatureList) that enumerate all the features in a font. Features in a particular FeatureList are not limited to any single script. A FeatureList contains the entire list of either the GSUB or GPOS features that are used to render the glyphs in all the scripts in the font.
+
+<P>The FeatureList table enumerates features in an array of records (FeatureRecord) and specifies the total number of features (FeatureCount). Every feature must have a FeatureRecord, which consists of a FeatureTag that identifies the feature and an offset to a Feature table (described next). The FeatureRecord array is arranged alphabetically by FeatureTag names. 
+
+<BLOCKQUOTE>
+<I>Note:</I> The values stored in the FeatureIndex array of a LangSys table are used to locate records in the FeatureRecord array of a FeatureList table.
+</BLOCKQUOTE>
+
+<P><BR><I>FeatureList table</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of FeatureRecords in this table</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>struct</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureRecord[FeatureCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of FeatureRecords-zero-based (first feature has FeatureIndex = 0)-listed alphabetically by FeatureTag</TD></TR>
+</TABLE>
+
+
+<P><BR><I>FeatureRecord</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Tag</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureTag</TD>
+<TD CLASS=tab VALIGN=TOP>4-byte feature identification tag</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>Feature</TD>
+<TD CLASS=tab VALIGN=TOP>Offset to Feature table-from beginning of FeatureList</TD></TR>
+</TABLE>
+
+<P><BR>	
+<B>Feature Table</B>
+
+<P>A Feature table defines a feature with one or more lookups. The client uses the lookups to substitute or position glyphs. 
+
+<P>Feature tables defined within the GSUB table contain references to glyph substitution lookups, and feature tables defined within the GPOS table contain references to glyph positioning lookups. If a text-processing operation requires both glyph substitution and positioning, then both the GSUB and GPOS tables must each define a Feature table, and the tables must use the same FeatureTags. 
+
+<P>A Feature table consists of an offset to a Feature Parameters (FeatureParams) table (if one has been defined for this feature - see note in the following paragraph), a count of the lookups listed for the feature (LookupCount), and an arbitrarily ordered array of indices into a LookupList (LookupListIndex). The LookupList indices are references into an array of offsets to Lookup tables.
+
+<P>The format of the Feature Parameters table is specific to a particular feature, and must be specified in the feature's entry in the Feature Tags section of the OpenType Layout Tag Registry. The length of the Feature Parameters table must be implicitly or explicitly specified in the Feature Parameters table itself. The FeatureParams field in the Feature Table records the offset relative to the beginning of the Feature Table. If a Feature Parameters table is not needed, the FeatureParams field must be set to NULL.
+
+<P>To identify the features in a GSUB or GPOS table, a text-processing client reads the FeatureTag of each FeatureRecord referenced in a given LangSys table. Then the client selects the features it wants to implement and uses the LookupList to retrieve the Lookup indices of the chosen features. Next, the client arranges the indices in the LookupList order. Finally, the client applies the lookup data to substitute or position glyphs.
+
+<P>Example 3 at the end of this chapter shows the FeatureList and Feature tables used to substitute ligatures in two languages.
+
+<P><BR><I>Feature table</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureParams</TD>
+<TD CLASS=tab VALIGN=TOP>= NULL (reserved for offset to FeatureParams)</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of LookupList indices for this feature</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LookupListIndex<BR>[LookupCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of LookupList indices for this feature -zero-based (first lookup is LookupListIndex = 0)</TD></TR>
+</TABLE>
+
+
+<P><BR>	
+<B>Lookup List Table</B>
+
+<P>The headers of the GSUB and GPOS tables contain offsets to Lookup List tables (LookupList) for glyph substitution (GSUB table) and glyph positioning (GPOS table). The LookupList table contains an array of offsets to Lookup tables (Lookup). The font developer defines the Lookup sequence in the Lookup array to control the order in which a text-processing client applies lookup data to glyph substitution and positioning operations. LookupCount specifies the total number of Lookup table offsets in the array.
+
+<P>Example 4 at the end of this chapter shows three ligature lookups in the LookupList table.
+
+<P><BR><I>LookupList table</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TD CLASS=tabEAD>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of lookups in this table</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>Lookup[LookupCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of offsets to Lookup tables-from beginning of LookupList -zero based (first lookup is Lookup index = 0)</TD></TR>
+</TABLE>
+
+<P><BR>	
+<B>Lookup Table</B>
+
+<P>A Lookup table (Lookup) defines the specific conditions, type, and results of a substitution or positioning action that is used to implement a feature. For example, a substitution operation requires a list of target glyph indices to be replaced, a list of replacement glyph indices, and a description of the type of substitution action.
+
+<P>Each Lookup table may contain only one type of information (LookupType), determined by whether the lookup is part of a GSUB or GPOS table. GSUB supports five LookupTypes, and GPOS supports seven LookupTypes (for details about LookupTypes, see the GSUB and GPOS chapters of the document).
+<P>Each LookupType is defined with one or more subtables, and each subtable definition provides a different representation format. The format is determined by the content of the information required for an operation and by required storage efficiency. When glyph information is best presented in more than one format, a single lookup may contain more than one subtable, as long as all the subtables are the same LookupType. For example, within a given lookup, a glyph index array format may best represent one set of target glyphs, whereas a glyph index range format may be better for another set of target glyphs.
+
+<P>During text processing, a client applies a lookup to each glyph in the string before moving to the next lookup. A lookup is finished for a glyph after the client makes the substitution/positioning operation. To move to the "next" glyph, the client will typically skip all the glyphs that participated in the lookup operation: glyphs that were substituted/positioned as well as any other glyphs that formed a context for the operation. However, in the case of pair positioning operations (i.e., kerning), the "next" glyph in a sequence may be the second glyph of the positioned pair (see pair positioning lookup for details).
+
+<P>A Lookup table contains a LookupType, specified as an integer, that defines the type of information stored in the lookup. The LookupFlag specifies lookup qualifiers that assist a text-processing client in substituting or positioning glyphs. The SubTableCount specifies the total number of SubTables. The SubTable array specifies offsets, measured from the beginning of the Lookup table, to each SubTable enumerated in the SubTable array.
+
+<P><BR><I>Lookup table</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LookupType</TD>
+<TD CLASS=tab VALIGN=TOP>Different enumerations for GSUB and GPOS</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LookupFlag</TD>
+<TD CLASS=tab VALIGN=TOP>Lookup qualifiers</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>SubTableCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of SubTables for this lookup</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>SubTable<BR>[SubTableCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of offsets to SubTables-from beginning of Lookup table
+</TD></TR>
+</TABLE>
+	
+<P>The LookupFlag uses four bits and one byte: 
+<UL>
+<LI> 
+Each of the first four bits can be set in order to specify additional instructions for applying a lookup to a glyph string. The LookUpFlag bit enumeration table provides details about the use of these bits.
+
+<LI>The high byte is set to specify the type of mark attachment. 
+</UL>
+
+<P><BR><I>LookupFlag bit enumeration</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>0x0001</TD>
+<TD CLASS=tab VALIGN=TOP>RightToLeft</TD>
+<TD CLASS=tab VALIGN=TOP>This bit relates only to the correct processing of the cursive attachment lookup type (GPOS lookup type 3). When this bit is set, the last glyph in a given sequence to which the cursive attachment lookup is applied, will be positioned on the baseline. 
+<BR><B>
+        Note: Setting of this bit is not intended to be used by operating systems or applications to determine text direction. <BR> 
+</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>0x0002</TD>
+<TD CLASS=tab VALIGN=TOP>IgnoreBaseGlyphs</TD>
+<TD CLASS=tab VALIGN=TOP>If set, skips over base glyphs</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>0x0004</TD>
+<TD CLASS=tab VALIGN=TOP>IgnoreLigatures</TD>
+<TD CLASS=tab VALIGN=TOP>If set, skips over ligatures</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>0x0008</TD>
+<TD CLASS=tab VALIGN=TOP>IgnoreMarks</TD>
+<TD CLASS=tab VALIGN=TOP>If set, skips over combining marks</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0x00F0</TD>
+<TD CLASS=tab VALIGN=TOP>Reserved</TD>
+<TD CLASS=tab VALIGN=TOP>For future use</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>0xFF00</TD>
+<TD CLASS=tab VALIGN=TOP>MarkAttachmentType</TD>
+<TD CLASS=tab VALIGN=TOP>If not zero, skips over all marks of attachment type different from specified.</TD></TR>
+</TABLE>
+
+	
+<P>For example, in Arabic text, a character string might have the pattern &lt;base character - mark character - base character&gt;. That string could be converted into a ligature composed of two components, one for each base character, with the combining mark glyph over the first component. To produce this ligature, the font developer would set the IgnoreMarks bit to tell the client to ignore the mark, substitute the ligature glyph first, and then position the mark glyph over the ligature. Alternatively, a lookup which did not set the IgnoreMarks bit could be used to describe a three-component ligature glyph, composed of the first base glyph, the mark glyph, and the second base glyph. Here's another example: A lookup which creates a ligature of a base glyph with a top mark may skip over all bottom marks by specifying the mark attachment type as top marks. You can define attachment types of marks in the MarkAttachClassDef subtable in the GDEF table.
+
+<P><BR>
+<B>Coverage Table</B>
+
+<P>Each subtable (except an Extension LookupType subtable) in a lookup references a Coverage table (Coverage), which specifies all the glyphs affected by a substitution or positioning operation described in the subtable. The GSUB, GPOS, and GDEF tables rely on this notion of coverage. If a glyph does not appear in a Coverage table, the client can skip that subtable and move immediately to the next subtable.
+
+<P>A Coverage table identifies glyphs by glyph indices (GlyphIDs) either of two ways:
+
+<UL>
+<LI>As a list of individual glyph indices in the glyph set.
+<LI>As ranges of consecutive indices. The range format gives a number of start-glyph and end-glyph index pairs to denote the consecutive glyphs covered by the table. 
+</UL>
+
+<P>In a Coverage table, a format code (CoverageFormat) specifies the format as an integer: 1 = lists, and 2 = ranges.
+
+<P>A Coverage table defines a unique index value (Coverage Index) for each covered glyph. This unique value specifies the position of the covered glyph in the Coverage table. The client uses the Coverage Index to look up values in the subtable for each glyph.
+
+<P><BR>
+<I>Coverage Format 1</I>
+
+<P>Coverage Format 1 consists of a format code (CoverageFormat) and a count of covered glyphs (GlyphCount), followed by an array of glyph indices (GlyphArray). The glyph indices must be in numerical order for binary searching of the list. When a glyph is found in the Coverage table, its position in the GlyphArray determines the Coverage Index that is returned-the first glyph has a Coverage Index = 0, and the last glyph has a Coverage Index = GlyphCount -1.
+
+<P>Example 5 at the end of this chapter shows a Coverage table that uses Format 1 to list the GlyphIDs of all lowercase descender glyphs in a font.
+
+<P><BR><I>CoverageFormat1 table: Individual glyph indices</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>CoverageFormat</TD>
+<TD CLASS=tab VALIGN=TOP>Format identifier-format = 1</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of glyphs in the GlyphArray</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>GlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphArray[GlyphCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of GlyphIDs-in numerical order</TD></TR>
+</TABLE>
+
+<P><BR>	
+<I>Coverage Format 2</I>
+
+<P>Format 2 consists of a format code (CoverageFormat) and a count of glyph index ranges (RangeCount), followed by an array of records (RangeRecords). Each RangeRecord consists of a start glyph index (Start), an end glyph index (End), and the Coverage Index associated with the range's Start glyph. Ranges must be in GlyphID order, and they must be distinct, with no overlapping.
+
+<P>The Coverage Indexes for the first range begin with zero (0), and the Start Coverage Indexes for each succeeding range are determined by adding the length of the preceding range
+(End GlyphID - Start GlyphID + 1) to the array Index. This allows for a quick calculation of the Coverage Index for any glyph in any range using the formula:
+Coverage Index (GlyphID) = StartCoverageIndex + GlyphID - Start GlyphID.
+
+<P>Example 6 at the end of this chapter shows a Coverage table that uses Format 2 to identify a range of numeral glyphs in a font.
+
+<P><BR><I>CoverageFormat2 table: Range of glyphs</I>
+<P> 
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>CoverageFormat</TD>
+<TD CLASS=tab VALIGN=TOP>Format identifier-format = 2</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>RangeCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of RangeRecords</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>struct</TD>
+<TD CLASS=tab VALIGN=TOP>RangeRecord<BR>[RangeCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of glyph ranges-ordered by Start GlyphID</TD></TR>
+</TABLE>
+
+
+<P><BR><I>RangeRecord</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>GlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>Start</TD>
+<TD CLASS=tab VALIGN=TOP>First GlyphID in the range</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>GlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>End</TD>
+<TD CLASS=tab VALIGN=TOP>Last GlyphID in the range</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>StartCoverageIndex</TD>
+<TD CLASS=tab VALIGN=TOP>Coverage Index of first GlyphID in range</TD></TR>
+</TABLE>
+
+<P><BR>	
+<B>Class Definition Table</B>
+
+<P>In OpenType Layout, index values identify glyphs. For efficiency and ease of representation, a font developer can group glyph indices to form glyph classes. Class assignments vary in meaning from one lookup subtable to another. For example, in the GSUB and GPOS tables, classes are used to describe glyph contexts. GDEF tables also use the idea of glyph classes.
+
+<P>Consider a substitution action that replaces only the lowercase ascender glyphs in a glyph string. To more easily describe the appropriate context for the substitution, the font developer might divide the font's lowercase glyphs into two classes, one that contains the ascenders and one that contains the glyphs without ascenders.
+
+<P>A font developer can assign any glyph to any class, each identified with an integer called a class value. A Class Definition table (ClassDef) groups glyph indices by class, beginning with Class 1, then Class 2, and so on. All glyphs not assigned to a class fall into Class 0. Within a given class definition table, each glyph in the font belongs to exactly one class.
+
+<P>The ClassDef table can have either of two formats: one that assigns a range of consecutive glyph indices to different classes, or one that puts groups of consecutive glyph indices into the same class.
+
+<P><BR>
+<I>Class Definition Table Format 1</I>
+
+<P>The first class definition format (ClassDefFormat1) specifies a range of consecutive glyph indices and a list of corresponding glyph class values. This table is useful for assigning each glyph to a different class because the glyph indices in each class are not grouped together.
+
+<P>A ClassDef Format 1 table begins with a format identifier (ClassFormat). The range of glyph indices (GlyphIDs) covered by the table is identified by two values: the GlyphID of the first glyph (StartGlyph), and the number of consecutive GlyphIDs (including the first one) that will be assigned class values (GlyphCount). The ClassValueArray lists the class value assigned to each GlyphID, starting with the class value for StartGlyph and following the same order as the GlyphIDs. Any glyph not included in the range of covered GlyphIDs automatically belongs to Class 0.
+
+<P>Example 7 at the end of this chapter uses Format 1 to assign class values to the lowercase, x-height, ascender, and descender glyphs in a font.
+
+<P><BR><I>ClassDefFormat1 table: Class array</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>ClassFormat</TD>
+<TD CLASS=tab VALIGN=TOP>Format identifier-format = 1</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>GlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>StartGlyph</TD>
+<TD CLASS=tab VALIGN=TOP>First GlyphID of the ClassValueArray</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphCount</TD>
+<TD CLASS=tab VALIGN=TOP>Size of the ClassValueArray</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>ClassValueArray[GlyphCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of Class Values-one per GlyphID</TD></TR>
+</TABLE>
+
+<P><BR>
+<I>Class Definition Table Format 2</I>
+
+<P>The second class definition format (ClassDefFormat2) defines multiple groups of glyph indices that belong to the same class. Each group consists of a discrete range of glyph indices in consecutive order (ranges cannot overlap).
+
+<P>The ClassDef Format 2 table contains a format identifier (ClassFormat), a count of ClassRangeRecords that define the groups and assign class values (ClassRangeCount), and an array of ClassRangeRecords ordered by the GlyphID of the first glyph in each record (ClassRangeRecord).
+
+<P>Each ClassRangeRecord consists of a Start glyph index, an End glyph index, and a Class value. All GlyphIDs in a range, from Start to End inclusive, constitute the class identified by the Class value. Any glyph not covered by a ClassRangeRecord is assumed to belong to Class 0.
+
+<P>Example 8 at the end of this chapter uses Format 2 to assign class values to four types of glyphs in the Arabic script.
+
+<P><BR><I>ClassDefFormat2 table: Class ranges</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TD CLASS=tabEAD>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>ClassFormat</TD>
+<TD CLASS=tab VALIGN=TOP>Format identifier-format = 2</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>ClassRangeCount</TD>
+<TD CLASS=tab VALIGN=TOP>Number of ClassRangeRecords</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>struct</TD>
+<TD CLASS=tab VALIGN=TOP>ClassRangeRecord<BR>[ClassRangeCount]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of ClassRangeRecords-ordered by Start GlyphID</TD></TR>
+</TABLE>
+
+
+<P><BR><I>ClassRangeRecord</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>GlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>Start</TD>
+<TD CLASS=tab VALIGN=TOP>First GlyphID in the range</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>GlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>End</TD>
+<TD CLASS=tab VALIGN=TOP>Last GlyphID in the range</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>Class</TD>
+<TD CLASS=tab VALIGN=TOP>Applied to all glyphs in the range</TD></TR>
+</TABLE>
+
+<P><BR>	
+<B>Device Tables</B>
+
+<P>Glyphs in a font are defined in design units specified by the font developer. Font scaling increases or decreases a glyph's size and rounds it to the nearest whole pixel. However, precise glyph positioning often requires adjustment of these scaled and rounded values. Hinting, applied to points in the glyph outline, is an effective solution to this problem, but it may require the font developer to redesign or re-hint glyphs.
+
+<P>Another solution-used by the GPOS, BASE, JSTF, and GDEF tables-is to use a Device table to specify correction values to adjust the scaled design units. A Device table applies the correction values to the range of sizes identified by StartSize and EndSize, which specify the smallest and largest pixel-per-em (ppem) sizes needing adjustment.
+ 
+<P>Because the adjustments often are very small (a pixel or two), the correction can be compressed into a 2-, 4-, or 8-bit representation per size. Two bits can represent a number in the range {-2, -1, 0, or 1}, four bits can represent a number in the range {-8 to 7}, and eight bits can represent a number in the range {-128 to 127}. The Device table identifies one of three data formats-signed 2-, 4,- or 8-bit values-for the adjustment values (DeltaFormat). A single Device table provides delta information for one coordinate at a range of sizes.
+
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>Signed 2-bit value, 8 values per uint16</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>Signed 4-bit value, 4 values per uint16</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>8</TD>
+<TD CLASS=tab VALIGN=TOP>Signed 8-bit value, 2 values per uint16</TD></TR>
+</TABLE>
+	
+<P>The 2-, 4-, or 8-bit signed values are packed into uint16's most significant bits first. For example, using a DeltaFormat of 2 (4-bit values), an array of values equal to {1, 2, 3, -1} would be represented by the DeltaValue 0x123F.
+
+<P>The DeltaValue array lists the number of pixels to adjust specified points on the glyph, or the entire glyph, at each ppem size in the targeted range. In the array, the first index position specifies the number of pixels to add or subtract from the coordinate at the smallest ppem size that needs correction, the second index position specifies the number of pixels to add or subtract from the coordinate at the next ppem size, and so on for each ppem size in the range.
+
+<P>Example 9 at the end of this chapter uses a Device table to define the minimum extent value for a math script.
+
+<P><BR><I>Device table</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>StartSize</TD>
+<TD CLASS=tab VALIGN=TOP>Smallest size to correct-in ppem</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>EndSize</TD>
+<TD CLASS=tab VALIGN=TOP>Largest size to correct-in ppem</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>DeltaFormat</TD>
+<TD CLASS=tab VALIGN=TOP>Format of DeltaValue array data: 1, 2, or 3</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>DeltaValue[ ]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of compressed data</TD></TR>
+</TABLE>
+
+<P><BR>	
+<B>Common Table Examples</B>
+
+<P>The rest of this chapter describes and illustrates examples of all the common table formats. All the examples reflect unique parameters, but the samples provide a useful reference for building tables specific to other situations.
+
+<P>The examples have three columns showing hex data, source, and comments.
+
+<P><BR>
+<B>Example 1: ScriptList Table and ScriptRecords</B>
+
+<P>Example 1 illustrates a ScriptList table and ScriptRecord definitions for a Japanese font with multiple scripts: Han Ideographic, Kana, and Latin. Each script has script-specific behavior.
+
+<P><BR><I>Example 1</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>ScriptList</B><BR>TheScriptList</TD>
+<TD CLASS=tab VALIGN=BOTTOM>ScriptList table definintion</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>ScriptCount<BR>ScriptRecord[0],in alphabetical order by ScriptTag</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>68616E69</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;hani&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>ScriptTag, Han Ideographic script</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0014</TD>
+<TD CLASS=tab VALIGN=TOP>HanIScriptTable</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Script table<BR>ScriptRecord[1]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>6B616E61</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;kana&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>ScriptTag, Hiragana and Katakana scripts</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0018</TD>
+<TD CLASS=tab VALIGN=TOP>KanaScriptTable</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Script table<BR>ScriptRecord[2]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>6C61746E</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;latn&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>ScriptTag, Latin script</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>001C</TD>
+<TD CLASS=tab VALIGN=TOP>LatinScriptTable</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Script table
+</TD></TR>
+</TABLE>
+
+<P><BR>
+<B>Example 2: Script Table, LangSysRecord, and LangSys Table</B>
+
+<P>Example 2 illustrates the Script table, LangSysRecord, and LangSys table definitions for the Arabic script and the Urdu language system. The default LangSys table defines three default Arabic script features used to replace certain glyphs in words with their proper initial, medial, and final glyph forms. These contextual substitutions are invariant and occur in all language systems that use the Arabic script.
+
+<P>Many alternative glyphs in the Arabic script have language-specific uses. For instance, the Arabic, Farsi, and Urdu language systems use different glyphs for numerals. To maintain character-set compatibility, the Unicode standard includes separate character codes for the Arabic and Farsi numeral glyphs. However, the standard uses the same character codes for Farsi and Urdu numerals, even though three of the Urdu glyphs (4, 6, and 7) differ from the Farsi glyphs. To access and display the proper glyphs for the Urdu numerals, users of the text-processing client must enter the character codes for the Farsi numerals. Then the text-processing client uses a required OpenType Layout glyph substitution feature, defined in the Urdu LangSys table, to access the correct Urdu glyphs for the 4, 6, and 7 numerals. 
+
+<P>Note that the Urdu LangSys table repeats the default script features. This repetition is necessary because the Urdu language system also uses alternative glyphs in the initial, medial, and final glyph positions in words. 
+
+<P><BR><I>Example 2</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>Script</B><BR> ArabicScriptTable</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Script table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>000A</TD>
+<TD CLASS=tab VALIGN=TOP>DefLangSys</TD>
+<TD CLASS=tab VALIGN=TOP>offset to DefaultLangSys table</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>LangSysCount LangSysRecord[0], in alphabetical order by     LangSysTag</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>55524420</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;URD &quot;</TD>
+<TD CLASS=tab VALIGN=TOP>LangSysTag, Urdu language</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0016</TD>
+<TD CLASS=tab VALIGN=TOP>UrduLangSys</TD>
+<TD CLASS=tab VALIGN=TOP>offset to LangSys table for Urdu<HR></TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>LangSys</B><BR>DefLangSys</TD>
+<TD CLASS=tab VALIGN=BOTTOM>default LangSys table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab VALIGN=TOP>LookupOrder, reserved, null</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>FFFF</TD>
+<TD CLASS=tab VALIGN=TOP>0xFFFF</TD>
+<TD CLASS=tab VALIGN=TOP>ReqFeatureIndex, no required features</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureIndex[0], in arbitrary order<BR>&quot;init&quot; feature (initial glyph)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureIndex[1], &quot;fina&quot; feature (final glyph)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureIndex[2], for &quot;medi&quot; feature (medial      glyph)<HR></TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>LangSys</B><BR>UrduLangSys</TD>
+<TD CLASS=tab VALIGN=BOTTOM>LangSys table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab VALIGN=TOP>LookupOrder, reserved, null</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>ReqFeatureIndex, numeral subsitution in Urdu</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureIndex[0], in arbitrary order<BR> &quot;init&quot; feature (initial glyph)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureIndex[1], &quot;fina&quot; feature (final glyph)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP> FeatureIndex[2], &quot;medi&quot; feature (medial glyph)</TD></TR>
+</TABLE>
+
+<P><BR>
+<B>Example 3: FeatureList Table and Feature Table</B>
+
+<P>Example 3 shows the FeatureList and Feature table definitions for ligatures in the Latin script. The FeatureList has three features, all optional and named &quot;liga.&quot; One feature, also a default, implements ligatures in Latin if no language-specific feature specifies other ligatures. Two other features implement ligatures in the Turkish and German languages, respectively.
+
+<P>Three lookups define glyph substitutions for rendering ligatures in this font. The first lookup produces the &quot;ffi&quot; and &quot;fi&quot; ligatures; the second produces the &quot;ffl,&quot; &quot;fl,&quot; and &quot;ff&quot; ligatures; and the third produces the eszet ligature. 
+
+<P>The ligatures that begin with an &quot;f&quot; are separated into two sets because Turkish has a dotless &quot;i&quot; glyph and so does not use &quot;ffi&quot; and &quot;fi&quot; ligatures. However, Turkish does use the &quot;ffl,&quot; &quot;fl,&quot; and &quot;ff&quot; ligatures, and the TurkishLigatures feature table lists this one lookup.
+
+<P>Only the German language system uses the eszet ligature, so the GermanLigatures feature table includes a lookup for rendering that ligature.
+
+<P>Because the Latin script can use both sets of ligatures, the DefaultLigatures feature table defines two LookupList indices: one for the &quot;ffi&quot; and &quot;fi&quot; ligatures, and one for the &quot;ffl,&quot; &quot;fl,&quot; and &quot;ff&quot; ligatures. If the text-processing client selects this feature, then the font applies both lookups. 
+
+<P>Note that the TurkishLigatures and DefaultLigatures feature tables both list a LookupListIndex of one (1) for the &quot;ffl,&quot; &quot;fl,&quot; and &quot;ff&quot; ligatures lookup. This is because language-specific lookups override all default language-system lookups, and a language-system feature table must explicitly list all lookups that apply to the language.
+
+
+<P><BR><I>Example 3</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>FeatureList</B><BR>TheFeatureList</TD>
+<TD CLASS=tab VALIGN=BOTTOM>FeatureList table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureCount<BR>FeatureRecord[0]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>6C696761</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;liga&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureTag</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0014</TD>
+<TD CLASS=tab VALIGN=TOP>TurkishLigatures</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Feature table, FflFfFlLiga FeatureRecord[1]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>6C696761</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;liga&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureTag</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>001A</TD>
+<TD CLASS=tab VALIGN=TOP>DefaultLigatures</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Feature table, FfiFiLiga, FflFfFlLiga FeatureRecord[2]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>6C696761</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;liga&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureTag</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0022</TD>
+<TD CLASS=tab VALIGN=TOP>GermanLigatures</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Feature table, EszetLiga<HR></TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>Feature</B><BR>TurkishLigatures</TD>
+<TD CLASS=tab VALIGN=TOP>Feature table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureParams, reserved, null</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>LookupListIndex[1], ffl, fl, ff ligature substitution Lookup<HR></TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>Feature</B><BR>DefaultLigatures</TD>
+<TD CLASS=tab VALIGN=TOP>Feature table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureParams - reserved, null</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>LookupListIndex[0], in arbitrary order, ffi, fi ligatures</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>LookupListIndex[1], ffl, fl, ff ligature substitution    Lookup<HR></TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>Feature</B><BR>GermanLigatures</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Feature table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab VALIGN=TOP>FeatureParams - reserved, null</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>LookupListIndex[0], in arbitrary order, ffi, fi ligatures</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>LookupListIndex[1], ffl, fl, ff ligature substitution    Lookup</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>LookupListIndex[2], eszet ligature substitution    Lookup</TD></TR>
+</TABLE>
+
+<P><BR>
+<B>Example 4: LookupList Table and Lookup Table</B>
+
+<P>A continuation of Example 3, Example 4 shows three ligature lookups in the LookupList table. The first generates the &quot;ffi&quot; and &quot;fi&quot; ligatures; the second produces the &quot;ffl,&quot; &quot;fl,&quot; and &quot;ff&quot; ligatures; and the third generates the eszet ligature. Each lookup table defines an offset to a subtable that contains data for the ligature substitution.
+
+
+<P><BR><I>Example 4</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>LookupList</B><BR>TheLookupList</TD>
+<TD CLASS=tab VALIGN=BOTTOM>LookupList table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0008</TD>
+<TD CLASS=tab VALIGN=TOP>FfiFiLookup</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Lookup[0] table, in design order</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0010</TD>
+<TD CLASS=tab VALIGN=TOP>FflFlFfLookup</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Lookup[1] table</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0018</TD>
+<TD CLASS=tab VALIGN=TOP>EszetLookup</TD>
+<TD CLASS=tab VALIGN=BOTTOM>offset to Lookup[2] table<HR></TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>Lookup</B><BR>FfiFiLookup</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Lookup[0] table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0004</TD>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>LookupType, ligature subst</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>000C</TD>
+<TD CLASS=tab VALIGN=TOP>0x000C</TD>
+<TD CLASS=tab VALIGN=TOP>LookupFlag, IgnoreLigatures, IgnoreMarks</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>SubTableCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0018</TD>
+<TD CLASS=tab VALIGN=TOP>FfiFiSubtable</TD>
+<TD CLASS=tab VALIGN=TOP>offset to FfiFi ligature substitution subtable</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>Lookup</B><BR>FflFlFfLookup</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Lookup[1] table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0004</TD>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>LookupType<BR>  ligature subst</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>000C</TD>
+<TD CLASS=tab VALIGN=TOP>0x000C</TD>
+<TD CLASS=tab VALIGN=TOP>LookupFlag- IgnoreLigatures, IgnoreMarks</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>SubTableCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0028</TD>
+<TD CLASS=tab VALIGN=TOP>FflFlFfSubtable</TD>
+<TD CLASS=tab VALIGN=TOP>offset to FflFlFf ligature substitution subtable<HR></TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>Lookup</B><BR>EszetLookup</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Lookup[2] table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0004</TD>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>LookupType- ligature subst</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>000C</TD>
+<TD CLASS=tab VALIGN=TOP>0x000C</TD>
+<TD CLASS=tab VALIGN=TOP>LookupFlag- IgnoreLigatures, IgnoreMarks</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>SubTableCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0038</TD>
+<TD CLASS=tab VALIGN=TOP>EszetSubtable</TD>
+<TD CLASS=tab VALIGN=TOP>offset to Eszet ligature substitution subtable</TD></TR>
+</TABLE>
+
+<P><BR>
+<B>Example 5: CoverageFormat1 Table (GlyphID List)</B>
+
+<P>Example 5 illustrates a Coverage table that lists the GlyphIDs of all lowercase descender glyphs in a font. The table uses the list format instead of the range format because the GlyphIDs for the descender glyphs are not consecutively ordered. 
+
+
+<P><BR><I>Example 5</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>CoverageFormat1</B><BR>DescenderCoverage</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Coverage table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=BOTTOM>CoverageFormat lists</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0005</TD>
+<TD CLASS=tab VALIGN=TOP>5</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0038</TD>
+<TD CLASS=tab VALIGN=TOP>gGlyphID</TD>
+<TD CLASS=tab VALIGN=BOTTOM>GlyphArray[0], in GlyphID order</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>003B</TD>
+<TD CLASS=tab VALIGN=TOP>jGlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphArray[1]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0041</TD>
+<TD CLASS=tab VALIGN=TOP>pGlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphArray[2]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0042</TD>
+<TD CLASS=tab VALIGN=TOP>qGlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphArray[3]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>004A</TD>
+<TD CLASS=tab VALIGN=TOP>yGlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphArray[4]</TD></TR>
+</TABLE>
+
+<P><BR>
+<B>Example 6: CoverageFormat2 Table (GlyphID Ranges)</B>
+
+<P>Example 6 shows a Coverage table that defines ten numeral glyphs (0 through 9). The table uses the range format instead of the list format because the GlyphIDs are ordered consecutively in the font. The StartCoverageIndex of zero (0) indicates that the first GlyphID, for the zero glyph, returns a Coverage Index of 0. The second GlyphID, for the numeral one (1) glyph, returns a Coverage Index of 1, and so on. 
+
+
+<P><BR><I>Example 6</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>CoverageFormat2</B><BR>NumeralCoverage</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Coverage table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=BOTTOM>CoverageFormat, GlyphID ranges</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=BOTTOM>RangeCount<BR>RangeRecord[0]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>004E</TD>
+<TD CLASS=tab VALIGN=TOP>0glyphID</TD>
+<TD CLASS=tab VALIGN=TOP>Start GlyphID</TD></TR>
+<TR>		
+<TD CLASS=tab VALIGN=TOP>0057</TD>
+<TD CLASS=tab VALIGN=TOP>9glyphID</TD>
+<TD CLASS=tab VALIGN=TOP>End GlyphID</TD></TR>
+<TR>		
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=BOTTOM>StartCoverageIndex, first CoverageIndex = 0</TD></TR>
+</TABLE>
+
+<P><BR>
+<B>Example 7: ClassDefFormat1 Table (Class Array)</B>
+
+<P>The ClassDef table in Example 7 assigns class values to the lowercase glyphs in a font. The x-height glyphs are in Class 0, the ascender glyphs are in Class 1, and the descender glyphs are in Class 2. The array begins with the index for the lowercase &quot;a&quot; glyph.
+
+
+<P><BR><I>Example 7</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>ClassDefFormat1</B><BR>LowercaseClassDef</TD>
+<TD CLASS=tab VALIGN=BOTTOM>ClassDef table definition</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>ClassFormat</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0032</TD>
+<TD CLASS=tab VALIGN=TOP>aGlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>StartGlyph</TD></TR>
+<TR>		
+<TD CLASS=tab VALIGN=TOP>001A</TD>
+<TD CLASS=tab VALIGN=TOP>26</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphCount</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>aGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>bGlyph, Ascender Class 1</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>cGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>dGlyph, Ascender Class 1</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>eGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>fGlyph, Ascender Class 1</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>gGlyph, Descender Class 2</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>hGlyph, Ascender Class 1</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>iGlyph, Ascender Class 1</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>jGlyph, Descender Class 2</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>kGlyph, Ascender Class 1</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>lGlyph, Ascender Class 1</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>mGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>nGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>oGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>pGlyph, Descender Class 2</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>qGlyph, Descender Class 2</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>rGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>sGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>tGlyph, Ascender Class 1</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>uGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>vGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>wGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>xGlyph, Xheight Class 0</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>yGlyph, Descender Class 2</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>zGlyph, Xheight Class 0</TD></TR>
+</TABLE>
+
+<P><BR>
+<B>Example 8: ClassDefFormat2 Table (Class Ranges)</B>
+
+<P>In Example 8, the ClassDef table assigns class values to four types of glyphs in the Arabic script: medium-height base glyphs, high base glyphs, very high base glyphs, and default mark glyphs. The table lists only Class 1, Class 2, and Class 3; all glyphs not explicitly assigned a class fall into Class 0. 
+
+<P>The table uses the range format because the GlyphIDs in each class are ordered consecutively in the font. In the ClassRange array, ClassRange definitions are ordered by the Start glyph index in each range. The indices of the high base glyphs, defined in ClassRange[0], are first in the font and have a class value of 2. ClassRange[1] defines all the very high base glyphs and assigns a class value of 3. ClassRange[2] contains all default mark glyphs; the class value is 1. Class 0 consists of all the medium-height base glyphs, which are not explicitly assigned a class value.
+
+
+<P><BR><I>Example 8</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP><B>ClassDefFormat2</B><BR>GlyphHeightClassDef</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>Class table definition</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>Class Format ranges</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>ClassRangeCount<BR>ClassRange[0], ordered by StartGlyphID</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0030</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>tahGlyphID</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>Start<BR>  first GlyphID in the range</TD></TR>
+<TR> 
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0031</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>dhahGlyphID</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>End<BR>  Last GlyphID in the range</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>Class, high base glyphs, ClassRange[1]</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0040</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>cafGlyphID</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>Start, first GlyphID in the range</TD></TR>
+<TR> 
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0041 </TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>gafGlyphID</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>End, Last GlyphID in the range</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>Class, very high base glyphs, ClassRange[2]</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>00D2</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>fathatanDefaultGlyphID</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>Start, first GlyphID in the range</TD></TR>
+<TR> 
+<TD CLASS=tab CLASS=tab VALIGN=TOP>00D3</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>dammatanDefaultGlyphID</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>End, Last GlyphID in the range</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>Class<BR>  default marks</TD></TR>
+</TABLE>
+
+<P><BR>
+<B>Example 9: Device Table</B>
+
+<P>Example 9 defines the minimum extent value for a math script, using a Device table to adjust the value according to the size of the output font. Here, the Device table defines single-pixel adjustments for font sizes from 11 ppem to 15 ppem. The DeltaFormat is 1, which signifies a packed array of signed 2-bit values, eight values per uint16.
+
+
+<P><BR><I>Example 9</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP><B>DeviceTableFormat1</B><BR>MinCoordDeviceTable</TD>
+<TD CLASS=tab CLASS=tab VALIGN=BOTTOM>Device Table definition</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>000B</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>11</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>StartSize, 11 ppem</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>000F</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>15</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>EndSize, 15 ppem</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab CLASS=tab VALIGN=BOTTOM>DeltaFormat<BR>  signed 2 bit value, 8 values<BR>  per uint16</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>increase 11ppem by 1 pixel</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>increase 12ppem by 1 pixel</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>increase 13ppem by 1 pixel</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>increase 14ppem by 1 pixel</TD></TR>
+<TR>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>5540</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab CLASS=tab VALIGN=TOP>increase 15ppem by 1 pixel
+</TABLE>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 11 June 2002<BR>
+	&copy; 2001 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD CLASS=tab WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD CLASS=tab COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | Common table formats
+
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+

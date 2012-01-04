@@ -1,0 +1,239 @@
+<HTML>
+<HEAD>
+
+<TITLE>The gasp Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The gasp table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>gasp - Grid-fitting <BR>And Scan-conversion
+Procedure</FONT>
+
+<P>
+This table contains information which describes
+the preferred rasterization techniques for the typeface when it
+is rendered on grayscale-capable devices. This table also has
+some use for monochrome devices, which may use the table to turn
+off hinting at very large or small sizes, to improve performance.
+<P>
+At very small sizes, the best appearance on grayscale devices
+can usually be achieved by rendering the glyphs in grayscale without
+using hints. At intermediate sizes, hinting and monochrome rendering
+will usually produce the best appearance. At large sizes, the
+combination of hinting and grayscale rendering will typically
+produce the best appearance.
+<P>
+If the 'gasp' table is not present in a typeface, the rasterizer may
+apply default rules to decide how to render the glyphs on grayscale
+devices.
+<P>
+The 'gasp' table consists of a header followed by groupings of
+'gasp' records:
+
+<P><BR><B>gasp Table</B><P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>version</TD>
+<TD CLASS=tab VALIGN=TOP>Version number (set to 0)</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>numRanges</TD>
+<TD CLASS=tab VALIGN=TOP>Number of records to follow</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>GASPRANGE</TD>
+<TD CLASS=tab VALIGN=TOP>gaspRange[numRanges]</TD>
+<TD CLASS=tab VALIGN=TOP>Sorted by ppem</TD></TR>
+</TABLE>
+<P>
+Each GASPRANGE record looks like this:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>rangeMaxPPEM</TD>
+<TD CLASS=tab VALIGN=TOP>Upper limit of range, in PPEM</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>rangeGaspBehavior</TD>
+<TD CLASS=tab VALIGN=TOP>Flags describing desired rasterizer behavior.</TD></TR>
+</TABLE>
+<P>
+There are two flags for the rangeGaspBehavior
+flags:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD WIDTH=40% CLASS=tab BGCOLOR="#C0C0C0">Flag</TD>
+<TD WIDTH=60% CLASS=tab BGCOLOR="#C0C0C0">Meaning</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>GASP_GRIDFIT</TD>
+<TD CLASS=tab VALIGN=TOP>Use gridfitting</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>GASP_DOGRAY</TD>
+<TD CLASS=tab VALIGN=TOP>Use grayscale rendering</TD></TR>
+</TABLE>
+<P>
+The set of bit flags may be extended in the
+future.The four currently defined values of rangeGaspBehavior
+would have the following uses:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD WIDTH=40% CLASS=tab BGCOLOR="#C0C0C0">Flag</TD>
+<TD WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=40% CLASS=tab BGCOLOR="#C0C0C0">Meaning</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>GASP_DOGRAY</TD>
+<TD CLASS=tab VALIGN=TOP>0x0002</TD>
+<TD CLASS=tab VALIGN=TOP>small sizes, typically ppem&lt;9</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>GASP_GRIDFIT</TD>
+<TD CLASS=tab VALIGN=TOP>0x0001</TD>
+<TD CLASS=tab VALIGN=TOP>medium sizes, typically 9&lt;=ppem&lt;=16</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>GASP_DOGRAY|GASP_GRIDFIT</TD>
+<TD CLASS=tab VALIGN=TOP>0x0003</TD>
+<TD CLASS=tab VALIGN=TOP>large sizes, typically ppem&gt;16</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>(neither)</TD>
+<TD CLASS=tab VALIGN=TOP>0x0000</TD>
+<TD CLASS=tab VALIGN=TOP>optional for very large sizes, typically ppem&gt;2048</TD></TR>
+</TABLE><P>
+<P>
+The records in the gaspRange[] array must
+be sorted in order of increasing rangeMaxPPEM value. The last
+record should use 0xFFFF as a sentinel value for rangeMaxPPEM
+and should describe the behavior desired at all sizes larger than
+the previous record's upper limit. If the only entry in 'gasp'
+is the 0xFFFF sentinel value, the behavior described will be used
+for <I>all</I> sizes.
+
+<P><BR><B>Sample 'gasp' table</B><P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD WIDTH=40% CLASS=tab BGCOLOR="#C0C0C0">Flag</TD>
+<TD WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Value</TD>
+<TD WIDTH=40% CLASS=tab BGCOLOR="#C0C0C0">Meaning</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>version</TD>
+<TD CLASS=tab VALIGN=TOP>0x0000</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>numRanges</TD>
+<TD CLASS=tab VALIGN=TOP>0x0003</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Range[0], Flag</TD>
+<TD CLASS=tab VALIGN=TOP>0x0008  0x0002</TD>
+<TD CLASS=tab VALIGN=TOP>ppem&lt;=8, grayscale only</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Range[1], Flag</TD>
+<TD CLASS=tab VALIGN=TOP>0x0010  0x0001</TD>
+<TD CLASS=tab VALIGN=TOP>9&lt;=ppem&lt;=16, gridfit only</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Range[2], Flag</TD>
+<TD CLASS=tab VALIGN=TOP>0xFFFF  0x0003</TD>
+<TD CLASS=tab VALIGN=TOP>16&lt;ppem, gridfit and grayscale</TD></TR>
+</TABLE>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 27 March 1998<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The gasp table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+
+
+

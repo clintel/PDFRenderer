@@ -1,0 +1,738 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Justification Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css">
+</HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The JSTF table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>JSTF - The Justification Table</FONT>
+
+<P>The Justification table (JSTF) provides font developers with additional control over glyph substitution and positioning in justified text. Text-processing clients now have more options to expand or shrink word and glyph spacing so text fills the specified line length.
+
+<P><BR><B>Overview</B>
+
+<P>When justifying text, the text-processing client distributes the characters in each line to completely fill the specified line length. Whether removing space to fit more characters in the line or adding more space to spread the characters, justification can produce large gaps between words, cramped or extended glyph spacing, uneven line break patterns, and other jarring visual effects. For example:<BR>
+
+<P>
+<TABLE CELLPADDING=10 BGCOLOR=#F0F0F0 Width=440><TR><TD>
+<IMG  WIDTH=410 HEIGHT=120 ALT="DIAGRAM" SRC="fig6a.gif"><BR>
+</TABLE>
+<DIV CLASS=caption>Figure 6a. Poorly justified text</DIV>
+
+<P>To offset these effects, text-processing clients have used justification algorithms that redistribute the space with a series of glyph spacing adjustments that progress from least to most obvious. Typically, the client will begin by expanding or compressing the space between words. If these changes aren't enough or look distracting, the client might hyphenate the word at the end of the line or adjust the space between glyphs in one or more lines.
+
+<P>To disguise spacing inconsistencies so they won't disrupt the flow of text for a reader, the font developer can use the JSTF table to enable or disable individual glyph substitution and positioning actions that apply to specific scripts, language systems, and glyphs in the font. 
+
+<P>For instance, a ligature glyph can replace multiple glyphs, shortening the line of text with an unobtrusive, localized adjustment (see Figure 6b). Font-specific positioning changes can be applied to particular glyphs in a text line that combines two or more fonts. Other options include repositioning the individual glyphs in the line, expanding the space between specific pairs of glyphs, and decreasing the spacing within particular glyph sequences.<BR>
+
+<P>
+<TABLE CELLPADDING=10 BGCOLOR=#F0F0F0 width=440><TR><TD>
+<IMG  WIDTH=432 HEIGHT=97 ALT="DIAGRAM" SRC="fig6b.gif"><BR>
+</TABLE>
+<DIV CLASS=caption>Figure 6b. JSTF shortens the top line of this example by using the &quot;ffi&quot; ligature</DIV>
+
+<P>The font designer or developer defines JSTF data as prioritized suggestions. Each suggestion lists the particular actions that the client can use to adjust the line of text. Justification actions may apply to both vertical and horizonal text.
+
+<P><BR><B>Table Organization</B>
+
+<P>The JSTF table organizes data by script and language system, as do the GSUB and GPOS tables. The JSTF table begins with a header that lists scripts in an array of JstfScriptRecords (see Figure 6c). Each record contains a ScriptTag and an offset to a JstfScript table that contains script and language-specific data:
+
+<UL>
+<LI>A default justification language system table (DefJstfLangSys) defines script-specific data that applies to the entire script in the absence of any language-specific information.
+<LI>A justification language system table (JstfLangSys) stores the justification data for each language system.
+</UL>
+
+<P>
+<TABLE CELLPADDING=10 BGCOLOR=#F0F0F0 Width=440><TR><TD>
+<IMG  WIDTH=374 HEIGHT=258 ALT="DIAGRAM" SRC="fig6c.gif"><BR>
+</TABLE>
+<DIV CLASS=caption>Figure 6c. High-level organization of JSTF table</DIV>
+
+<P>A JstfLangSys table contains a list of justification suggestions. Each suggestion consists of a list of GSUB or GPOS LookupList indices to lookups that may be enabled or disabled to add or remove space in the line of text. In addition, each suggestion can include a set of dedicated justification lookups with maximum adjustment values to extend or shrink the amount of space.
+
+<P>The font developer prioritizes suggestions based on how they affect the appearance and function of the text line, and the client applies the suggestions in that order. Low-numbered (high-priority) suggestions correspond to &quot;least bad&quot; options. 
+
+<P>Each script also may supply a list of extender glyphs, such as kashidas in Arabic. A client may use the extender glyphs in addition to the justification suggestions.
+
+<P>A client begins justifying a line of text only after implementing all selected GSUB and GPOS features for the string. Starting with the lowest-numbered suggestion, the client enables or disables the lookups specified in the JSTF table, reassembles the lookups in the LookupList order, and applies them to each glyph in the string one after another. If the line still is not the correct length, the client processes the next suggestion in ascending order of priority. This continues until the line length meets the justification requirements. 
+
+<BLOCKQUOTE>
+<I>Note:</I> If any JSTF suggestion at any priority level modifies a GSUB or GPOS lookup that was previously applied to the glyph string, then the text processing client must apply the JSTF suggestion to an unmodified version of the glyph string.
+</BLOCKQUOTE>
+
+<P>The rest of this chapter describes the tables and records used by the JSTF table for scripts and language systems:
+
+<UL>
+<LI>Script information includes the JstfScript table (plus its associated JstfLangSysRecords) and the ExtenderGlyph table. 
+<LI>Language system information includes the JstfLangSys table, JstfPriority table (and its associated JstfDataRecord), the JstfModList table, and the JstfMax table.
+</UL>
+
+<P><BR><B>JSTF Header</B>
+
+<P>The JSTF table begins with a header that contains a version number for the table (Version), a count of the number of scripts used in the font (JstfScriptCount), and an array of records (JstfScriptRecord). Each record contains a script tag (JstfScriptTag) and an offset to a JstfScript table (JstfScript). 
+<BLOCKQUOTE>
+<I>Note:</I> The JstfScriptTags must correspond with the ScriptTags listed in the GSUB and GPOS tables.</BLOCKQUOTE>
+
+<P>Example 1 at the end of this chapter shows a JSTF Header table and JstfScriptRecord.
+
+
+<P><BR><I>JSTF header</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>fixed32</TD>
+<TD CLASS=tab VALIGN=TOP>Version</TD>
+<TD CLASS=tab>Version of the JSTF table-initially set to 0x00010000</TD></TR>	
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>JstfScriptCount</TD>
+<TD CLASS=tab>Number of JstfScriptRecords in this table</TD></TR>	
+<TR><TD CLASS=tab VALIGN=TOP>struct</TD>
+<TD CLASS=tab VALIGN=TOP>JstfScriptRecord[JstfScriptCount]</TD>
+<TD CLASS=tab>Array of JstfScriptRecords-in alphabetical order, by JstfScriptTag</TD></TR>
+</TABLE>	
+
+<P><BR><I>JstfScriptRecord</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>Tag</TD>
+<TD CLASS=tab VALIGN=TOP>JstfScriptTag</TD>
+<TD CLASS=tab>4-byte JstfScript identification</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>JstfScript</TD>
+<TD CLASS=tab>Offset to JstfScript table-from beginning of JSTF Header</TD></TR>
+</TABLE>
+	
+<P><BR><B>Justification Script Table</B>
+
+<P>A Justification Script (JstfScript) table describes the justification information for a single script. It consists of an offset to a table that defines extender glyphs (ExtenderGlyph), an offset to a default justification table for the script (DefJstfLangSys), and a count of the language systems that define justification data (JstfLangSysCount).
+
+<P>If a script uses the same justification information for all language systems, the font developer defines only the DefJstfLangSys table and sets the JstfLangSysCount to zero (0). However, if any language system has unique justification suggestions, JstfLangSysCount will be a positive value, and the JstfScript table must include an array of records (JstfLangSysRecord), one for each language system. Each JstfLangSysRecord contains a language system tag (JstfLangSysTag) and an offset to a justification language system table (JstfLangSys). In the JstfLangSysRecord array, records are ordered alphabetically by JstfLangSysTag.
+<BLOCKQUOTE>
+<I>Note:</I> No JstfLangSysRecord is defined for the default script data; the data is stored in the DefJstfLangSys table instead.
+</BLOCKQUOTE>
+
+Example 2 at the end of the chapter shows a JstfScript table for the Arabic script and a JstfLangSysRecord for the Farsi language system.
+
+<P><BR><I>JstfScript table</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ExtenderGlyph</TD>
+<TD CLASS=tab>Offset to ExtenderGlyph table-from beginning of JstfScript table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>DefJstfLangSys</TD>
+<TD CLASS=tab>Offset to Default JstfLangSys table-from beginning of JstfScript table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>JstfLangSysCount</TD>
+<TD CLASS=tab>Number of JstfLangSysRecords in this table- may be zero (0)</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>struct</TD>
+<TD CLASS=tab VALIGN=TOP>JstfLangSysRecord<BR>[JstfLangSysCount]</TD>
+<TD CLASS=tab>Array of JstfLangSysRecords-in alphabetical order, by JstfLangSysTag</TD></TR>
+</TABLE>	
+
+
+<P><BR><I>JstfLangSysRecord</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>Tag</TD>
+<TD CLASS=tab VALIGN=TOP>JstfLangSysTag</TD>
+<TD CLASS=tab>4-byte JstfLangSys identifier</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>JstfLangSys</TD>
+<TD CLASS=tab>Offset to JstfLangSys table-from beginning of JstfScript table</TD></TR>
+</TABLE>
+	
+<P><BR><B>Extender Glyph Table</B>
+
+<P>The Extender Glyph table (ExtenderGlyph) lists indices of glyphs, such as Arabic kashidas, that a client may insert to extend the length of the line for justification. The table consists of a count of the extender glyphs for the script (GlyphCount) and an array of extender glyph indices (ExtenderGlyph), arranged in increasing numerical order.
+
+<P>Example 2 at the end of this chapter shows an ExtenderGlyph table for Arabic kashida glyphs.
+
+
+<P><BR><I>ExtenderGlyph table</I>
+<P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>GlyphCount</TD>
+<TD CLASS=tab>Number of Extender Glyphs in this script</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>GlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>ExtenderGlyph[GlyphCount]</TD>
+<TD CLASS=tab>GlyphIDs-in increasing numerical order</TD></TR>
+</TABLE>
+	
+<P><BR><B>Justification Language System Table</B>
+
+<P>The Justification Language System (JstfLangSys) table contains an array of justification suggestions, ordered by priority. A text-processing client doing justification should begin with the suggestion that has a zero (0) priority, and then-as necessary-apply suggestions of increasing priority until the text is justified.
+
+<P>The font developer defines the number and the meaning of the priority levels. Each priority level stands alone; its suggestions are not added to the previous levels.
+The JstfLangSys table consists of a count of the number of priority levels (JstfPriorityCnt) and an array of offsets to Justification Priority tables (JstfPriority), stored in priority order.
+Example 2 at the end of the chapter shows how to define a JstfLangSys table.
+
+
+<P><BR><I>JstfLangSys table</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>JstfPriorityCnt</TD>
+<TD CLASS=tab>Number of JstfPriority tables</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>JstfPriority[JstfPriorityCnt]</TD>
+<TD CLASS=tab>Array of offsets to JstfPriority tables-from beginning of JstfLangSys table-in priority order</TD></TR>
+</TABLE>
+	
+<P><BR><B>Justification Priority Table</B>
+<P>A Justification Priority (JstfPriority) table defines justification suggestions for a single priority level. Each priority level specifies whether to enable or disable GSUB and GPOS lookups or apply text justification lookups to shrink and extend lines of text.
+
+<P>JstfPriority has offsets to four tables with line shrinkage data: two are JstfGSUBModList tables for enabling and disabling glyph substitution lookups, and two are JstfGPOSModList tables for enabling and disabling glyph positioning lookups. Offsets to JstfGSUBModList and JstfGPOSModList tables also are defined for line extension. 
+
+<P>Example 3 at the end of this chapter demonstrates two JstfPriority tables for two justification suggestions.
+
+
+<P><BR><I>JstfPriority table</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ShrinkageEnableGSUB</TD>
+<TD CLASS=tab>Offset to Shrinkage Enable JstfGSUBModList table-from beginning of JstfPriority table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ShrinkageDisableGSUB</TD>
+<TD CLASS=tab>Offset to Shrinkage Disable JstfGSUBModList table-from beginning of JstfPriority table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ShrinkageEnableGPOS</TD>
+<TD CLASS=tab>Offset to Shrinkage Enable JstfGPOSModList table-from beginning of JstfPriority table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ShrinkageDisableGPOS</TD>
+<TD CLASS=tab>Offset to Shrinkage Disable JstfGPOSModList table-from beginning of JstfPriority table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ShrinkageJstfMax</TD>
+<TD CLASS=tab>Offset to Shrinkage JstfMax table-from beginning of JstfPriority table	
+-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ExtensionEnableGSUB</TD>
+<TD CLASS=tab>Offset to Extension Enable JstfGSUBModList table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ExtensionDisableGSUB</TD>
+<TD CLASS=tab>Offset to Extension Disable JstfGSUBModList table-from beginning of JstfPriority table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ExtensionEnableGPOS</TD>
+<TD CLASS=tab>Offset to Extension Enable JstfGSUBModList table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ExtensionDisableGPOS</TD>
+<TD CLASS=tab>Offset to Extension Disable JstfGSUBModList table-from beginning of JstfPriority table-may be NULL</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>ExtensionJstfMax</TD>
+<TD CLASS=tab>Offset to Extension JstfMax table-from beginning of JstfPriority table	
+-may be NULL</TD></TR>
+</TABLE>	
+
+<P><BR><B>Justification Modification List Tables</B>
+
+<P>The Justification Modification List tables (JstfGSUBModList and JstfGPOSModList) contain lists of indices into the lookup lists of either the GSUB or GPOS tables. The client can enable or disable the lookups to justify text. For example, to increase line length, the client might disable a GSUB ligature substitution.
+<P>Each JstfModList table consists of a count of Lookups (LookupCount) and an array of lookup indices (LookupIndex).
+<P>To justify a line of text, a text-processing client enables or disables the specified lookups in a JstfModList table, reassembles the lookups in the LookupList order, and applies them to each glyph in the string one after another.
+
+<BLOCKQUOTE>
+<I>Note:</I> If any JSTF suggestion at any priority level modifies a GSUB or GPOS lookup previously applied to the glyph string, then the text-processing client must apply the JSTF suggestion to an unmodified version of the glyph string.
+</BLOCKQUOTE>
+
+<P>Example 3 at the end of this chapter shows JstfGSUBModList and JstfGPOSModList tables with data for shrinking and extending text line lengths.
+
+
+<P><BR><I>JstfGSUBModList table</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+
+<TR>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD>
+<TD CLASS=tab>Number of lookups for this modification</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>GSUBLookupIndex[LookupCount]</TD>
+<TD CLASS=tab>Array of LookupIndex identifiers in GSUB-in increasing numerical order</TD></TR>
+</TABLE>	
+
+
+<P><BR><I>JstfGPOSModList table</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD>
+<TD CLASS=tab>Number of lookups for this modification</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>GPOSLookupIndex[LookupCount]</TD>
+<TD CLASS=tab>Array of LookupIndex identifiers in GPOS-in increasing numerical order</TD></TR>
+</TABLE>	
+
+<P><BR><B>Justification Maximum Table</B>
+
+<P>A Justification Maximum table (JstfMax) consists of an array of offsets to justification lookups (Lookup) and a count of the defined lookups (Lookup). JstfMax lookups typically are located after the JstfMax table in the font definition.
+
+<P>JstfMax tables have the same format as lookup tables and subtables in the GPOS table, but the JstfMax lookups reside in the JSTF table and contain justification data only. The lookup data might specify a single adjustment value for positioning all glyphs in the script, or it might specify more elaborate adjustments, such as different values for different glyphs or special values for specific pairs of glyphs. 
+
+<BLOCKQUOTE>
+<I>Note:</I> All GPOS lookup types except contextual positioning lookups may be defined in a JstfMax table.
+</BLOCKQUOTE>
+
+<P>JstfMax lookup values are defined in GPOS ValueRecords and may be specified for any advance or placement position, whether horizontal or vertical. These values define the maximum shrinkage or extension allowed per glyph. To justify text, a text-processing client may choose to adjust a glyph's positioning by any amount from zero (0) to the specified maximum.
+
+<P>Example 4 at the end of this chapter shows a JstfMax table. It defines a justification lookup to change the size of the word space glyph to extend line lengths.
+
+
+<P><BR><I>JstfMax table</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>uint16</TD>
+<TD CLASS=tab VALIGN=TOP>LookupCount</TD>
+<TD CLASS=tab>Number of lookup Indices for this modification</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>Lookup[LookupCount]</TD>
+<TD CLASS=tab>Array of offsets to GPOS-type lookup tables-from beginning of JstfMax table-in design order</TD></TR>
+</TABLE>
+	
+<P><BR><B>JSTF Table Examples</B>
+
+<P>The rest of this chapter describes examples of all the JSTF table formats. All the examples reflect unique parameters described below, but the samples provide a useful reference for building tables specific to other situations. 
+
+<P>The examples have three columns showing hex data, source, and comments.
+<P><BR>
+<B>Example 1: JSTF Header Table and JstfScriptRecord
+</B>
+<P>Example 1 demonstrates how a script is defined in the JSTF Header with a JstfScriptRecord that identifies the script and references its JstfScript table.  
+
+
+<P><BR><I>Example 1</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Comments</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JSTFHeader</B><BR>TheJSTFHeader</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JSTFHeader table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>00010000</TD>
+<TD CLASS=tab VALIGN=TOP>0x00010000</TD>
+<TD CLASS=tab>version</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>JstfScriptCount<BR>JstfScriptRecord[0]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>74686169</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;thai&quot;</TD>
+<TD CLASS=tab>JstfScriptTag</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>000C</TD>
+<TD CLASS=tab VALIGN=TOP>ThaiScript</TD>
+<TD CLASS=tab>offset to JstfScript table</TD></TR></TABLE>
+<P>
+<BR>
+<B>Example 2: JstfScript Table, ExtenderGlyph Table, JstfLangSysRecord, and JstfLangSys Table</B>
+<P>
+Example 2 shows a JstfScript table for the Arabic script and the tables it references. The DefJstfLangSys table defines justification data to apply to the script in the absence of language-specific information. In the example, the table lists two justification suggestions in priority order. 
+
+<P>JstfScript also supplies language-specific justification data for the Farsi language. The JstfLangSysRecord identifies the language and references its JstfLangSys table. The FarsiJstfLangSys lists one suggestion for justifying Farsi text.
+
+<P>The ExtenderGlyph table in JstfScript lists the indices of all the extender glyphs used in the script.
+
+
+<P><BR><I>Example 2</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Comments</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfScript</B><BR>ArabicScript</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JstfScript table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>000C</TD>
+<TD CLASS=tab VALIGN=TOP>ArabicExtenders</TD>
+<TD CLASS=tab>ExtenderGlyph</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0012</TD>
+<TD CLASS=tab VALIGN=TOP>ArabicDefJstfLangSys</TD>
+<TD CLASS=tab>offset to DefJstfLangSys table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>JstfLangSysCount<BR>JstfLangSysRecord[0]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>50455220</TD>
+<TD CLASS=tab VALIGN=TOP>&quot;FAR &quot;</TD>
+<TD CLASS=tab>JstfLangSysTag</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0018</TD>
+<TD CLASS=tab VALIGN=TOP>FarsiJstfLangSys</TD>
+<TD CLASS=tab>JstfLangSys<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>ExtenderGlyph</B><BR>ArabicExtenders</TD>
+<TD CLASS=tab VALIGN=BOTTOM>ExtenderGlyph table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab>GlyphCount</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>01D3</TD>
+<TD CLASS=tab VALIGN=TOP>TatweelGlyphID</TD>
+<TD CLASS=tab>ExtenderGlyph[0]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>01D4</TD>
+<TD CLASS=tab VALIGN=TOP>LongTatweelGlyphID</TD>
+<TD CLASS=tab>ExtenderGlyph[1]<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfLangSys</B><BR>ArabicDefJstfLangSys</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JstfLangSys table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0002</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab>JstfPriorityCnt</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>000A</TD>
+<TD CLASS=tab VALIGN=TOP>ArabicScriptJstfPriority1</TD>
+<TD CLASS=tab>offset to JstfPriority[0] table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>001E</TD>
+<TD CLASS=tab VALIGN=TOP>ArabicScriptJstfPriority2</TD>
+<TD CLASS=tab>offset to JstfPriority[1] table<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfLangSys</B><BR>FarsiJstfLangSys</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JstfLangSys table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>JstfPriorityCnt</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>002C</TD>
+<TD CLASS=tab VALIGN=TOP>FarsiLangJstfPriority1</TD>
+<TD CLASS=tab>offset to JstfPriority[0] table</TD></TR></TABLE>
+
+<P><BR><B>Example 3: JstfPriority Table, JstfGSUBModList Table, and JstfGPOSModList Table</B>
+<P>Example 3 shows the JstfPriority and JstfModList table definitions for two justification suggestions defined in priority order. The first suggestion uses ligature substitution to shrink the lengths of text lines, and it extends line lengths by replacing ligatures with their individual glyph components. Other lookup actions are not recommended at this priority level and are set to NULL. The associated JstfModList tables enable and disable three substitution lookups.
+
+<P>The second suggestion enables glyph kerning to reduce line lenths and disables glyph kerning to extend line lengths. Each action uses three lookups. This suggestion also includes a JstfMax table to extend line lengths, called WordSpaceExpandMax, which is described in Example 4.
+
+
+<P><BR><I>Example 3</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Comments</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfPriority</B><BR>USEnglishFirstJstfPriority</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JstfPriority table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0028</TD>
+<TD CLASS=tab VALIGN=TOP>EnableGSUBLookupsToShrink</TD>
+<TD CLASS=tab>offset to ShrinkageEnableGSUB JstfGSUBModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ShrinkageDisableGSUB JstfGSUBModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ShrinkageEnableGPOS JstfGPOSModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ShrinkageDisableGPOS JstfGPOSModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to Shrinkage JstfMax table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ExtensionEnableGSUB, JstfGSUBModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0038</TD>
+<TD CLASS=tab VALIGN=TOP>DisableGSUBLookupsToExtend</TD>
+<TD CLASS=tab>offset to ExtensionDisableGSUB JstfGSUBModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ExtensionEnableGPOS JstfGPOSModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ExtensionDisableGPOS JstfGPOSModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to Extension JstfMax table<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfPriority</B><BR>USEnglishSecondJstfPriority</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JstfPriority table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ShrinkageEnableGSUB JstfGSUBModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ShrinkageDisableGSUB JstfGSUBModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ShrinkageEnableGPOS JstfGPOSModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>001C</TD>
+<TD CLASS=tab VALIGN=TOP>DisableGPOSLookupsToShrink</TD>
+<TD CLASS=tab>offset to ShrinkageDisableGPOS JstfGPOSModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to Shrinkage JstfMax table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ExtensionEnableGSUB JstfGSUBModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ExtensionDisableGSUB JstfGSUBModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>002C</TD>
+<TD CLASS=tab VALIGN=TOP>EnableGPOSLookupsToExtend</TD>
+<TD CLASS=tab>offset to ExtensionEnableGPOS JstfGPOSModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to ExtensionDisableGPOS JstfGPOSModList table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>NULL</TD>
+<TD CLASS=tab>offset to Extension JstfMax table<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfGSUBModList</B><BR>EnableGSUBLookupsToShrink</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JstfGSUBModList table definition, enable three ligature    substitution lookups</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab>LookupCount</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>002E</TD>
+<TD CLASS=tab VALIGN=TOP>46</TD>
+<TD CLASS=tab>LookupIndex[0]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0035</TD>
+<TD CLASS=tab VALIGN=TOP>53</TD>
+<TD CLASS=tab>LookupIndex[1]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0063</TD>
+<TD CLASS=tab VALIGN=TOP>99</TD>
+<TD CLASS=tab>LookupIndex[2]<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfGPOSModList</B><BR>DisableGPOSLookupsToShrink</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JstfGPOSModList table definition, disable three tight kerning     lookups</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab>LookupCount</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>006C</TD>
+<TD CLASS=tab VALIGN=TOP>108</TD>
+<TD CLASS=tab>LookupIndex[0]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>006E</TD>
+<TD CLASS=tab VALIGN=TOP>110</TD>
+<TD CLASS=tab>LookupIndex[1]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0070</TD>
+<TD CLASS=tab VALIGN=TOP>112</TD>
+<TD CLASS=tab>LookupIndex[2]<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfGSUBModList</B><BR>DisableGSUBLookupsToExtend</TD>
+<TD CLASS=tab>JstfGSUBModList table definition, disable three ligature 
+substitution lookups</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab>LookupCount</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>002E</TD>
+<TD CLASS=tab VALIGN=TOP>46</TD>
+<TD CLASS=tab>LookupIndex[0]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0035</TD>
+<TD CLASS=tab VALIGN=TOP>53</TD>
+<TD CLASS=tab>LookupIndex[1]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0063</TD>
+<TD CLASS=tab VALIGN=TOP>99</TD>
+<TD CLASS=tab>LookupIndex[2]<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfGPOSModList</B><BR>EnableGPOSLookupsToExtend</TD>
+<TD CLASS=tab>JstfGPOSModList table definition enable three tight kerning     lookups</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0003</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab>LookupCount</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>006C</TD>
+<TD CLASS=tab VALIGN=TOP>108</TD>
+<TD CLASS=tab>LookupIndex[0]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>006E</TD>
+<TD CLASS=tab VALIGN=TOP>110</TD>
+<TD CLASS=tab>LookupIndex[1]</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0070</TD>
+<TD CLASS=tab VALIGN=TOP>112</TD>
+<TD CLASS=tab>LookupIndex[2]</TD></TR></TABLE>
+
+<P><BR><B>Example 4: JstfMax Table</B>
+<P>The JstfMax table in Example 4 defines a lookup to expand the advance width of the word space glyph and extend line lengths. The lookup definition is identical to the SinglePos lookup type in the GPOS table although it is enabled only when justifying text. The ValueRecord in the WordSpaceExpand lookup subtable specifies an XAdvance adjustment of 360 units, which is the maximum value the font developer recommends for acceptable text rendering. The text-processing client may implement the lookup using any value between zero and the maximum. 
+
+
+<P><BR><I>Example 4</I><P>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Hex Data</TD>
+<TD CLASS=tab WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Source</TD>
+<TD CLASS=tab WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Comments</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>JstfMax</B><BR>WordSpaceExpandMax</TD>
+<TD CLASS=tab VALIGN=BOTTOM>JstfMax table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>LookupCount</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0004</TD>
+<TD CLASS=tab VALIGN=TOP>WordSpaceExpandLookup</TD>
+<TD CLASS=tab>offset to Jstf Lookup[0] table<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>Lookup</B><BR>WordSpaceExpandLookup</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Jstf Lookup table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>LookupType, SinglePos Lookup</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0000</TD>
+<TD CLASS=tab VALIGN=TOP>0x0000</TD>
+<TD CLASS=tab>LookupFlag</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>SubTableCount</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0008</TD>
+<TD CLASS=tab VALIGN=TOP>WordSpaceExpandSubtable</TD>
+<TD CLASS=tab>offset to Subtable[0], SinglePos subtable<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>SinglePosFormat1</B><BR>WordSpaceExpandSubtable</TD>
+<TD CLASS=tab VALIGN=BOTTOM>SinglePos subtable definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>PosFormat</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0008</TD>
+<TD CLASS=tab VALIGN=TOP>WordSpaceCoverage</TD>
+<TD CLASS=tab>offset to Coverage table</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0004</TD>
+<TD CLASS=tab VALIGN=TOP>0x0004</TD>
+<TD CLASS=tab>ValueFormat, XAdvance only</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0168</TD>
+<TD CLASS=tab VALIGN=TOP>360</TD>
+<TD CLASS=tab>Value XAdvance value in Jstf, this is a max value, expand word space from zero to this amount<HR></TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab VALIGN=TOP><B>CoverageFormat1</B><BR>WordSpaceCoverage</TD>
+<TD CLASS=tab VALIGN=BOTTOM>Coverage table definition</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>CoverageFormat</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0001</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab>GlyphCount</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>0022</TD>
+<TD CLASS=tab VALIGN=TOP>WordSpaceGlyphID</TD>
+<TD CLASS=tab>GlyphArray[0]</TD></TR>
+</TABLE>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 27 March 1998<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The JSTF table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+

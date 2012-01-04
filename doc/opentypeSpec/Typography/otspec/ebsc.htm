@@ -1,0 +1,195 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Embedded Bitmap Scaling Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The EBSC table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>EBSC - Embedded Bitmap Scaling
+Table
+</FONT>
+
+<P>
+The 'EBSC' table provides a mechanism for
+describing embedded bitmaps which are created by scaling other
+embedded bitmaps. While this is the sort of thing that outline
+font technologies were invented to avoid, there are cases (small
+sizes of Kanji, for example) where scaling a bitmap produces a
+more legible font than scan-converting an outline. For this reason
+the 'EBSC' table allows a font to define a bitmap strike as a
+scaled version of another strike.
+<P>
+The 'EBSC' table begins with a header containing the table version
+and number of strikes.
+
+<P><BR><B>ebscHeader</B>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>FIXED</TD>
+<TD CLASS=tab VALIGN=TOP>version</TD>
+<TD CLASS=tab VALIGN=TOP>initially defined as 0x00020000</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>numSizes</TD>
+<TD CLASS=tab>&nbsp;</TD>
+</TR>
+</TABLE>
+<P>
+The ebscHeader is followed immediately by
+the bitmapScaleTable array. The numSizes in the ebscHeader indicates
+the number of bitmapScaleTables in the array. Each strike is defined
+by one bitmapScaleTable. 
+
+<P><BR><B>bitmapScaleTable</B>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>sbitLineMetrics</TD>
+<TD CLASS=tab VALIGN=TOP>hori</TD>
+<TD CLASS=tab VALIGN=TOP>line metrics</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>sbitLineMetrics</TD>
+<TD CLASS=tab VALIGN=TOP>vert</TD>
+<TD CLASS=tab VALIGN=TOP>line metrics</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>ppemX</TD>
+<TD CLASS=tab VALIGN=TOP>target horizontal pixels per Em</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>ppemY</TD>
+<TD CLASS=tab VALIGN=TOP>target vertical pixels per Em</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>substitutePpemX</TD>
+<TD CLASS=tab VALIGN=TOP>use bitmaps of this size</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>substitutePpemY</TD>
+<TD CLASS=tab VALIGN=TOP>use bitmaps of this size</TD></TR>
+</TABLE>
+<P>
+The line metrics have the same meaning as
+those in the bitmapSizeTable, and refer to font wide metrics after
+scaling. The ppemX and ppemY values describe the size of the font
+after scaling. The substitutePpemX and substitutePpemY values
+describe the size of a strike that exists as an sbit in the 'EBLC'
+and 'EBDT', and that will be scaled up or down to generate the
+new strike.
+<P>
+Notice that scaling in the x direction is independent of scaling
+in the y direction, and their scaling values may differ. A square
+aspect-ratio strike could be scaled to a non-square aspect ratio.
+Glyph metrics are scaled by the same factor as the pixels per
+Em (in the appropriate direction), and are rounded to the nearest
+integer pixel.
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 27 March 1998<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The EBSC table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+

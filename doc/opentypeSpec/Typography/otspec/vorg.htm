@@ -1,0 +1,216 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Vertical Origin Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The VORG table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>VORG - Vertical Origin Table
+</FONT>
+<p>
+
+This table specifies the y coordinate of the vertical origin of every
+glyph in the font.<p>
+
+This table may be optionally present only in CFF OpenType fonts. If
+present in TrueType OpenType fonts it must be ignored by font clients,
+just as any other unrecognized table would be. This is because this
+table is not needed for TrueType OpenType fonts: the Vertical Metrics
+('vmtx') and Glyph Data ('glyf') tables in TrueType OpenType fonts
+provide all the information necessary to accurately calculate the y
+coordinate of a glyph's vertical origin. See the "Vertical Origin and
+Advance Height" section in the '<a href="vmtx.htm">vmtx</a>' table
+specification for more details.<p>
+
+This table was added to version 1.3 of the OpenType specification. Note
+that the 'vmtx' and Vertical Header ('vhea') tables continue to be
+required for all OpenType fonts that support vertical writing. Advance
+heights must continue to be obtained from the 'vmtx' table; that is the
+only place they are stored.<p>
+
+If a 'VORG' table is present in a CFF OpenType font, a font client may
+choose to obtain the y coordinate of a glyph's vertical origin either:
+<OL>
+<LI> directly from the 'VORG', or:
+<LI> by first calculating the top of the glyph's bounding box from the
+CFF charstring data and then adding to it the glyph's top side bearing
+from the 'vmtx' table.
+</OL>
+<P>
+The former method offers the advantage of increased accuracy and
+efficiency, since bounding box results calculated from the CFF
+charstring as in the latter method can differ depending on the rounding
+decisions and data types of the bounding box algorithm. The latter method
+provides compatibility for font clients who are either unaware of or
+choose not to support the 'VORG'.<p>
+
+Thus, the 'VORG' doesn't add any new font metric values per se; it
+simply improves accuracy and efficiency for CFF OpenType font clients,
+since the intermediate step of calculating bounding boxes from the CFF
+charstring is rendered unnecessary.<p>
+
+See the section "<a href="recom.htm#cjk">OpenType CJK Font
+Guidelines</a>" for more information about constructing CJK (Chinese,
+Japanese, and Korean) fonts.<p>
+
+<BR><B>Vertical Origin Table Format</FONT></B>
+<P><br>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT
+</TD><TD CLASS=tab VALIGN=TOP>majorVersion
+</TD><TD CLASS=tab VALIGN=TOP>Major version (starting at 1). Set to 1.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>minorVersion</TD>
+<TD CLASS=tab VALIGN=TOP>Minor version (starting at 0). Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD><TD CLASS=tab VALIGN=TOP>defaultVertOriginY</TD><TD CLASS=tab VALIGN=TOP>The y coordinate of a glyph's vertical origin, in the font's design coordinate system, to be used if no entry is present for the glyph in the vertOriginYMetrics array.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>numVertOriginYMetrics</TD><TD CLASS=tab VALIGN=TOP>Number of elements in the
+ vertOriginYMetrics array.</TD></TR>
+</TABLE>
+<p>
+
+This is immediately followed by the vertOriginYMetrics array (if
+numVertOriginYMetrics is non-zero), which has numVertOriginYMetrics
+elements of the following format:<p>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD><TD CLASS=tab VALIGN=TOP>glyphIndex             </TD><TD CLASS=tab VALIGN=TOP>Glyph index.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>vertOriginY</TD>
+<TD CLASS=tab VALIGN=TOP>Y coordinate, in the font's design
+ coordinate system, of the vertical origin of glyph with index
+ glyphIndex.</TD></TR>
+</TABLE>
+<p>
+
+This array must be sorted by increasing glyphIndex, and must not have more than one element with the same glyphIndex. In a size-optimized implementation, glyphs whose vertical origin's y coordinate equals defaultVertOriginY will not have an entry in this array. 
+<P> 
+If all glyphs in a font share the same defaultVertOriginY value, the length of the 'VORG' table will be 8 bytes in a size-optimized implementation, since the vertOriginYMetrics array will be absent. 
+<P>
+Typically only the full-width Latin glyphs in an East Asian font will have entries in the vertOriginYMetrics array. Glyphs rotated for vertical writing, as used in the Vertical Alternates and Rotation ('vrt2') feature, for example, can take advantage of the default value if they are designed appropriately. 
+<P>
+
+In the following example of a complete 'VORG' table for a 1000-unit-em
+font, every glyph in the font is specified as having a vertOriginY of
+880 except for glyphs with glyph indexes 10, 12, and 13:
+<p>
+
+<pre>
+majorVersion         =1
+minorVersion         =0
+defaultVertOriginY   =880
+numVertOriginYMetrics=3
+--- vertOriginYMetrics[index]=(glyphIndex,vertOriginY)
+[0]=(10,889)
+[1]=(12,861)
+[2]=(13,849)
+</pre>
+<p>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 22 March 2001<BR>
+	&copy; 2001 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The VORG table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+

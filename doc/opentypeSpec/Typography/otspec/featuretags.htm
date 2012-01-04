@@ -1,0 +1,120 @@
+<HTML>
+<HEAD>
+<TITLE>OpenType Layout tag registry</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1">
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+<BODY BGCOLOR="#FFFFFF" BOTTOMMARGIN="20" TOPMARGIN="0" LEFTMARGIN="0">		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="/typography/creators.htm">Developer information</A>
+         | <A HREF="/typography/default.htm">Specifications</A>
+	 | <A HREF="/typography/otspec/ttoreg.htm">OpenType Layout tag registry</A>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+
+<P>
+<BR>
+<B>Feature tags</B>
+<P>
+Features provide information about how to use the glyphs in a font to render a script or language. For example, an Arabic font might have a feature for substituting initial glyph forms, and a Kanji font might have a feature for positioning glyphs vertically. All OpenType Layout features define data for glyph substitution, glyph positioning, or&nbsp;both.
+<P>
+Each OpenType Layout feature has a feature tag that identifies its typographic function and effects. By examining a feature's tag, a text-processing client can determine what a feature does and decide whether to implement it. All tags are 4-byte character strings composed of a limited set of ASCII characters in the 0x20-0x7E range. Microsoft-registered feature tags use four lowercase letters. For instance, the &quot;mark&quot; feature manages the placement of diacritical marks, and the &quot;swsh&quot; feature renders swash&nbsp;glyphs.
+<P>
+A feature definition may not provide all the information required to properly implement glyph substitution or positioning actions. In many cases, a text-processing client may need to supply additional data. For example, the function of the &quot;init&quot; feature is to provide initial glyph forms. Nothing in the feature's lookup tables indicates when or where to apply this feature during text processing. To correctly use the &quot;init&quot; feature in Arabic text where initial glyph forms appear at the beginning of words, text-processing clients must be able to identify the first glyph position in each word before making the glyph substitution. In all cases, the text-processing client is responsible for applying, combining, and arbitrating among features and rendering the&nbsp;result.
+<P>
+The tag space defined by tags consisting of four uppercase letters (A-Z) with no punctuation, spaces, or numbers, is reserved as a vendor space. Font vendors may use such tags to identify private features. For example, the feature tag &quot;PKRN&quot; might designate a private feature that may be used to kern punctuation marks. Microsoft does not guarantee the compatibility or usability of private features, and it cannot ensure that two font vendors will not choose the same tag for a private feature.
+<P>
+This version of the Tag Registry describes all the OpenType Layout features Microsoft has developed to date. It also includes details that identify the lookups that Microsoft uses to implement each feature. Lookup information is provided for reference purposes only; the set of lookups used to implement a feature will vary across system platforms, applications, fonts, and font developers.
+
+<P>
+<BR>
+<B>Registered features</B>
+<P>
+<UL>
+<LI><A HREF="/typography/otspec/featurelist.htm">Features listed alphabetically</A>
+<LI><A HREF="/typography/otspec/features_ae.htm">Feature descriptions and implementations</A>
+</UL>
+
+<P>
+<BR>
+<B>to register features</B>
+<P>
+Microsoft encourages font developers to use 'registered' feature tags when implementing registered features. However, font developers also may define and register their own&nbsp;features.
+<P>
+Microsoft welcomes nominations for new features and feature tags to register. To qualify for registration, a feature must have a single function that is clearly identified by its tag. The function of the feature should be defined at the lowest useful level and must be distinctly different from the functions of currently registered features. When font developers register feature tags and functions with Microsoft, they do not have to supply implementation details.
+<P>
+Microsoft reserves the right to officially assign feature tags in the Microsoft Tag Registry. Although Microsoft has reserved the feature and feature tag definitions listed in this registry, Microsoft fonts do not necessarily contain all of the&nbsp;features.
+<P>
+
+<P>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+<P CLASS=detail><BR><BR>
+this page was last updated 4 April 2002<BR>
+&copy; 2002 Microsoft Corporation. All rights reserved. <A HREF="/info/cpyright.htm">Terms of use</A>.<BR>
+comments to the MST group: 
+<A HREF="/typography/about.htm">how to contact us</A> 
+<P>&nbsp;
+</FONT>
+
+
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="/typography/creators.htm">Developer information</A>
+         | <A HREF="/typography/default.htm">Specifications</A>
+	 | <A HREF="/typography/otspec/ttoreg.htm">OpenType Layout tag registry</A>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>

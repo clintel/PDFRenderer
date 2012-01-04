@@ -1,0 +1,190 @@
+<HTML>
+<HEAD>
+
+<TITLE>Horizontal Device Metrics</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType Tables</A>
+	 | The hdmx Table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>hdmx - Horizontal Device Metrics
+</FONT>
+
+<P>
+The hdmx table relates to OpenType<FONT COLOR="#999999" STYLE="font-size: 7pt; color:#999999"><SUP>TM</SUP></FONT> fonts with TrueType outlines. The Horizontal Device Metrics table stores
+integer advance widths scaled to particular pixel sizes.  This
+allows the font manager to build integer width tables without
+calling the scaler for each glyph.  Typically this table contains
+only selected screen sizes. This table is sorted by pixel size.
+The checksum for this table applies to both subtables listed.
+<P>
+Note that for non-square pixel grids,
+the character width (in pixels) will be used to determine which
+device record to use.  For example, a 12 point character on a device with a resolution of 72x96 would be 12 pixels high and 16 pixels
+wide. The hdmx device record for 16 pixel characters would
+be used.
+<p>
+If bit 4 of the flag field in the 'head' table is not set, then
+it is assumed that the font scales linearly; in this case an 'hdmx'
+table is not necessary and should not be built.  If bit 4 of the
+flag field is set, then one or more glyphs in the font are assumed
+to scale nonlinearly.  In this case, performance can be improved
+by including the 'hdmx' table with one or more important DeviceRecord's
+for important sizes.  Please see the chapter <A HREF="recom.htm#hdmx">&quot;Recommendations
+for OpenType Fonts&quot;</A> for more detail.
+<P>
+The table begins as follows:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>hdmx Header</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD Class=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>version</TD>
+<TD CLASS=tab VALIGN=TOP>Table version number (0)</TD></TR>
+<TR><TD Class=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>numRecords</TD>
+<TD CLASS=tab VALIGN=TOP>Number of device records.</TD></TR>
+<TR><TD Class=tab VALIGN=TOP>LONG</TD>
+<TD CLASS=tab VALIGN=TOP>sizeDeviceRecord</TD>
+<TD CLASS=tab VALIGN=TOP>Size of a device record, long aligned.</TD></TR>
+<TR><TD Class=tab VALIGN=TOP>DeviceRecord</TD>
+<TD CLASS=tab VALIGN=TOP>records[numRecords]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of device records.</TD></TR>
+</TABLE><P>
+
+<P>
+Each DeviceRecord for format 0 looks like
+this.
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Device Record</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>pixelSize</TD>
+<TD CLASS=tab VALIGN=TOP>Pixel size for following widths (as ppem).</TD></TR>
+<TR><TD Class=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>maxWidth</TD>
+<TD CLASS=tab VALIGN=TOP>Maximum width.</TD></TR>
+<TR><TD Class=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>widths[numGlyphs]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of widths (numGlyphs is from the 'maxp' table).</TD></TR>
+</TABLE><P>
+
+<P>
+Each DeviceRecord is padded with 0's to make
+it long word aligned.
+<P>
+Each Width value is the width of the particular glyph, in pixels,
+at the pixels per em (ppem) size listed at the start of the DeviceRecord.
+<P>
+The ppem sizes are measured along the y axis. 
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 14 October 2002<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType Tables</A>
+	 | The hdmx Table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+
+
+
+

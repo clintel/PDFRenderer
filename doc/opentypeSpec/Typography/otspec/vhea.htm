@@ -1,0 +1,345 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Vertical Header Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The vhea table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>vhea - Vertical Header Table
+</FONT>
+
+<P>
+The vertical header table (tag name: 'vhea')
+contains information needed for vertical fonts. The glyphs of
+vertical fonts are written either top to bottom or bottom to top.
+This table contains information that is general to the font as
+a whole. Information that pertains to specific glyphs is given
+in the <a href="vmtx.htm">vertical metrics table</a> (tag name: 'vmtx') described separately.
+The formats of these tables are similar to those for horizontal
+metrics (hhea and hmtx).
+<P>
+Data in the vertical header table must be consistent with data
+that appears in the vertical metrics table. The advance height
+and top sidebearing values in the vertical metrics table must
+correspond with the maximum advance height and minimum bottom
+sidebearing values in the vertical header table.
+<P>  
+See the section "<a href="recom.htm#cjk">OpenType CJK Font
+Guidelines</a>" for more information about constructing CJK (Chinese,
+Japanese, and Korean) fonts.
+<P>
+The difference between version 1.0 and version 1.1 is the name and definition of:
+<UL>
+ <LI>ascender becomes vertTypoAscender</LI>
+ <LI>descender becomes vertTypoDescender</LI>
+ <LI>lineGap becomes vertTypoLineGap</LI>
+</UL>
+<P>
+The vertical header table format follows: Vertical
+Header Table
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TC>Version 1.0</TC>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>Fixed</TD>
+<TD CLASS=tab VALIGN=TOP>version</TD>
+<TD CLASS=tab VALIGN=TOP>Version number of the vertical header <BR>table; 0x00010000 for version 1.0</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>ascent</TD>
+<TD CLASS=tab VALIGN=TOP>Distance in FUnits from the centerline to the previous line’s descent.</TD></TR>
+
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>descent</TD>
+<TD CLASS=tab VALIGN=TOP>Distance in FUnits from the centerline to the next line’s ascent.</TD></TR>
+
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>lineGap</TD>
+<TD CLASS=tab VALIGN=TOP>Reserved; set to 0</TD></TR>
+
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>advanceHeightMax</TD>
+<TD CLASS=tab VALIGN=TOP>The maximum advance height measurement -in FUnits found in the font. This value must be consistent with the entries in the vertical metrics table.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>minTop<BR>SideBearing</TD>
+<TD CLASS=tab VALIGN=TOP>The minimum top sidebearing measurement found in the font, in FUnits. This value must be consistent with the entries in the vertical metrics table.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>minBottom<BR>SideBearing</TD>
+<TD CLASS=tab VALIGN=TOP>The minimum bottom sidebearing measurement found in the font, <BR>in FUnits. <BR>This value must be consistent with the entries in the vertical metrics table.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yMaxExtent</TD>
+<TD CLASS=tab VALIGN=TOP>Defined as yMaxExtent=<BR>minTopSideBearing+(yMax-yMin)</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>caretSlopeRise</TD>
+<TD CLASS=tab VALIGN=TOP>The value of the caretSlopeRise field divided by the value of the caretSlopeRun Field determines the slope of the caret. A value of 0 for the rise and a value of 1 for the run specifies a horizontal caret. A value of 1 for the rise and a value of 0 for the run specifies a vertical caret. Intermediate values are desirable for fonts whose glyphs are oblique or italic. For a vertical font, a horizontal caret is best.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>caretSlopeRun</TD>
+<TD CLASS=tab VALIGN=TOP>See the caretSlopeRise field. Value=1 for nonslanted vertical fonts.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>caretOffset</TD>
+<TD CLASS=tab VALIGN=TOP>The amount by which the highlight on a slanted glyph needs to be shifted away from the glyph in order to produce the best appearance. Set value equal to 0 for nonslanted fonts.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>metricDataFormat</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>numOf<BR>LongVerMetrics</TD>
+<TD CLASS=tab VALIGN=TOP>Number of advance heights in the vertical metrics table.</TD></TR>
+</TABLE><P>
+
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TC>Version 1.1</TC>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>Fixed</TD>
+<TD CLASS=tab VALIGN=TOP>version</TD>
+<TD CLASS=tab VALIGN=TOP>Version number of the vertical header <BR>table; 0x00011000 for version 1.1 <BR> Note the representation of a non-zero fractional part, in Fixed numbers.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>vertTypoAscender</TD>
+<TD CLASS=tab VALIGN=TOP>The vertical typographic ascender for this font. It is the distance in FUnits from the ideographic em-box center baseline for the vertical axis to the right of the ideographic em-box and is usually set to (head.unitsPerEm)/2. For example, a font with an em of 1000 fUnits will set this field to 500. See the baseline section of the OpenType Tag Registry for a description of the <a href="ttoreg.htm#ideoembox">ideographic em-box</a>. </TD></TR>
+
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>vertTypoDescender</TD>
+<TD CLASS=tab VALIGN=TOP>The vertical typographic descender for this font. It is the distance in FUnits from the ideographic em-box center baseline for the horizontal axis to the left of the ideographic em-box and is usually set to (head.unitsPerEm)/2. For example, a font with an em of 1000 fUnits will set this field to 500.</TD></TR>
+
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>vertTypoLineGap</TD>
+<TD CLASS=tab VALIGN=TOP>The vertical typographic gap for this font. An application can determine the recommended line spacing for single spaced vertical text for an OpenType font by the following expression: ideo embox width + vhea.vertTypoLineGap </TD></TR>
+
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>advanceHeightMax</TD>
+<TD CLASS=tab VALIGN=TOP>The maximum advance height measurement -in FUnits found in the font. This value must be consistent with the entries in the vertical metrics table.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>minTop<BR>SideBearing</TD>
+<TD CLASS=tab VALIGN=TOP>The minimum top sidebearing measurement found in the font, in FUnits. This value must be consistent with the entries in the vertical metrics table.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>minBottom<BR>SideBearing</TD>
+<TD CLASS=tab VALIGN=TOP>The minimum bottom sidebearing measurement found in the font, <BR>in FUnits. <BR>This value must be consistent with the entries in the vertical metrics table.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yMaxExtent</TD>
+<TD CLASS=tab VALIGN=TOP>Defined as yMaxExtent=<BR>minTopSideBearing+(yMax-yMin)</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>caretSlopeRise</TD>
+<TD CLASS=tab VALIGN=TOP>The value of the caretSlopeRise field divided by the value of the caretSlopeRun Field determines the slope of the caret. A value of 0 for the rise and a value of 1 for the run specifies a horizontal caret. A value of 1 for the rise and a value of 0 for the run specifies a vertical caret. Intermediate values are desirable for fonts whose glyphs are oblique or italic. For a vertical font, a horizontal caret is best.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>caretSlopeRun</TD>
+<TD CLASS=tab VALIGN=TOP>See the caretSlopeRise field. Value=1 for nonslanted vertical fonts.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>caretOffset</TD>
+<TD CLASS=tab VALIGN=TOP>The amount by which the highlight on a slanted glyph needs to be shifted away from the glyph in order to produce the best appearance. Set value equal to 0 for nonslanted fonts.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>metricDataFormat</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>numOf<BR>LongVerMetrics</TD>
+<TD CLASS=tab VALIGN=TOP>Number of advance heights in the vertical metrics table.</TD></TR>
+</TABLE><P>
+
+Vertical Header Table Example
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab VALIGN=TOP WIDTH=10% BGCOLOR="#C0C0C0">Offset/<BR>length</TD>
+<TD CLASS=tab VALIGN=TOP WIDTH=20% BGCOLOR="#C0C0C0">Value</TD>
+<TD CLASS=tab VALIGN=TOP WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab VALIGN=TOP WIDTH=40% BGCOLOR="#C0C0C0">Comment</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>0/4</TD>
+<TD CLASS=tab VALIGN=TOP> 0x00011000 </TD>
+<TD CLASS=tab VALIGN=TOP>version</TD>
+<TD CLASS=tab VALIGN=TOP>Version number of the vertical header table, in fixed-point format, is 1.1 </TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>4/2</TD>
+<TD CLASS=tab VALIGN=TOP>1024</TD>
+<TD CLASS=tab VALIGN=TOP>vertTypoAscender</TD>
+<TD CLASS=tab VALIGN=TOP>Half the em-square height.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>6/2</TD>
+<TD CLASS=tab VALIGN=TOP>-1024</TD>
+<TD CLASS=tab VALIGN=TOP>vertTypoDescender</TD>
+<TD CLASS=tab VALIGN=TOP>Minus half the em-square height.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>8/2</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>vertTypoLineGap</TD>
+<TD CLASS=tab VALIGN=TOP>Typographic line gap is 0 FUnits.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>10/2</TD>
+<TD CLASS=tab VALIGN=TOP>2079</TD>
+<TD CLASS=tab VALIGN=TOP>advanceHeightMax</TD>
+<TD CLASS=tab VALIGN=TOP>The maximum advance height measurement found in the font is 2079 FUnits.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>12/2</TD>
+<TD CLASS=tab VALIGN=TOP>-342</TD>
+<TD CLASS=tab VALIGN=TOP>minTopSideBearing</TD>
+<TD CLASS=tab VALIGN=TOP>The minimum top sidebearing measurement found in the font is -342 FUnits.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>14/2</TD>
+<TD CLASS=tab VALIGN=TOP>-333</TD>
+<TD CLASS=tab VALIGN=TOP>minBottomSideBearing</TD>
+<TD CLASS=tab VALIGN=TOP>The minimum bottom sidebearing measurement found in the font is -333 FUnits.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>16/2</TD>
+<TD CLASS=tab VALIGN=TOP>2036</TD>
+<TD CLASS=tab VALIGN=TOP>yMaxExtent</TD>
+<TD CLASS=tab VALIGN=TOP>minTopSideBearing+<BR>(yMax-yMin)=2036.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>18/2</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>caretSlopeRise</TD>
+<TD CLASS=tab VALIGN=TOP>The caret slope rise of 0 and a caret slope run of 1 indicate a horizontal caret for a vertical font.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>20/2</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>caretSlopeRun</TD>
+<TD CLASS=tab VALIGN=TOP>The caret slope rise of 0 and a caret slope run of 1 indicate a horizontal caret for a vertical font.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>22/2</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>caretOffset</TD>
+<TD CLASS=tab VALIGN=TOP>Value set to 0 for nonslanted fonts.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>24/4</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>26/2</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>28/2</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>30/2</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>32/2</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>metricDataFormat</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>34/2</TD>
+<TD CLASS=tab VALIGN=TOP>258</TD>
+<TD CLASS=tab VALIGN=TOP>numOfLongVerMetrics</TD>
+<TD CLASS=tab VALIGN=TOP>Number of advance heights in the vertical metrics table is 258.</TD></TR>
+</TABLE>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated September 2002<BR>
+	&copy; 2001 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The vhea table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+

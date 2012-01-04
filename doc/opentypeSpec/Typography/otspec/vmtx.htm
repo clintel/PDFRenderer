@@ -1,0 +1,238 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Vertical Metrics Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The vmtx table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>vmtx - Vertical Metrics Table
+</FONT>
+
+<P>
+The vertical metrics table allows you to specify the vertical spacing for each glyph in a vertical font. This table consists of either one or two arrays that contain metric information (the advance heights and top sidebearings) for the vertical layout of each of the glyphs in the font. The
+vertical metrics coordinate system is shown below.
+
+
+<P>
+
+<TABLE CELLPADDING=10 BGCOLOR=#F0F0F0 width=460><TR><TD align=center>
+<IMG  WIDTH=265 HEIGHT=136 ALT="DIAGRAM" SRC="IMG00287.GIF"><BR>
+</TABLE>
+
+<BR>
+
+<P>
+OpenType<FONT COLOR="#999999" STYLE="font-size: 7pt; color:#999999"><SUP>TM</SUP></FONT> vertical fonts require both a vertical
+header table ('vhea') and the vertical
+metrics table discussed below. The vertical header table contains
+information that is general to the font as a whole. The vertical
+metrics table contains information that pertains to specific glyphs.
+The formats of these tables are similar to those for horizontal
+metrics (hhea and hmtx).
+
+<P>See the section "<A HREF="recom.htm#cjk">OpenType CJK Font Guidelines</A>" for more information about constructing CJK (Chinese,
+Japanese, and Korean) fonts.
+
+<P><BR><B>Vertical Origin and Advance Height</B>
+
+<BR><P> The <I>y coordinate of a glyph's vertical origin</I> is
+specified as the sum of the glyph's top side bearing (recorded in the
+'vmtx' table) and the top (i.e. maximum y) of the glyph's bounding
+box.
+
+<P>
+TrueType OpenType fonts contain glyph bounding box information in the
+Glyph Data ('glyf') table. CFF OpenType fonts do not contain glyph
+bounding box information, and so for these fonts the top of the glyph's
+bounding box must be calculated from the charstring data in the Compact
+Font Format ('CFF&nbsp;') table.
+
+<P>
+OpenType 1.3 introduced the optional <A HREF="vorg.htm">Vertical Origin
+('VORG') table</A> for CFF OpenType fonts, which records the y
+coordinate of glyphs' vertical origins directly, thus obviating the need
+to calculate bounding boxes as an intermediate step. This improves
+accuracy and efficiency for CFF OpenType clients.
+<P>
+
+The <I>x coordinate of a glyph's vertical origin</I> is not specified in
+the 'vmtx' table. Vertical writing implementions may make use of the
+baseline values in the Baseline ('BASE') table, if present, in order to align the glyphs in the x direction as appropriate to the desired
+vertical baseline.
+
+<P>
+The <I>advance height of a glyph</I> starts from the y coordinate of the
+glyph's vertical origin and advances downwards. Its endpoint is at the y
+coordinate of the vertical origin of the next glyph in the run, by
+default. Metric-adjustment OpenType layout features such as Vertical
+Kerning ('vkrn') could modify the vertical advances in a manner similar
+to kerning in horizontal mode.
+
+<P><BR><B>Vertical Metrics Table Format
+</B>
+<P>
+The overall structure of the vertical metrics
+table consists of two arrays shown below: the vMetrics array followed
+by an array of top side bearings. The top side bearing is measured relative to the top of the origin of glyphs, for vertical composition of ideographic glyphs. 
+<P>
+This table does not have a header, but does
+require that the number of glyphs   included in the two arrays equals
+the total number of glyphs in the font.
+<P>
+The number of entries in the vMetrics array
+is determined by the value of the numOfLongVerMetrics field of
+the vertical header table.
+<P>
+The vMetrics array contains two values for
+each entry. These are the advance height and the top sidebearing
+for each glyph included in the array.
+<P>
+In monospaced fonts, such as Courier or Kanji, all glyphs have
+the same advance height. If the font is monospaced, only one entry
+need be in the first array, but that one entry is required.
+<P>
+The format of an entry in the vertical metrics array is given
+below.
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>advanceHeight</TD>
+<TD CLASS=tab VALIGN=TOP>The advance height of the glyph. Unsigned integer in FUnits
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>topSideBearing</TD>
+<TD CLASS=tab VALIGN=TOP>The top sidebearing of the glyph. <BR>Signed integer in FUnits.
+</TD></TR>
+</TABLE>
+<P>
+The second array is optional and generally
+is used for a run of monospaced glyphs in the font. Only one such
+run is allowed per font, and it must be located at the end of
+the font. This array contains the top sidebearings of glyphs not
+represented in the first array, and all the glyphs in this array
+must have the same advance height as the last entry in the vMetrics
+array. All entries in this array are therefore monospaced.
+<P>
+The number of entries in this array is calculated by subtracting
+the value of numOfLongVerMetrics from the number of glyphs in
+the font. The sum of glyphs represented in the first array plus
+the glyphs represented in the second array therefore equals the
+number of glyphs in the font. The format of the top sidebearing
+array is given below.
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>topSideBearing[]</TD>
+<TD CLASS=tab VALIGN=TOP>The top sidebearing of the glyph.<BR> Signed integer in FUnits.</TD></TR>
+</TABLE>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 22 March 2001<BR>
+	&copy; 2001 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType Tables</A>
+	 | The vmtx table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>

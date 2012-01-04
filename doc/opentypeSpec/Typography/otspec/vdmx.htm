@@ -1,0 +1,324 @@
+<HTML>
+<HEAD>
+<TITLE>The Vertical Device Metrics Table</TITLE>
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The VDMX table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>VDMX - Vertical Device Metrics
+</FONT>
+
+<P>
+The VDMX table relates to OpenType<FONT COLOR="#999999" STYLE="font-size: 7pt; color:#999999"><SUP>TM</SUP></FONT> fonts with TrueType outlines. Under Windows, the usWinAscent and usWinDescent
+values from the 'OS/2' table will be used to determine the maximum
+black height for a font at any given size. Windows calls this
+distance the Font Height. Because TrueType instructions can lead
+to Font Heights that differ from the actual scaled and rounded
+values, basing the Font Height strictly on the yMax and yMin can
+result in &quot;lost pixels.&quot; Windows will clip any pixels
+that extend above the yMax or below the yMin. In order to avoid
+grid fitting the entire font to determine the correct height,
+the VDMX table has been defined.
+<P>
+The VDMX table consists of a header followed by groupings of VDMX
+records:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>VDMX Header</CAPTION>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>version</TD>
+<TD CLASS=tab VALIGN=TOP>Version number (0 or 1).</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>numRecs</TD>
+<TD CLASS=tab VALIGN=TOP>Number of VDMX groups present</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>numRatios</TD>
+<TD CLASS=tab VALIGN=TOP>Number of aspect ratio groupings</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>Ratio</TD>
+<TD CLASS=tab VALIGN=TOP>ratRange[numRatios]</TD>
+<TD CLASS=tab VALIGN=TOP>Ratio ranges (see below for more info)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>offset[numRatios]</TD>
+<TD CLASS=tab VALIGN=TOP>Offset from start of this table to the VDMX group for this ratio range.</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>Vdmx</TD>
+<TD CLASS=tab VALIGN=TOP>groups</TD>
+<TD CLASS=tab VALIGN=TOP>The actual VDMX groupings (documented below)
+</TD></TR>
+</TABLE>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Ratio Record</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>bCharSet</TD>
+<TD CLASS=tab VALIGN=TOP>Character set (see below).</TD></TR>
+<TR>
+<TD Class=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>xRatio</TD>
+<TD CLASS=tab VALIGN=TOP>Value to use for x-Ratio</TD></TR>
+<TR>
+<TD Class=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>yStartRatio</TD>
+<TD CLASS=tab VALIGN=TOP>Starting y-Ratio value.</TD></TR>
+<TR>
+<TD Class=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>yEndRatio</TD>
+<TD CLASS=tab VALIGN=TOP>Ending y-Ratio value.</TD></TR>
+</TABLE><P>
+
+<P>
+Ratios are set up as follows:
+<P>
+<TABLE WIDTH=460>
+<TR>
+<TD WIDTH=50% CLASS=TAB VALIGN=TOP>For a 1:1 aspect ratio</TD>
+<TD WIDTH=50% CLASS=tab VALIGN=TOP>Ratios.xRatio = 1;<BR>
+Ratios.yStartRatio = 1;<BR>
+Ratios.yEndRatio = 1;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>For 1:1 through 2:1 ratio</TD>
+<TD CLASS=TAB VALIGN=TOP>Ratios.xRatio = 2;<BR>
+Ratios.yStartRatio = 1;<BR>
+Ratios.yEndRatio = 2;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>For 1.33:1 ratio</TD>
+<TD CLASS=TAB VALIGN=TOP>Ratios.xRatio = 4;<BR>
+Ratios.yStartRatio = 3;<BR>
+Ratios.yEndRatio = 3;</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>For <I>all</I> aspect ratios</TD>
+<TD CLASS=TAB VALIGN=TOP>Ratio.xRatio = 0;<BR>
+Ratio.yStartRatio = 0;<BR>
+Ratio.yEndRatio = 0;</TD></TR>
+</TABLE>
+<P>
+All values set to zero signal the default
+grouping to use; if present, this must be the <I>last</I> Ratio
+group in the table. Ratios of 2:2 are the same as 1:1.
+<P>
+Aspect ratios are matched against the target device by normalizing
+the entire ratio range record based on the current X resolution
+and performing a range check of Y resolutions for each record
+after normalization. Once a match is found, the search stops.
+If the 0,0,0 group is encountered during the search, it is used
+(therefore if this group is not at the end of the ratio groupings,
+no group that follows it will be used). If there is not a match
+and there is no 0,0,0 record, then there is no VDMX data for that
+aspect ratio.
+<P>
+Note that range checks are conceptually performed as follows:
+<P>
+(deviceXRatio == Ratio.xRatio) &amp;&amp; (deviceYRatio &gt;=
+Ratio.yStartRatio) &amp;&amp; (deviceYRatio &lt;= Ratio.yEndRatio)
+<P>
+Each ratio grouping refers to a specific VDMX record group; there
+must be at least 1 VDMX group in the table.
+<P>
+The bCharSet value is used to denote cases where the VDMX group
+was computed based on a subset of the glyphs present in the font
+file. The semantics of bCharSet is different based on the version of the VDMX table. <b>It is recommended that VDMX version 1 be used.</b> The currently defined values for character set are:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Character Set Values - Version 0</CAPTION>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Value</TD>
+<TD CLASS=tab WIDTH=80% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>No subset; the VDMX group applies to all glyphs in the font. This is used for symbol or dingbat fonts.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>Windows ANSI subset; the VDMX group was computed using only the glyphs required to complete the Windows ANSI character set. Windows will ignore any VDMX entries that are not for the ANSI subset (i.e. ANSI_CHARSET)</TD></TR>
+</TABLE>
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Character Set Values - Version 1</CAPTION>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Value</TD>
+<TD CLASS=tab WIDTH=80% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>No subset; the VDMX group applies to all glyphs in the font. If adding new character sets to existing font, add this flag and the groups necessary to support it. This should only be used in conjunction with ANSI_CHARSET.</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>No subset; the VDMX group applies to all glyphs in the font. Used when creating a new font for Windows. No need to support SYMBOL_CHARSET.</TD></TR>
+</TABLE>
+
+
+<P>
+VDMX groups immediately follow the table header.
+Each set of records (there need only be one set) has the following
+layout:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>VDMX Group</CAPTION>
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=50% BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>recs</TD>
+<TD CLASS=tab VALIGN=TOP>Number of height records in this group</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>startsz</TD>
+<TD CLASS=tab VALIGN=TOP>Starting yPelHeight</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>endsz</TD>
+<TD CLASS=tab VALIGN=TOP>Ending yPelHeight</TD></TR>
+<TR><TD CLASS=tab VALIGN=TOP>vTable</TD>
+<TD CLASS=tab VALIGN=TOP>entry[recs]</TD>
+<TD CLASS=tab VALIGN=TOP>The VDMX records</TD></TR>
+</TABLE>
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>vTable Record</CAPTION>
+<TR>
+<TD WIDTH=20% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD WIDTH=30% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD WIDTH=50% CLASS=tab BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yPelHeight</TD>
+<TD CLASS=tab VALIGN=TOP>yPelHeight to which values apply.</TD></TR>
+<TR>
+<TD Class=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yMax</TD>
+<TD CLASS=tab VALIGN=TOP>Maximum value (in pels) for this yPelHeight.</TD></TR>
+<TR>
+<TD Class=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yMin</TD>
+<TD CLASS=tab VALIGN=TOP>Minimum value (in pels) for this yPelHeight.</TD></TR>
+</TABLE><P>
+<P>
+This table must appear in sorted order (sorted by yPelHeight),
+but need not be continous. It should have an entry for every pel
+height where the yMax and yMin do not scale linearly, where linearly
+scaled heights are defined as:
+<P>
+Hinted yMax and yMin are identical to scaled/rounded
+yMax and yMin
+<P>
+It is assumed that once yPelHeight reaches 255, all heights will
+be linear, or at least close enough to linear that it no longer
+matters. Please note that while the Ratios structure can only
+support ppem sizes up to 255, the vTable structure can support
+much larger pel heights (up to 65535). The choice of SHORT and
+USHORT for vTable is dictated by the requirement that yMax and
+yMin be signed values (and 127 to -128 is too small a range) and
+the desire to word-align the vTable elements.
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 15 October 2002<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The VDMX table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>

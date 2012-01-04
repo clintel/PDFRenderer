@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<TITLE>OpenType Layout tag registry</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1">
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+<BODY BGCOLOR="#FFFFFF" BOTTOMMARGIN="20" TOPMARGIN="0" LEFTMARGIN="0">		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="/typography/creators.htm">Developer information</A>
+         | <A HREF="/typography/default.htm">Specifications</A>
+	 | <A HREF="ttoreg.htm">OpenType Layout tag registry</A>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+
+<P>
+<BR>
+<B><a name="script">Script tags</a></B>
+<P>
+Script tags identify the scripts represented in a OpenType Layout font. Script tags are defined by Microsoft Typography and correspond to the contiguous character code ranges in&nbsp;Unicode.
+<P>
+All tags are 4-byte character strings composed of a limited set of ASCII characters in the 0x20-0x7E range. A script tag can consist of four or fewer lowercase letters. If a script tag consists less than four lowercase letters, the letters are followed by the requisite number of spaces (0x20), each consisting of a single byte. 
+<P>
+Some of most commonly used script tags are shown below. A full list of script tags is available from&nbsp;Microsoft.
+<P>
+<BR>
+<TABLE BGCOLOR="#F0F0F0" WIDTH=460 BORDER=0 CELLPADDING=3>
+<TR>
+<TD CLASS=tab WIDTH=30% BGCOLOR="#CCCCCC">Script </TD>
+<TD CLASS=tab WIDTH=70% BGCOLOR="#CCCCCC">Script Tag</TD>
+</TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Arabic</TD><TD CLASS=TAB>arab</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Armenian</TD><TD CLASS=TAB>armn</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Bengali</TD><TD CLASS=TAB>beng</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Bopomofo</TD><TD CLASS=TAB>bopo</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Braille</TD><TD CLASS=TAB>brai</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>
+Byzantine Music</TD><TD CLASS=TAB>
+byzm</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Canadian Syllabics</TD><TD CLASS=TAB>cans</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Cherokee</TD><TD CLASS=TAB>cher</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>CJK Ideographic</TD><TD CLASS=TAB>hani</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Cyrillic</TD><TD CLASS=TAB>cyrl</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>
+Default</TD><TD CLASS=TAB>
+DFLT</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Devanagari</TD><TD CLASS=TAB>deva</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Ethiopic</TD><TD CLASS=TAB>ethi</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Georgian</TD><TD CLASS=TAB>geor</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Greek</TD><TD CLASS=TAB>grek</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Gujarati</TD><TD CLASS=TAB>gujr</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Gurmukhi</TD><TD CLASS=TAB>guru</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Hangul Jamo</TD><TD CLASS=TAB>jamo</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Hangul</TD><TD CLASS=TAB>hang</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Hebrew</TD><TD CLASS=TAB>hebr</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Hiragana</TD><TD CLASS=TAB>kana</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Kannada</TD><TD CLASS=TAB>knda</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Katakana</TD><TD CLASS=TAB>kana</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Khmer</TD><TD CLASS=TAB>khmr</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Lao</TD><TD CLASS=TAB>lao</FONT></TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Latin</TD><TD CLASS=TAB>latn</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Malayalam</TD><TD CLASS=TAB>mlym</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Mongolian</TD><TD CLASS=TAB>mong</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Myanmar</TD><TD CLASS=TAB>mymr</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Ogham</TD><TD CLASS=TAB>ogam</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Oriya</TD><TD CLASS=TAB>orya</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Runic</TD><TD CLASS=TAB>runr</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Sinhala</TD><TD CLASS=TAB>sinh</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Syriac</TD><TD CLASS=TAB>syrc</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Tamil</TD><TD CLASS=TAB>taml</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Telugu</TD><TD CLASS=TAB>telu</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Thaana</TD><TD CLASS=TAB>thaa</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Thai</TD><TD CLASS=TAB>thai</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Tibetan</TD><TD CLASS=TAB>tibt</TD></TR>
+<TR><TD CLASS=TAB VALIGN=TOP>Yi</TD><TD CLASS=TAB>yi </TD></TR>
+</TABLE>
+
+<P>
+
+<P>When the ScriptList table is searched for a script, and no entry is found, and there is an entry for the 'dflt' script, then this entry must be used. Furthermore, the Script table for the 'dflt' script must have a non-NULL DefaultLangSys and a LangSysCount equal to 0; in other words, there is only a default language for the default script.</P>
+<P>
+
+<P>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+<P CLASS=detail><BR><BR>
+this page was last updated 14 October 2002<BR>
+&copy; 2002 Microsoft Corporation. All rights reserved. <A HREF="/info/cpyright.htm">Terms of use</A>.<BR>
+comments to the MST group: 
+<A HREF="/typography/about.htm">how to contact us</A> 
+<P>&nbsp;
+</FONT>
+
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="/typography/creators.htm">Developer information</A>
+         | <A HREF="/typography/default.htm">Specifications</A>
+	 | <A HREF="ttoreg.htm">OpenType Layout tag registry</A>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>

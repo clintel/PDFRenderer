@@ -1,0 +1,611 @@
+<HTML>
+<HEAD>
+<TITLE>The OpenType Font File</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1">
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+<BODY BGCOLOR="#FFFFFF" BOTTOMMARGIN="20" TOPMARGIN="0" LEFTMARGIN="0">
+
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType...</A>
+	 | The OpenType font file
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>The OpenType Font File</FONT>
+
+<P>
+An OpenType font file contains data, in table format, that comprises
+either a TrueType or a PostScript outline font. Rasterizers use combinations of data from the tables contained in the font to render the TrueType or PostScript glyph outlines. Some of this supporting data is used no matter which outline format is used; some of the supporting data is specific to either TrueType or PostScript.
+<P><BR>
+<B>Filenames</B>
+<P>
+OpenType fonts may have the extension .OTF or .TTF, depending on the kind of outlines in the font and the creator's desire for compatibility on systems without native OpenType support.
+<UL>
+<LI>In all cases, fonts with only CFF data (no TrueType outlines) always have an .OTF extension.
+<LI>Fonts containing TrueType outlines may have either .OTF or .TTF, depending on the desire for backward compatibility on older systems or with previous versions of the font. TrueType Collection fonts should have a .TTC extension whether or not the fonts have OpenType layout tables present.
+</UL>
+<P><BR>
+<B>Data Types</B>
+<P>
+The following data types are used in the OpenType
+font file. All OpenType fonts use Motorola-style byte ordering
+(Big Endian):
+
+<P>
+
+<TABLE WIDTH=480 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=TAB WIDTH=100 BGCOLOR="#C0C0C0">Data Type</TD>
+<TD CLASS=TAB WIDTH=380 BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>BYTE</TD>
+<TD CLASS=TAB VALIGN=TOP>8-bit unsigned integer.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>CHAR</TD>
+<TD CLASS=TAB VALIGN=TOP>8-bit signed integer.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT</TD>
+<TD CLASS=TAB VALIGN=TOP>16-bit unsigned integer.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>SHORT</TD>
+<TD CLASS=TAB VALIGN=TOP>16-bit signed integer.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=TAB VALIGN=TOP>32-bit unsigned integer.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>LONG</TD>
+<TD CLASS=TAB VALIGN=TOP>32-bit signed integer.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Fixed</TD>
+<TD CLASS=TAB VALIGN=TOP>32-bit signed fixed-point number (16.16)</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>FUNIT</TD>
+<TD CLASS=TAB VALIGN=TOP>Smallest measurable distance in the em space.</TD></TR>
+
+<TR>
+<TD CLASS=TAB VALIGN=TOP>FWORD</TD>
+<TD CLASS=TAB VALIGN=TOP>16-bit signed integer (SHORT) that describes a quantity in FUnits.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>UFWORD</TD>
+<TD CLASS=TAB VALIGN=TOP>16-bit unsigned integer (USHORT) that describes a quantity in FUnits.</TD></TR>
+
+<TR>
+<TD CLASS=TAB VALIGN=TOP>F2DOT14</TD>
+<TD CLASS=TAB VALIGN=TOP>16-bit signed fixed number with the low 14 bits of fraction (2.14).</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>LONGDATETIME</TD>
+<TD CLASS=TAB VALIGN=TOP>Date represented in number of seconds since 12:00 midnight, January 1, 1904. The value is represented as a signed 64-bit integer.</TD></TR>
+<TD CLASS=tab VALIGN=TOP>Tag</TD>
+<TD CLASS=tab VALIGN=TOP>Array of four uint8s (length = 32 bits) used to identify a script, language system, feature, or baseline</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>GlyphID</TD>
+<TD CLASS=tab VALIGN=TOP>Glyph index number, same as uint16(length = 16 bits)</TD></TR>
+<TR>	
+<TD CLASS=tab VALIGN=TOP>Offset</TD>
+<TD CLASS=tab VALIGN=TOP>Offset to a table, same as uint16 (length = 16 bits), NULL offset = 0x0000</TD></TR>
+</TABLE>
+<P>
+The F2DOT14 format consists of a signed, 2's complement mantissa and an unsigned fraction. To compute the
+actual value, take the mantissa and add the fraction.  Examples
+of 2.14 values are:
+<P>
+<TABLE WIDTH=480 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=TAB ALIGN=LEFT WIDTH=100 BGCOLOR="#C0C0C0">Decimal Value</TD>
+<TD CLASS=TAB ALIGN=LEFT WIDTH=130 BGCOLOR="#C0C0C0">Hex Value</TD>
+<TD CLASS=TAB ALIGN=LEFT WIDTH=130 BGCOLOR="#C0C0C0">Mantissa</TD>
+<TD CLASS=TAB ALIGN=LEFT WIDTH=120 BGCOLOR="#C0C0C0">Fraction</TD>
+</TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1.999939</TD>
+<TD CLASS=tab VALIGN=TOP>0x7fff</TD>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>16383/16384</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>1.75</TD>
+<TD CLASS=tab VALIGN=TOP>0x7000</TD>
+<TD CLASS=TAB VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>12288/16384</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0.000061</TD>
+<TD CLASS=tab VALIGN=TOP>0x0001</TD>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>1/16384</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>0.0</TD>
+<TD CLASS=tab VALIGN=TOP>0x0000</TD>
+<TD CLASS=TAB VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>0/16384</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>-0.000061</TD>
+<TD CLASS=tab VALIGN=TOP>0xffff</TD>
+<TD CLASS=TAB VALIGN=TOP>-1</TD>
+<TD CLASS=tab VALIGN=TOP>16383/16384</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>-2.0</TD>
+<TD CLASS=tab VALIGN=TOP>0x8000</TD>
+<TD CLASS=TAB VALIGN=TOP>-2</TD>
+<TD CLASS=tab VALIGN=TOP>0/16384</TD></TR>
+</TABLE>
+<P>
+<B>Version Numbers</B>
+<P>
+Most tables have version numbers, and the
+version number for the entire font is contained in the Table Directory. Note that there are two different table version number
+types, each with its own numbering scheme. USHORT version numbers
+always start at zero (0).  Fixed version numbers start at one (1.0 or 0x00010000), except where noted (EBDT, EBLC and EBSC tables).
+<P>
+Implementations reading tables must include code to check version numbers so that if and when the format and therefore the version number changes, older implementations will reject newer versions gracefully, if the changes are incompatible.
+
+<P>
+When a Fixed number is used as a version, the upper 16 bits comprise a major version number, and the lower 16 bits a minor. Tables with non-zero minor version numbers always specify the literal value of the version number since the normal representation of Fixed numbers is not necessarily followed. For example, the version number of 'maxp' table version 0.5 is 0x00005000, and that of 'vhea' table version 1.1 is 0x00011000. If an implementation understands a major version number, then it can safely proceed reading the table. The minor version number indicates extensions to the format that are undetectable by implementations that do not support them.
+
+<P>
+The only exception to this is the Offset Table's sfnt version. This serves solely to identify whether the OpenType font contains TrueType outlines (a value of 1.0) or CFF data (the tag 'OTTO'), as described in the section below, 'Organization of an OpenType font.'
+</P>
+
+<P>
+When a USHORT number is used to indicate version, it should be treated as though it were a minor version number; i.e., all format changes are compatible extensions.
+
+<P><BR>
+
+
+<B>Organization of an OpenType Font</B>
+
+<p>A key characteristic of the OpenType format is the TrueType sfnt "wrapper", which provides organization for a collection of tables in a general and extensible manner.
+
+<P>
+The OpenType font with
+the Offset Table. If the font file contains only one font, the Offset Table will begin at byte 0 of the file. If the font file is a TrueType collection, the beginning point of the Offset Table for each font is indicated in the TTCHeader.
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Offset Table</CAPTION>
+<TR>
+<TD CLASS=TAB BGCOLOR="#C0C0C0" WIDTH=100>Type</TD>
+<TD CLASS=TAB BGCOLOR="#C0C0C0" WIDTH=100>Name</TD>
+<TD CLASS=TAB BGCOLOR="#C0C0C0" WIDTH=280>Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>Fixed</TD>
+<TD CLASS=tab VALIGN=TOP>sfnt version</TD>
+<TD CLASS=TAB VALIGN=TOP>0x00010000 for version 1.0.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT </TD>
+<TD CLASS=tab VALIGN=TOP>numTables</TD>
+<TD CLASS=TAB VALIGN=TOP>Number of tables. </TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT </TD>
+<TD CLASS=tab VALIGN=TOP>searchRange</TD>
+<TD CLASS=TAB VALIGN=TOP>(Maximum power of 2 &lt;= numTables) x 16.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT </TD>
+<TD CLASS=tab VALIGN=TOP>entrySelector</TD>
+<TD CLASS=TAB VALIGN=TOP>Log2(maximum power of 2 &lt;= numTables).</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>USHORT </TD>
+<TD CLASS=tab VALIGN=TOP>rangeShift</TD>
+<TD CLASS=TAB VALIGN=TOP>NumTables x 16-searchRange.</TD></TR>
+</TABLE>
+<P>
+OpenType fonts that contain TrueType outlines should use the value of 1.0 for the sfnt version. OpenType fonts containing CFF data should use the tag 'OTTO' as the sfnt version number.
+</P>
+
+<BLOCKQUOTE>NOTE: The Apple specification for TrueType fonts allows for 'true' and 'typ1' for sfnt version. These version tags should not be used for fonts which contain OpenType tables.</BLOCKQUOTE>
+
+<P>
+The Offset Table is followed immediately by the Table Directory
+entries. Entries in the Table Directory must be sorted in ascending
+order by tag. Offset values in the Table Directory
+are measured from the start of the font file.
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>Table Directory</CAPTION>
+<TR>
+<TD CLASS=TAB ALIGN=LEFT WIDTH=100 BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=TAB ALIGN=LEFT WIDTH=100 BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=TAB ALIGN=LEFT WIDTH=280 BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>tag</TD>
+<TD CLASS=TAB VALIGN=TOP>4 -byte identifier.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>checkSum</TD>
+<TD CLASS=TAB VALIGN=TOP>CheckSum for this table.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>offset</TD>
+<TD CLASS=TAB VALIGN=TOP>Offset from beginning of TrueType font file.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>length</TD>
+<TD CLASS=TAB VALIGN=TOP>Length of this table.</TD></TR>
+</TABLE>
+<P>
+The Table Directory makes it possible for
+a given font to contain only those tables it actually needs. As
+a result there is no standard value for numTables.
+<P>
+Tags are the names given to tables in the OpenType font file.
+All tag names consist of four characters. Names with less than four letters are allowed if followed by the necessary trailing spaces. All tag names defined within a font (e.g., table names, feature tags, language tags) must be built from printing characters represented by ASCII values 32-126.<P>
+
+<P><BR>
+<I>Calculating Checksums</I>
+<P>Table checksums are the unsigned sum of the
+longs of a given table. In C, the following function can be used
+to determine a checksum:
+
+<PRE CLASS=smallcode>ULONG
+CalcTableChecksum(ULONG *Table, ULONG Length)
+{
+ULONG Sum = 0L;
+ULONG *Endptr = Table+((Length+3) &amp; ~3) / sizeof(ULONG);
+
+while (Table &lt; EndPtr)
+	Sum += *Table++;
+return Sum;
+}
+</PRE>
+
+<P>
+<I>Note: This function implies that the length
+of a table must be a multiple of four bytes. In fact, a font is not considered structurally proper without the correct padding. All tables must begin on four byte boundries, and any remaining
+space between tables is padded with zeros. The length of all tables should
+be recorded in the table directory with their actual length (not their padded length).</I>
+<P>
+To calculate the checkSum for the 'head' table which itself includes the checkSumAdjustment entry for the entire font, do the following:
+<OL>
+<LI>Set the checkSumAdjustment to 0.</LI>
+<LI>Calculate the checksum for all the tables including the 'head' table and enter that value into the table directory.</LI>
+<LI>Calculate the checksum for the entire font.</LI>
+<LI>Subtract that value from the hex value B1B0AFBA.</LI>
+<LI>Store the result in checkSumAdjustment.</LI> 
+</OL>
+<P>
+The checkSum for the head table which includes the checkSumAdjustment entry for the entire font is now incorrect. That is not a problem. Do not change it. An application attempting to verify that the 'head' table has not changed should calculate the checkSum for that table by not including the checkSumAdjustment value, and compare the result with the entry in the table directory.
+<BR><P>
+<B>TrueType Collections</B>
+<P>
+A TrueType Collection (TTC) is a means of delivering multiple OpenType fonts in a single file structure. TrueType Collections are most useful when the fonts to be delivered together share many glyphs in common. By allowing multiple fonts to share glyph sets, TTCs can result in a significant saving of file space.
+<P>
+For example, a group of Japanese fonts may each have their own designs for the kana glyphs, but share identical designs for the kanji. With ordinary OpenType font files, the only way to include the common kanji glyphs is to copy their glyph data into each font. Since the kanji represent much more data than the kana, this results in a great deal of wasteful duplication of glyph data. TTCs were defined to solve this problem.
+<P>
+The CFF rasterizer does not currently support TTC files.
+<P>
+<BR>
+
+<I>The TTC File Structure</I>
+<P>
+A TrueType Collection file consists of a single TTC Header table, one or more Offset Tables with Table Directories, and a number of OpenType tables. The TTC Header must be located at the beginning of the TTC file.
+<P>
+The TTC file must contain a complete Offset Table and Table Directory for each font. A TTC file Table Directory has exactly the same format as a TTF file Table Directory. The table offsets in all Table Directories within a TTC file are measured from the beginning of the TTC file.
+<P>
+Each OpenType table in a TTC file is referenced through the Offset Table and Table Directory of each font which uses that table. Some of the OpenType tables must appear multiple times, once for each font included in the TTC; while other tables may be shared by multiple fonts in the TTC.
+<P>
+As an example, consider a TTC file which combines two Japanese fonts (Font1 and Font2). The fonts have different kana designs (Kana1 and Kana2) but use the same design for kanji. The TTC file contains a single 'glyf' table which includes both designs of kana together with the kanji; both fonts' Table Directories point to this 'glyf' table. But each font's Table Directory points to a different 'cmap' table, which identifies the glyph set to use. Font1's 'cmap' table points to the Kana1 region of the 'loca' and 'glyf' tables for kana glyphs, and to the kanji region for the kanji. Font2's 'cmap' table points to the Kana2 region of the 'loca' and 'glyf' tables for kana glyphs, and to the same kanji region for the kanji.
+<P>
+The tables that should have a unique copy per font are those that are used by the system in identifying the font and its character mapping, including 'cmap', 'name', and 'OS/2'. The tables that should be shared by fonts in the TTC are those that define glyph and instruction data or use glyph indices to access data: 'glyf', 'loca', 'hmtx', 'hdmx', 'LTSH', 'cvt ', 'fpgm', 'prep', 'EBLC', 'EBDT', 'EBSC', 'maxp', and so on. In practice, any tables which have identical data for two or more fonts may be shared.
+<P>
+A tool is available from Microsoft to help build .TTC files. The process involves paying close attention the issue of glyph renumbering in a font and the side effects that can result, in the 'cmap' table and elsewhere. The fonts to be merged must also have compatible TrueType instructions-that is, their preprograms, function definitions, and control values must not conflict.
+<P>
+TrueType Collection files use the filename suffix .TTC.
+
+<P>
+<BR>
+<I>TTC Header</I>
+<P>
+There are two versions of the TTC Header: Version 1.0 has been used for TTC files without digital signatures. Version 2.0 can be used for TTC files with <I>or</I> without digital signatures -- if there's no signature, then the last three fields of the version 2.0 header are left null.<P>
+If a digital signature is used, the DSIG table for the file must be the last table in the TTC file. Signatures in a TTC file are expected to be Format 1 signatures.<P>
+<P>
+The purpose of the TTC Header table is to locate the different Offset Tables within a TTC file. The TTC Header is located at the beginning of the TTC file (offset = 0). It consists of an identification tag, a version number, a count of the number of OpenType fonts in the file, and an array of offsets to each Offset Table.
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>TTC Header Version 1.0</CAPTION>
+<TD CLASS=TAB WIDTH=100 BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=TAB WIDTH=100 BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=TAB WIDTH=280 BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>TAG</TD>
+<TD CLASS=tab VALIGN=TOP>TTCTag</TD>
+<TD CLASS=TAB VALIGN=TOP>TrueType Collection ID string: 'ttcf'</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>Version</TD>
+<TD CLASS=TAB VALIGN=TOP>Version of the TTC Header (1.0), 0x00010000</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>numFonts</TD>
+<TD CLASS=TAB VALIGN=TOP>Number of fonts in TTC</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>OffsetTable[numFonts]</TD>
+<TD CLASS=TAB VALIGN=TOP>Array of offsets to the OffsetTable for each font from the beginning of the file</TD></TR>
+</TABLE>
+<P>
+<P>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<CAPTION>TTC Header Version 2.0</CAPTION>
+<TD CLASS=TAB WIDTH=100 BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=TAB WIDTH=100 BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=TAB WIDTH=280 BGCOLOR="#C0C0C0">Description</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>TAG</TD>
+<TD CLASS=tab VALIGN=TOP>TTCTag</TD>
+<TD CLASS=TAB VALIGN=TOP>TrueType Collection ID string: 'ttcf'</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>Version</TD>
+<TD CLASS=TAB VALIGN=TOP>Version of the TTC Header (2.0), 0x00020000</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>numFonts</TD>
+<TD CLASS=TAB VALIGN=TOP>Number of fonts in TTC</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>OffsetTable[numFonts]</TD>
+<TD CLASS=TAB VALIGN=TOP>Array of offsets to the OffsetTable for each font from the beginning of the file</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>ulDsigTag</TD>
+<TD CLASS=TAB VALIGN=TOP>Tag indicating that a DSIG table exists, 0x44534947 ('DSIG') (null if no signature)</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>ulDsigLength</TD>
+<TD CLASS=TAB VALIGN=TOP>The length (in bytes) of the DSIG table (null if no signature)</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>ulDsigOffset</TD>
+<TD CLASS=TAB VALIGN=TOP>The offset (in bytes) of the DSIG table from the beginning of the TTC file (null if no signature)</TD></TR>
+</TABLE>
+<P>
+<BR>
+<B>Font Tables</B>
+<P>
+The rasterizer has a much easier time traversing tables if they
+are padded so that each table begins on a 4-byte boundary. It
+is highly recommended that all tables be long-aligned and padded
+with zeroes.
+
+<P><BR>
+<A NAME="otttables"><FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>OpenType Tables</FONT></A>
+<P>
+Whether TrueType or PostScript outlines are used in an OpenType font, the following tables are required for the font to function correctly:
+<P><BR>
+<B>Required Tables</B>
+<P>
+<TABLE width=460 BGCOLOR="#F0F0F0" CELLPADDING=2>
+<TR>
+<TD CLASS=TAB WIDTH=100 ALIGN=LEFT BGCOLOR="#c0c0c0">Tag</TD>
+<TD CLASS=TAB WIDTH=360 ALIGN=LEFT BGCOLOR="#C0C0C0">Name</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="cmap.htm">cmap</A></TD>
+<TD CLASS=tab VALIGN=TOP>Character to glyph mapping</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="head.htm">head</A></TD>
+<TD CLASS=tab VALIGN=TOP>Font header</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="hhea.htm">hhea</A></TD>
+<TD CLASS=tab VALIGN=TOP>Horizontal header</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="hmtx.htm">hmtx</A></TD>
+<TD CLASS=tab VALIGN=TOP>Horizontal metrics</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="maxp.htm">maxp</A></TD>
+<TD CLASS=tab VALIGN=TOP>Maximum profile</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="name.htm">name</A></TD>
+<TD CLASS=tab VALIGN=TOP>Naming table</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="os2.htm">OS/2</A></TD>
+<TD CLASS=tab VALIGN=TOP>OS/2 and Windows specific metrics</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="post.htm">post</A></TD>
+<TD CLASS=tab VALIGN=TOP>PostScript information</TD></TR>
+</TABLE>
+<P>
+For OpenType fonts based on TrueType outlines, the following tables are used: <P>
+<BR>
+<B>Tables Related to TrueType Outlines</B>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0" CELLPADDING=2>
+
+<TR>
+<TD CLASS=TAB WIDTH=100 ALIGN=LEFT BGCOLOR="#c0c0c0">Tag</TD>
+<TD CLASS=TAB WIDTH=360 ALIGN=LEFT BGCOLOR="#C0C0C0">Name</TD></TR>
+                                                                                    
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="cvt.htm">cvt</A></TD>
+<TD CLASS=tab VALIGN=TOP>Control Value Table</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="fpgm.htm">fpgm</A></TD>
+<TD CLASS=tab VALIGN=TOP>Font program</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="glyf.htm">glyf</A></TD>
+<TD CLASS=tab VALIGN=TOP>Glyph data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="loca.htm">loca</A></TD>
+<TD CLASS=tab VALIGN=TOP>Index to location</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="prep.htm">prep</A></TD>
+<TD CLASS=tab VALIGN=TOP>CVT Program</TD></TR></TABLE>
+<P>
+The PostScript font extensions define a new set of tables containing data
+specific to PostScript fonts that are used instead of the tables listed above.
+<P>
+<BR>
+<B>Tables Related to PostScript Outlines</B>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0" CELLPADDING=2>
+<TR>
+<TD CLASS=TAB WIDTH=100 BGCOLOR="#c0c0c0">Tag</TD>
+<TD CLASS=TAB WIDTH=360 BGCOLOR="#c0c0c0">Name</TD>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="cff.htm">CFF</A></TD>
+<TD CLASS=tab VALIGN=TOP>PostScript font program (compact font format)</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="vorg.htm">VORG</A></TD>
+<TD CLASS=tab VALIGN=TOP>Vertical Origin</TD></TR>
+</TABLE>
+<P> 
+Multiple Master support in OpenType, has been discontinued as of version 1.3 of the specification. The 'fvar', 'MMSD', 'MMFX' tables have hence been removed. 
+
+<P>
+<BR>
+<B>Tables Related to Bitmap Glyphs</B>
+<P>
+<TABLE width=460 BGCOLOR="#F0F0F0" CELLPADDING=2>
+<TR>
+<TD CLASS=TAB WIDTH=100 ALIGN=LEFT BGCOLOR="#c0c0c0">Tag</TD>
+<TD CLASS=TAB WIDTH=360 ALIGN=LEFT BGCOLOR="#C0C0C0">Name</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="ebdt.htm">EBDT</A></TD>
+<TD CLASS=tab VALIGN=TOP>Embedded bitmap data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="eblc.htm">EBLC</A></TD>
+<TD CLASS=tab VALIGN=TOP>Embedded bitmap location data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="ebsc.htm">EBSC</A></TD>
+<TD CLASS=tab VALIGN=TOP>Embedded bitmap scaling data</TD></TR>
+</TABLE>
+<P>
+OpenType fonts may also contain bitmaps of glyphs, in addition to outlines. Hand-tuned bitmaps are especially useful in OpenType fonts for representing complex glyphs at very small sizes. If a bitmap for a particular size is provided in a font, it will be used by the system instead of the outline when rendering the glyph. (Note: ATM does not currently support hinted bitmaps in OpenType fonts.) 
+<BR>
+<P>
+There are also several optional tables that support vertical layout as well as other advanced typographic functions: 
+<P>
+<B>Advanced Typographic Tables</B>
+<P>
+<TABLE width=460 BGCOLOR="#F0F0F0" CELLPADDING=2>
+<TR>
+<TD CLASS=TAB WIDTH=100 ALIGN=LEFT BGCOLOR="#c0c0c0">Tag</TD>
+<TD CLASS=TAB WIDTH=360 ALIGN=LEFT BGCOLOR="#C0C0C0">Name</TD>
+</TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="base.htm">BASE</A></TD>
+<TD CLASS=TAB VALIGN=TOP>Baseline data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="gdef.htm">GDEF</A></TD>
+<TD CLASS=TAB VALIGN=TOP>Glyph definition data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="gpos.htm">GPOS</A></TD>
+<TD CLASS=TAB VALIGN=TOP>Glyph positioning data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="gsub.htm">GSUB</A></TD>
+<TD CLASS=TAB VALIGN=TOP>Glyph substitution data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="jstf.htm">JSTF</A></TD>
+<TD CLASS=TAB VALIGN=TOP>Justification data</TD></TR>
+</TABLE>
+
+<P> 
+For information on common table formats, please see <a href="chapter2.htm">OpenType Layout Common Table Formats </a>.
+ 
+<P>
+<BR>
+<B>Other OpenType Tables</B>
+<P>
+<TABLE width=460 BGCOLOR="#F0F0F0" CELLPADDING=2>
+<TR>
+<TD CLASS=TAB WIDTH=100 ALIGN=LEFT BGCOLOR="#c0c0c0">Tag</TD>
+<TD CLASS=TAB WIDTH=360 ALIGN=LEFT BGCOLOR="#C0C0C0">Name</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="dsig.htm">DSIG</A></TD>
+<TD CLASS=tab VALIGN=TOP>Digital signature</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="gasp.htm">gasp</A></TD>
+<TD CLASS=tab VALIGN=TOP>Grid-fitting/Scan-conversion</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="hdmx.htm">hdmx</A></TD>
+<TD CLASS=tab VALIGN=TOP>Horizontal device metrics</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="kern.htm">kern</A></TD>
+<TD CLASS=tab VALIGN=TOP>Kerning</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="ltsh.htm">LTSH</A></TD>
+<TD CLASS=tab VALIGN=TOP>Linear threshold data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="pclt.htm">PCLT</A></TD>
+<TD CLASS=tab VALIGN=TOP>PCL 5 data</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="vdmx.htm">VDMX</A></TD>
+<TD CLASS=tab VALIGN=TOP>Vertical device metrics</TD></TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="vhea.htm">vhea</A></TD>
+<TD CLASS=tab VALIGN=TOP>Vertical Metrics header</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP><A HREF="vmtx.htm">vmtx</A></TD>
+<TD CLASS=tab VALIGN=TOP>Vertical Metrics</TD></TR> 
+
+</TABLE>
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 14 October 2002<BR>
+	&copy; 2001 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType...</A>
+	 | The OpenType font file
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+
+

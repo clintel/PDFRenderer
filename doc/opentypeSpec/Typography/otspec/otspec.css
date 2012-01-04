@@ -1,0 +1,49 @@
+BODY { background: #FFFFFF;
+	font-family: Georgia, Verdana, Arial, Helvetica, sans-serif; }
+P { 	font-size: 10pt; }
+BLOCKQUOTE { font-size: 10pt; }
+
+LI, DT, DD, OL, UL { font-family: Georgia, Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; }
+
+.detail { font-size: 10px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; }
+.masthead { font-size: 36pt; 
+	font-family: Franklin Gothic Heavy, Verdana, Arial, Helvetica, sans-serif; } 
+.heading { font-size: 18pt; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; }
+.flag { font-size: 12px; 
+	font-family: Arial, Helvetica, sans-serif; 
+	color: #FFFFFF; 
+	background: #FF3100; 
+	font-weight: bold; }
+.caption { font-size: 11px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #888888; }
+.tiny { margin-left: 24pt;
+	font-size: 80%;
+	font-family: Courier New, courier, monospace;  }
+.smaller { font-size: 9px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; }
+.smallcode { margin-left: 24pt;
+	font-size: 80%;
+	font-family: Courier New, courier, monospace;  }
+.foot { font-size: 9pt; }
+.add { color: #000000; }
+.red { color: #FF3030; }
+.green { color: #30A030; }
+.blue { color: #3030FF; }
+.cssspec { color: #303090; }
+SUP { font-size: 6pt; }
+.TAB { font-size: 9px;
+	margin-left: 4px;
+	margin-right: 2px;
+	font-family: Verdana, Arial, helvetica, sans-serif; }
+A:link { color: #FF5200; 
+	text-decoration: none; }
+A:visited { color: #CC3300; 
+	text-decoration: none; }
+A:active { color: #FF0000; 
+	background: #FFDDDD; 
+	text-decoration: none; }
+
+

@@ -1,0 +1,1335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>The Naming Table</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+href="otspec.css" rel=STYLESHEET type=text/css>
+<META content="MSHTML 5.00.2920.0" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff leftMargin=0 link=#000090 style="BACKGROUND: #ffffff" 
+topMargin=0 vLink=#aa00cc><!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END-->
+<P><BR>
+<CENTER>
+<P>
+<TABLE border=0 cellPadding=0 cellSpacing=0 width=580>
+  <TBODY>
+  <TR>
+    <TD height=1 width=20><IMG alt="" height=1 src="pixel.gif" width=20></TD>
+    <TD height=1 width=60><IMG alt="" height=1 src="pixel.gif" width=60></TD>
+    <TD height=1 width=480><IMG alt="" height=1 src="pixel.gif" width=480></TD>
+    <TD height=1 width=20><IMG alt="" height=1 src="pixel.gif" width=20></TD></TR>
+  <TR>
+    <TD colSpan=4 height=5 width=580><IMG height=5 src="toprule.gif" 
+    width=580></TD></TR>
+  <TR>
+    <TD width=20></TD>
+    <TD colSpan=3 vAlign=top width=560><FONT class=detail 
+      face="Verdana, Arial, Helvetica" size=1><A 
+      href="http://www.microsoft.com/typography/default.asp">Microsoft 
+      Typography</A> | <A 
+      href="http://www.microsoft.com/typography/creators.htm">Developer...</A> | 
+      <A href="default.htm">OpenType specification</A> | <A 
+      href="otff.htm#otttables">OpenType tables</A> | The name table 
+  </FONT></TD></TR>
+  <TR>
+    <TD colSpan=4 height=10 width=580><IMG alt="" height=10 src="midrule.gif" 
+      width=580></TD></TR>
+  <TR>
+    <TD width=20></TD>
+    <TD vAlign=top width=60></TD>
+    <TD vAlign=top width=480>
+      <P><BR><FONT class=heading face="Verdana, Arial, Helvetica" size=5>name - 
+      Naming Table</FONT> 
+      <P>The naming table allows multilingual strings to be associated with the 
+      OpenType<FONT color=#999999 
+      style="COLOR: #999999; FONT-SIZE: 7pt"><SUP>TM</SUP></FONT> font file. 
+      These strings can represent copyright notices, font names, family names, 
+      style names, and so on. To keep this table short, the font manufacturer 
+      may wish to make a limited set of entries in some small set of languages; 
+      later, the font can be "localized" and the strings translated or added. 
+      Other parts of the OpenType font file that require these strings can then 
+      refer to them simply by their index number. Clients that need a particular 
+      string can look it up by its platform ID, character encoding ID, language 
+      ID and name ID. Note that some platforms may require single byte character 
+      strings, while others may require double byte strings. 
+      <P>For historical reasons, some applications which install fonts perform 
+      version control using Macintosh platform (platform ID 
+      1) strings from the 'name' table. Because of this, we strongly recommend that the 'name' table of all fonts include Macintosh platform 
+      strings and that the syntax of the version number (name id 5) follows the 
+      guidelines given in this document. 
+      <P><BR>The Naming Table is organized as follows:
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="25%">Type</TD>
+          <TD bgColor=#c0c0c0 class=tab width="25%">Name</TD>
+          <TD bgColor=#c0c0c0 class=tab width="50%">Description</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>format</TD>
+          <TD class=tab vAlign=top>Format selector (=0).</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>count</TD>
+          <TD class=tab vAlign=top>Number of name records.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>stringOffset</TD>
+          <TD class=tab vAlign=top>Offset to start of string storage (from 
+            start of table).</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>NameRecord</TD>
+          <TD class=tab vAlign=top>nameRecord[count]</TD>
+          <TD class=tab vAlign=top>The name records where <I>count</I> is the number of records.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>(Variable)</s></TD>
+          <TD class=tab vAlign=top></TD>
+          <TD class=tab vAlign=top>Storage for the actual string 
+        data.</TD></TR></TBODY></TABLE>
+
+      <P><BR>Each <I>NameRecord</I> looks like this:
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="25%">Type</TD>
+          <TD bgColor=#c0c0c0 class=tab width="25%">Name</TD>
+          <TD bgColor=#c0c0c0 class=tab width="50%">Description</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>platformID</TD>
+          <TD class=tab vAlign=top>Platform ID.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>encodingID</TD>
+          <TD class=tab vAlign=top>Platform-specific encoding ID.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>languageID</TD>
+          <TD class=tab vAlign=top>Language ID.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>nameID</TD>
+          <TD class=tab vAlign=top>Name ID.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>length</TD>
+          <TD class=tab vAlign=top>String length (in bytes).</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>USHORT</TD>
+          <TD class=tab vAlign=top>offset</TD>
+          <TD class=tab vAlign=top>String offset from start of storage area 
+            (in bytes).</TD></TR></TBODY></TABLE>
+
+      <P>Following are the descriptions of the four kinds of ID. Note that the 
+      specific values listed here are the only ones that are predefined; new 
+      ones may be added by registry with Apple Developer Technical Support. 
+      Similar to the character encoding table, the NameRecords are sorted by 
+      platform ID, then platform-specific ID, then language ID, and then by name 
+      ID. 
+
+      <P><A name=plat><B>Platform IDs, Platform-specific 
+      encoding IDs and Language IDs</B></A> 
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="10%">Platform&nbsp;ID</TD>
+          <TD bgColor=#c0c0c0 class=tab width="25%">Platform name</TD>
+          <TD bgColor=#c0c0c0 class=tab width="45%">Platform-specific encoding 
+            IDs</TD>
+          <TD bgColor=#c0c0c0 class=tab width="20%">Language IDs</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>0</TD>
+          <TD class=tab vAlign=top>Unicode</TD>
+          <TD class=tab vAlign=top><A href="#enc0">Various</A></TD>
+          <TD class=tab vAlign=top>None</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>1</TD>
+          <TD class=tab vAlign=top>Macintosh</TD>
+          <TD class=tab vAlign=top><A href="#enc1">Script manager code</A></TD>
+          <TD class=tab vAlign=top><A href="#lang1">Various</A></TD></TR>
+        <TR>
+          <TD class=tab vAlign=top><I>2</I></TD>
+          <TD class=tab vAlign=top><I>ISO [deprecated] </I></TD>
+          <TD class=tab vAlign=top><I><A href="#enc2">ISO encoding</A> 
+            [deprecated] </I></TD>
+          <TD class=tab vAlign=top><I>None</I></TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>Microsoft</TD>
+          <TD class=tab vAlign=top><A href="#enc3">Microsoft encoding</A></TD>
+          <TD class=tab vAlign=top><A href="#lang3">Various</A></TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>4</TD>
+          <TD class=tab vAlign=top>Custom</TD>
+          <TD class=tab vAlign=top><A href="#enc4">Custom</A></TD>
+          <TD class=tab vAlign=top>None</TD></TR></TBODY></TABLE>
+      <P>Note that platform ID 2 (ISO) has been deprecated as of OpenType 
+      Specification v1.3. It was intended to represent ISO/IEC 10646, as opposed 
+      to Unicode; both standards have identical character code assignments.
+      <P>Platform ID values 240 through 255 are reserved for user-defined 
+      platforms. The DTS registry will never assign these values to a registered 
+      platform. 
+      <P><A name="ENC0"><B>Unicode platform-specific encoding IDs (platform ID = 
+      0)</B></A> 
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="10%">Encoding&nbsp;ID</TD>
+          <TD bgColor=#c0c0c0 class=tab width="90%">Description</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>0</TD>
+          <TD class=tab vAlign=top>Unicode 1.0 semantics</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>1</TD>
+          <TD class=tab vAlign=top>Unicode 1.1 semantics</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>2</TD>
+          <TD class=tab vAlign=top>ISO 10646:1993 semantics</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>Unicode 2.0 and onwards semantics, Unicode BMP only.</TD></TR>
+<TR>
+          <TD class=tab vAlign=top>4</TD>
+          <TD class=tab vAlign=top>Unicode 2.0 and onwards semantics, Unicode full repertoire.</TD></TR>
+</TBODY></TABLE>
+      <P>A new encoding ID for the Unicode platform will be assigned if a new 
+      version of Unicode moves characters, in order to properly specify 
+      character code semantics. The distinction between Unicode 
+      platform-specific encoding IDs 1 and 2 is for historical reasons only; 
+      Unicode 1.1 is in fact identical in repertoire and encoding to ISO 
+      10646:1993 (before any amendments).
+      <P>There are currently no language IDs defined for the Unicode platform. 
+      This means that it can be used for encodings in the 'cmap' table but not 
+      for strings in the 'name' table. 
+      <P><BR><a name="enc3"><B>Microsoft platform-specific encoding IDs (platform ID= 3)</B></a> 
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="33%">Platform ID</TD>
+          <TD bgColor=#c0c0c0 class=tab width="33%">Encoding ID</TD>
+          <TD bgColor=#c0c0c0 class=tab width="33%">Description</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>0</TD>
+          <TD class=tab vAlign=top>Symbol</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>1</TD>
+          <TD class=tab vAlign=top>Unicode BMP only</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>2</TD>
+          <TD class=tab vAlign=top>ShiftJIS</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>PRC</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>4</TD>
+          <TD class=tab vAlign=top>Big5</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>5</TD>
+          <TD class=tab vAlign=top>Wansung</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>6</TD>
+          <TD class=tab vAlign=top>Johab</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>7</TD>
+          <TD class=tab vAlign=top>Reserved</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>8</TD>
+          <TD class=tab vAlign=top>Reserved</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>9</TD>
+          <TD class=tab vAlign=top>Reserved</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>10</TD>
+          <TD class=tab vAlign=top>Unicode full repertoire</TD></TR></TBODY></TABLE>
+      <P>When building a Unicode font for Windows, the platform ID should be 3 
+      and the encoding ID should be 1. When building a symbol font for Windows, 
+      the platform ID should be 3 and the encoding ID should be 0. When building 
+      a font that will be used on the Macintosh, the platform ID should be 1 and 
+      the encoding ID should be 0. 
+      <P><BR><a name="lang3"><B>Microsoft Language IDs (platform ID = 3) </B></a> <P>
+The language ID (LCID in the table below) refers to a value which 
+      identifies the language in which a particular string is written. Fifty of 
+      the language ID's assigned by Microsoft are listed below, along with their 
+      corresponding code pages. There are 85 additional language ID's assigned. 
+      For a full list, please see the <A 
+      href="http://www.microsoft.com/globaldev/reference/loclanghome.asp">Microsoft Global Development</A> site or <A HREF="http://support.microsoft.com/default.aspx?scid=kb;EN-US;q224804">Knowledge Base article Q224804</A>. 
+      <P><BR>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="25%">Primary Language</TD>
+          <TD bgColor=#c0c0c0 class=tab width="35%">Locale Name</TD>
+          <TD bgColor=#c0c0c0 class=tab width="20%">LCID</TD>
+          <TD bgColor=#c0c0c0 class=tab width="10%">Win CP</TD>
+          <TD bgColor=#c0c0c0 class=tab width="10%">OEM CP</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Albanian</TD>
+          <TD class=tab vAlign=top>Albania</TD>
+          <TD class=tab vAlign=top>(041c; SQI)</TD>
+          <TD class=tab vAlign=top>&nbsp;</TD>
+          <TD class=tab vAlign=top>&nbsp;</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Basque</TD>
+          <TD class=tab vAlign=top>Basque</TD>
+          <TD class=tab vAlign=top>(042D; EUQ)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Byelorussian</TD>
+          <TD class=tab vAlign=top>Byelorussia</TD>
+          <TD class=tab vAlign=top>(0423, BEL)</TD>
+          <TD class=tab vAlign=top>1251</TD>
+          <TD class=tab vAlign=top>866</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Bulgarian</TD>
+          <TD class=tab vAlign=top>Bulgaria</TD>
+          <TD class=tab vAlign=top>(0402, BGR)</TD>
+          <TD class=tab vAlign=top>1251</TD>
+          <TD class=tab vAlign=top>866</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Catalan</TD>
+          <TD class=tab vAlign=top>Catalan</TD>
+          <TD class=tab vAlign=top>(0403; CAT)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Croatian</TD>
+          <TD class=tab vAlign=top>Croatian</TD>
+          <TD class=tab vAlign=top>(041a, SHL)</TD>
+          <TD class=tab vAlign=top>1250</TD>
+          <TD class=tab vAlign=top>852</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Czech</TD>
+          <TD class=tab vAlign=top>Czech</TD>
+          <TD class=tab vAlign=top>(0405; CSY)</TD>
+          <TD class=tab vAlign=top>1250</TD>
+          <TD class=tab vAlign=top>852</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Danish</TD>
+          <TD class=tab vAlign=top>Danish</TD>
+          <TD class=tab vAlign=top>(0406; DAN)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>865</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Dutch (2):</TD>
+          <TD class=tab vAlign=top>Dutch (Standard)</TD>
+          <TD class=tab vAlign=top>(0413; NLD)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Dutch (2):</TD>
+          <TD class=tab vAlign=top>Belgian (Flemish)</TD>
+          <TD class=tab vAlign=top>(0813; NLB)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>English (6):</TD>
+          <TD class=tab vAlign=top>American</TD>
+          <TD class=tab vAlign=top>(0409; ENU)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>437</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>English (6):</TD>
+          <TD class=tab vAlign=top>British</TD>
+          <TD class=tab vAlign=top>(0809; ENG)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>English (6):</TD>
+          <TD class=tab vAlign=top>Australian</TD>
+          <TD class=tab vAlign=top>(0c09; ENA)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>English (6):</TD>
+          <TD class=tab vAlign=top>Canadian</TD>
+          <TD class=tab vAlign=top>(1009; ENC)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>English (6):</TD>
+          <TD class=tab vAlign=top>New Zealand</TD>
+          <TD class=tab vAlign=top>(1409; ENZ)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>English (6):</TD>
+          <TD class=tab vAlign=top>Ireland</TD>
+          <TD class=tab vAlign=top>(1809; ENI)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Estonian</TD>
+          <TD class=tab vAlign=top>Estonia</TD>
+          <TD class=tab vAlign=top>(0425, ETI)</TD>
+          <TD class=tab vAlign=top>1257</TD>
+          <TD class=tab vAlign=top>775</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Finnish</TD>
+          <TD class=tab vAlign=top>Finnish</TD>
+          <TD class=tab vAlign=top>(040b; FIN)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>French </TD>
+          <TD class=tab vAlign=top>French (Standard)</TD>
+          <TD class=tab vAlign=top>(040c; FRA)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>French </TD>
+          <TD class=tab vAlign=top>Belgian</TD>
+          <TD class=tab vAlign=top>(080c; FRB)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>French </TD>
+          <TD class=tab vAlign=top>Canadian</TD>
+          <TD class=tab vAlign=top>(0c0c; FRC)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>French </TD>
+          <TD class=tab vAlign=top>Swiss</TD>
+          <TD class=tab vAlign=top>(100c; FRS)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>French </TD>
+          <TD class=tab vAlign=top>Luxembourg</TD>
+          <TD class=tab vAlign=top>(140c; FRL)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>German</TD>
+          <TD class=tab vAlign=top>German (Standard)</TD>
+          <TD class=tab vAlign=top>(0407; DEU)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>German</TD>
+          <TD class=tab vAlign=top>Swiss</TD>
+          <TD class=tab vAlign=top>(0807; DES)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>German</TD>
+          <TD class=tab vAlign=top>Austrian</TD>
+          <TD class=tab vAlign=top>(0c07; DEA)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>German</TD>
+          <TD class=tab vAlign=top>Luxembourg</TD>
+          <TD class=tab vAlign=top>(1007; DEL)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>German</TD>
+          <TD class=tab vAlign=top>Liechtenstein</TD>
+          <TD class=tab vAlign=top>(1407; DEC)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Greek</TD>
+          <TD class=tab vAlign=top>Greek</TD>
+          <TD class=tab vAlign=top>(0408; ELL)</TD>
+          <TD class=tab vAlign=top>1253</TD>
+          <TD class=tab vAlign=top>737 or 869<SUP>4</SUP></TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Hungarian</TD>
+          <TD class=tab vAlign=top>Hungarian</TD>
+          <TD class=tab vAlign=top>(040e; HUN)</TD>
+          <TD class=tab vAlign=top>1250</TD>
+          <TD class=tab vAlign=top>852</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Icelandic</TD>
+          <TD class=tab vAlign=top>Icelandic</TD>
+          <TD class=tab vAlign=top>(040F; ISL)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Italian (2):</TD>
+          <TD class=tab vAlign=top>Italian (Standard)</TD>
+          <TD class=tab vAlign=top>(0410; ITA)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Italian (2):</TD>
+          <TD class=tab vAlign=top>Swiss</TD>
+          <TD class=tab vAlign=top>(0810; ITS)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Latvian</TD>
+          <TD class=tab vAlign=top>Latvia</TD>
+          <TD class=tab vAlign=top>(0426, LVI)</TD>
+          <TD class=tab vAlign=top>1257</TD>
+          <TD class=tab vAlign=top>775</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Lithuanian</TD>
+          <TD class=tab vAlign=top>Lithuania</TD>
+          <TD class=tab vAlign=top>(0427, LTH)</TD>
+          <TD class=tab vAlign=top>1257</TD>
+          <TD class=tab vAlign=top>775</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Norwegian (2):</TD>
+          <TD class=tab vAlign=top>Norwegian (Bokmal)</TD>
+          <TD class=tab vAlign=top>(0414; NOR)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Norwegian (2):</TD>
+          <TD class=tab vAlign=top>Norwegian (Nynorsk)</TD>
+          <TD class=tab vAlign=top>(0814; NON)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Polish</TD>
+          <TD class=tab vAlign=top>Polish</TD>
+          <TD class=tab vAlign=top>(0415; PLK)</TD>
+          <TD class=tab vAlign=top>1250</TD>
+          <TD class=tab vAlign=top>852</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Portuguese (2):</TD>
+          <TD class=tab vAlign=top>Portuguese (Brazilian)</TD>
+          <TD class=tab vAlign=top>(0416; PTB)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Portuguese (2):</TD>
+          <TD class=tab vAlign=top>Portuguese (Standard)</TD>
+          <TD class=tab vAlign=top>(0816; PTG)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Romanian (2):</TD>
+          <TD class=tab vAlign=top>Romania</TD>
+          <TD class=tab vAlign=top>(0418, ROM)</TD>
+          <TD class=tab vAlign=top>1250</TD>
+          <TD class=tab vAlign=top>852</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Russian</TD>
+          <TD class=tab vAlign=top>Russian</TD>
+          <TD class=tab vAlign=top>(0419; RUS)</TD>
+          <TD class=tab vAlign=top>1251</TD>
+          <TD class=tab vAlign=top>866</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Slovak</TD>
+          <TD class=tab vAlign=top>Slovak</TD>
+          <TD class=tab vAlign=top>(041b; SKY)</TD>
+          <TD class=tab vAlign=top>1250</TD>
+          <TD class=tab vAlign=top>852</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Slovenian</TD>
+          <TD class=tab vAlign=top>Slovenia</TD>
+          <TD class=tab vAlign=top>(0424, SLV)</TD>
+          <TD class=tab vAlign=top>1250</TD>
+          <TD class=tab vAlign=top>852</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Spanish (3):</TD>
+          <TD class=tab vAlign=top>Spanish (Traditional Sort)</TD>
+          <TD class=tab vAlign=top>(040a; ESP)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Spanish (3):</TD>
+          <TD class=tab vAlign=top>Mexican</TD>
+          <TD class=tab vAlign=top>(080a; ESM)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Spanish (3):</TD>
+          <TD class=tab vAlign=top>Spanish (Modern Sort)</TD>
+          <TD class=tab vAlign=top>(0c0a; ESN)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Swedish</TD>
+          <TD class=tab vAlign=top>Swedish</TD>
+          <TD class=tab vAlign=top>(041D; SVE)</TD>
+          <TD class=tab vAlign=top>1252</TD>
+          <TD class=tab vAlign=top>850</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Turkish</TD>
+          <TD class=tab vAlign=top>Turkish</TD>
+          <TD class=tab vAlign=top>(041f; TRK)</TD>
+          <TD class=tab vAlign=top>1254</TD>
+          <TD class=tab vAlign=top>857</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>Ukrainian</TD>
+          <TD class=tab vAlign=top>Ukraine</TD>
+          <TD class=tab vAlign=top>(0422, UKR)</TD>
+          <TD class=tab vAlign=top>1251</TD>
+          <TD class=tab vAlign=top>866</TD></TR></TBODY></TABLE><BR><SPAN 
+      class=tab><SUP>4</SUP>737 is default, but 869 (IBM Greek) will be 
+      available at setup time through the selection of a bogus Greek locale in 
+      Custom Setup.</SPAN> 
+      <P><BR><A NAME="ENC1"> <B>Macintosh platform-specific encoding IDs<BR>(script 
+      manager codes), (platform ID = 1)</B></A>
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="20%">Code</TD>
+          <TD bgColor=#c0c0c0 class=tab width="30%">Script</TD>
+          <TD bgColor=#c0c0c0 class=tab width="20%">Code</TD>
+          <TD bgColor=#c0c0c0 class=tab width="30%">Script</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>0</TD>
+          <TD class=tab vAlign=top>Roman</TD>
+          <TD class=tab vAlign=top>17</TD>
+          <TD class=tab vAlign=top>Malayalam</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>1</TD>
+          <TD class=tab vAlign=top>Japanese</TD>
+          <TD class=tab vAlign=top>18</TD>
+          <TD class=tab vAlign=top>Sinhalese</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>2</TD>
+          <TD class=tab vAlign=top>Chinese (Traditional) </TD>
+          <TD class=tab vAlign=top>19</TD>
+          <TD class=tab vAlign=top>Burmese</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>Korean</TD>
+          <TD class=tab vAlign=top>20</TD>
+          <TD class=tab vAlign=top>Khmer</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>4</TD>
+          <TD class=tab vAlign=top>Arabic</TD>
+          <TD class=tab vAlign=top>21</TD>
+          <TD class=tab vAlign=top>Thai</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>5</TD>
+          <TD class=tab vAlign=top>Hebrew</TD>
+          <TD class=tab vAlign=top>22</TD>
+          <TD class=tab vAlign=top>Laotian</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>6</TD>
+          <TD class=tab vAlign=top>Greek</TD>
+          <TD class=tab vAlign=top>23</TD>
+          <TD class=tab vAlign=top>Georgian</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>7</TD>
+          <TD class=tab vAlign=top>Russian</TD>
+          <TD class=tab vAlign=top>24</TD>
+          <TD class=tab vAlign=top>Armenian</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>8</TD>
+          <TD class=tab vAlign=top>RSymbol</TD>
+          <TD class=tab vAlign=top>25</TD>
+          <TD class=tab vAlign=top>Chinese (Simplified) </TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>9</TD>
+          <TD class=tab vAlign=top>Devanagari</TD>
+          <TD class=tab vAlign=top>26</TD>
+          <TD class=tab vAlign=top>Tibetan</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>10</TD>
+          <TD class=tab vAlign=top>Gurmukhi</TD>
+          <TD class=tab vAlign=top>27</TD>
+          <TD class=tab vAlign=top>Mongolian</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>11</TD>
+          <TD class=tab vAlign=top>Gujarati</TD>
+          <TD class=tab vAlign=top>28</TD>
+          <TD class=tab vAlign=top>Geez</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>12</TD>
+          <TD class=tab vAlign=top>Oriya</TD>
+          <TD class=tab vAlign=top>29</TD>
+          <TD class=tab vAlign=top>Slavic</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>13</TD>
+          <TD class=tab vAlign=top>Bengali</TD>
+          <TD class=tab vAlign=top>30</TD>
+          <TD class=tab vAlign=top>Vietnamese</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>14</TD>
+          <TD class=tab vAlign=top>Tamil</TD>
+          <TD class=tab vAlign=top>31</TD>
+          <TD class=tab vAlign=top>Sindhi</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>15</TD>
+          <TD class=tab vAlign=top>Telugu</TD>
+          <TD class=tab vAlign=top>32</TD>
+          <TD class=tab vAlign=top>Uninterpreted</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>16</TD>
+          <TD class=tab vAlign=top>Kannada</TD>
+          <TD class=tab vAlign=top>&nbsp;</TD>
+          <TD class=tab vAlign=top>&nbsp;</TD></TR></TBODY></TABLE>
+      <P><BR><a name="lang1"><B>Macintosh language IDs (platform ID = 1)</B></a> 
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="20%">Code</TD>
+          <TD bgColor=#c0c0c0 class=tab width="30%">Language</TD>
+          <TD bgColor=#c0c0c0 class=tab width="20%">Code</TD>
+          <TD bgColor=#c0c0c0 class=tab width="30%">Language</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>0</TD>
+          <TD class=tab vAlign=top>English</TD>
+          <TD class=tab vAlign=top>59</TD>
+          <TD class=tab vAlign=top>Pashto</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>1</TD>
+          <TD class=tab vAlign=top>French</TD>
+          <TD class=tab vAlign=top>60</TD>
+          <TD class=tab vAlign=top>Kurdish</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>2</TD>
+          <TD class=tab vAlign=top>German</TD>
+          <TD class=tab vAlign=top>61</TD>
+          <TD class=tab vAlign=top>Kashmiri</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>Italian</TD>
+          <TD class=tab vAlign=top>62</TD>
+          <TD class=tab vAlign=top>Sindhi</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>4</TD>
+          <TD class=tab vAlign=top>Dutch</TD>
+          <TD class=tab vAlign=top>63</TD>
+          <TD class=tab vAlign=top>Tibetan</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>5</TD>
+          <TD class=tab vAlign=top>Swedish</TD>
+          <TD class=tab vAlign=top>64</TD>
+          <TD class=tab vAlign=top>Nepali</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>6</TD>
+          <TD class=tab vAlign=top>Spanish</TD>
+          <TD class=tab vAlign=top>65</TD>
+          <TD class=tab vAlign=top>Sanskrit</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>7</TD>
+          <TD class=tab vAlign=top>Danish</TD>
+          <TD class=tab vAlign=top>66</TD>
+          <TD class=tab vAlign=top>Marathi</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>8</TD>
+          <TD class=tab vAlign=top>Portuguese</TD>
+          <TD class=tab vAlign=top>67</TD>
+          <TD class=tab vAlign=top>Bengali</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>9</TD>
+          <TD class=tab vAlign=top>Norwegian</TD>
+          <TD class=tab vAlign=top>68</TD>
+          <TD class=tab vAlign=top>Assamese</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>10</TD>
+          <TD class=tab vAlign=top>Hebrew</TD>
+          <TD class=tab vAlign=top>69</TD>
+          <TD class=tab vAlign=top>Gujarati</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>11</TD>
+          <TD class=tab vAlign=top>Japanese</TD>
+          <TD class=tab vAlign=top>70</TD>
+          <TD class=tab vAlign=top>Punjabi</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>12</TD>
+          <TD class=tab vAlign=top>Arabic</TD>
+          <TD class=tab vAlign=top>71</TD>
+          <TD class=tab vAlign=top>Oriya</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>13</TD>
+          <TD class=tab vAlign=top>Finnish</TD>
+          <TD class=tab vAlign=top>72</TD>
+          <TD class=tab vAlign=top>Malayalam</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>14</TD>
+          <TD class=tab vAlign=top>Greek</TD>
+          <TD class=tab vAlign=top>73</TD>
+          <TD class=tab vAlign=top>Kannada</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>15</TD>
+          <TD class=tab vAlign=top>Icelandic</TD>
+          <TD class=tab vAlign=top>74</TD>
+          <TD class=tab vAlign=top>Tamil</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>16</TD>
+          <TD class=tab vAlign=top>Maltese</TD>
+          <TD class=tab vAlign=top>75</TD>
+          <TD class=tab vAlign=top>Telugu</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>17</TD>
+          <TD class=tab vAlign=top>Turkish</TD>
+          <TD class=tab vAlign=top>76</TD>
+          <TD class=tab vAlign=top>Sinhalese</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>18</TD>
+          <TD class=tab vAlign=top>Croatian</TD>
+          <TD class=tab vAlign=top>77</TD>
+          <TD class=tab vAlign=top>Burmese</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>19</TD>
+          <TD class=tab vAlign=top>Chinese (Traditional)</TD>
+          <TD class=tab vAlign=top>78</TD>
+          <TD class=tab vAlign=top>Khmer</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>20</TD>
+          <TD class=tab vAlign=top>Urdu</TD>
+          <TD class=tab vAlign=top>79</TD>
+          <TD class=tab vAlign=top>Lao</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>21</TD>
+          <TD class=tab vAlign=top>Hindi</TD>
+          <TD class=tab vAlign=top>80</TD>
+          <TD class=tab vAlign=top>Vietnamese</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>22</TD>
+          <TD class=tab vAlign=top>Thai</TD>
+          <TD class=tab vAlign=top>81</TD>
+          <TD class=tab vAlign=top>Indonesian</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>23</TD>
+          <TD class=tab vAlign=top>Korean</TD>
+          <TD class=tab vAlign=top>82</TD>
+          <TD class=tab vAlign=top>Tagalong</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>24</TD>
+          <TD class=tab vAlign=top>Lithuanian</TD>
+          <TD class=tab vAlign=top>83</TD>
+          <TD class=tab vAlign=top>Malay (Roman 
+            script)</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>25</TD>
+          <TD class=tab vAlign=top>Polish</TD>
+          <TD class=tab vAlign=top>84</TD>
+          <TD class=tab vAlign=top>Malay (Arabic 
+            script)</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>26</TD>
+          <TD class=tab vAlign=top>Hungarian</TD>
+          <TD class=tab vAlign=top>85</TD>
+          <TD class=tab vAlign=top>Amharic</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>27</TD>
+          <TD class=tab vAlign=top>Estonian</TD>
+          <TD class=tab vAlign=top>86</TD>
+          <TD class=tab vAlign=top>Tigrinya</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>28</TD>
+          <TD class=tab vAlign=top>Latvian</TD>
+          <TD class=tab vAlign=top>87</TD>
+          <TD class=tab vAlign=top>Galla</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>29</TD>
+          <TD class=tab vAlign=top>Sami</TD>
+          <TD class=tab vAlign=top>88</TD>
+          <TD class=tab vAlign=top>Somali</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>30</TD>
+          <TD class=tab vAlign=top>Faroese</TD>
+          <TD class=tab vAlign=top>89</TD>
+          <TD class=tab vAlign=top>Swahili</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>31</TD>
+          <TD class=tab vAlign=top>Farsi/Persian</TD>
+          <TD class=tab vAlign=top>90</TD>
+          <TD class=tab vAlign=top>Kinyarwanda/Ruanda</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>32</TD>
+          <TD class=tab vAlign=top>Russian</TD>
+          <TD class=tab vAlign=top>91</TD>
+          <TD class=tab vAlign=top>Rundi</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>33</TD>
+          <TD class=tab vAlign=top>Chinese (Simplified)</TD>
+          <TD class=tab vAlign=top>92</TD>
+          <TD class=tab vAlign=top>Nyanja/Chewa</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>34</TD>
+          <TD class=tab vAlign=top>Flemish</TD>
+          <TD class=tab vAlign=top>93</TD>
+          <TD class=tab vAlign=top>Malagasy</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>35</TD>
+          <TD class=tab vAlign=top>Irish 
+            Gaelic</TD>
+          <TD class=tab vAlign=top>94</TD>
+          <TD class=tab vAlign=top>Esperanto</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>36</TD>
+          <TD class=tab vAlign=top>Albanian</TD>
+          <TD class=tab vAlign=top>128</TD>
+          <TD class=tab vAlign=top>Welsh</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>37</TD>
+          <TD class=tab vAlign=top>Romanian</TD>
+          <TD class=tab vAlign=top>129</TD>
+          <TD class=tab vAlign=top>Basque</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>38</TD>
+          <TD class=tab vAlign=top>Czech</TD>
+          <TD class=tab vAlign=top>130</TD>
+          <TD class=tab vAlign=top>Catalan</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>39</TD>
+          <TD class=tab vAlign=top>Slovak</TD>
+          <TD class=tab vAlign=top>131</TD>
+          <TD class=tab vAlign=top>Latin</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>40</TD>
+          <TD class=tab vAlign=top>Slovenian</TD>
+          <TD class=tab vAlign=top>132</TD>
+          <TD class=tab vAlign=top>Quenchua</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>41</TD>
+          <TD class=tab vAlign=top>Yiddish</TD>
+          <TD class=tab vAlign=top>133</TD>
+          <TD class=tab vAlign=top>Guarani</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>42</TD>
+          <TD class=tab vAlign=top>Serbian</TD>
+          <TD class=tab vAlign=top>134</TD>
+          <TD class=tab vAlign=top>Aymara</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>43</TD>
+          <TD class=tab vAlign=top>Macedonian</TD>
+          <TD class=tab vAlign=top>135</TD>
+          <TD class=tab vAlign=top>Tatar</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>44</TD>
+          <TD class=tab vAlign=top>Bulgarian</TD>
+          <TD class=tab vAlign=top>136</TD>
+          <TD class=tab vAlign=top>Uighur</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>45</TD>
+          <TD class=tab vAlign=top>Ukrainian</TD>
+          <TD class=tab vAlign=top>137</TD>
+          <TD class=tab vAlign=top>Dzongkha</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>46</TD>
+          <TD class=tab vAlign=top>Byelorussian</TD>
+          <TD class=tab vAlign=top>138</TD>
+          <TD class=tab vAlign=top>Javanese (Roman script)</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>47</TD>
+          <TD class=tab vAlign=top>Uzbek</TD>
+          <TD class=tab vAlign=top>139</TD>
+          <TD class=tab vAlign=top>Sundanese (Roman script)</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>48</TD>
+          <TD class=tab vAlign=top>Kazakh</TD>
+          <TD class=tab vAlign=top>140</TD>
+          <TD class=tab vAlign=top>Galician</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>49</TD>
+          <TD class=tab vAlign=top>Azerbaijani (Cyrillic script)</TD>
+          <TD class=tab vAlign=top>141</TD>
+          <TD class=tab vAlign=top>Afrikaans</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>50</TD>
+          <TD class=tab vAlign=top>Azerbaijani (Arabic 
+            script)</TD>
+          <TD class=tab vAlign=top>142</TD>
+          <TD class=tab vAlign=top>Breton</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>51</TD>
+          <TD class=tab vAlign=top>Armenian</TD>
+          <TD class=tab vAlign=top>14</TD>
+          <TD class=tab vAlign=top>Inuktitut</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>52</TD>
+          <TD class=tab vAlign=top>Georgian</TD>
+          <TD class=tab vAlign=top>144</TD>
+          <TD class=tab vAlign=top>Scottish Gaelic</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>53</TD>
+          <TD class=tab vAlign=top>Moldavian</TD>
+          <TD class=tab vAlign=top>145</TD>
+          <TD class=tab vAlign=top>Manx Gaelic</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>54</TD>
+          <TD class=tab vAlign=top>Kirghiz</TD>
+          <TD class=tab vAlign=top>146</TD>
+          <TD class=tab vAlign=top>Irish Gaelic (with dot above)</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>55</TD>
+          <TD class=tab vAlign=top>Tajiki</TD>
+          <TD class=tab vAlign=top>147</TD>
+          <TD class=tab vAlign=top>Tongan</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>56</TD>
+          <TD class=tab vAlign=top>Turkmen</TD>
+          <TD class=tab vAlign=top>148</TD>
+          <TD class=tab vAlign=top>Greek (polytonic)</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>57</TD>
+          <TD class=tab vAlign=top>Mongolian (Mongolian 
+            script)</TD>
+          <TD class=tab vAlign=top>149</TD>
+          <TD class=tab vAlign=top>Greenlandic</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>58</TD>
+          <TD class=tab vAlign=top>Mongolian (Cyrillic script)</TD>
+          <TD class=tab vAlign=top>150</TD>
+          <TD class=tab vAlign=top>Azerbaijani (Roman script)</TD></TR>
+        <TR></TR></TBODY></TABLE>
+
+      <P><BR><B><A name=ENC2>ISO specific encodings (platform ID=2) [Deprecated]</A></B>
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="20%">Code</TD>
+          <TD bgColor=#c0c0c0 class=tab width="80%">ISO encoding</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>0</TD>
+          <TD class=tab vAlign=top>7-bit ASCII</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>1</TD>
+          <TD class=tab vAlign=top>ISO 
+          10646</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>2</TD>
+          <TD class=tab vAlign=top>ISO 
+          8859-1</TD></TR></TBODY></TABLE>
+      <P>There are no ISO-specific language 
+      IDs. 
+      <P><A name=enc4><B>Custom platform-specific encoding 
+      IDs (platform ID = 4)</B></A> 
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="20%">ID</TD>
+          <TD bgColor=#c0c0c0 class=tab width="80%">Custom encoding</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>0-255</TD>
+          <TD class=tab vAlign=top>OTF Windows NT 
+            compatibility mapping</TD></TR></TBODY></TABLE>
+      <P>In cases where a custom platform cmap is present for OTF Windows NT 
+      compatibility, the encoding ID must be set to the Windows charset value 
+      (in the range 0 to 255, inclusive) present in the .PFM file of the 
+      original Type 1 font. See the 'cmap' table for more details on the <A 
+      href="cmap.htm#cust">OTF Windows NT compatibility cmap</A>.
+      <P>There are currently no language IDs defined for the Custom platform. 
+      This means that it can be used for encodings in the 'cmap' table but not 
+      for strings in the 'name' table. 
+      <P><BR><B>Name IDs</B> 
+      <P>The following name IDs are pre-defined, and they apply to all platforms 
+      unless indicated otherwise. Name IDs 21 to 255, inclusive, are reserved 
+      for future standard names. Name IDs 256 to 32767, inclusive, are reserved 
+      for font-specific names such as those referenced by a font's layout 
+      features. 
+      <P>
+      <TABLE bgColor=#f0f0f0 width=460>
+        <TBODY>
+        <TR>
+          <TD bgColor=#c0c0c0 class=tab width="10%">Code</TD>
+          <TD bgColor=#c0c0c0 class=tab width="90%">Meaning</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>0</TD>
+          <TD class=tab vAlign=top>Copyright notice.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>1</TD>
+          <TD class=tab vAlign=top>Font Family name. Up to four fonts can share the Font Family name, forming a font style linking group (regular, italic, bold, bold italic - as defined by OS/2.fsSelection bit settings).</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>2</TD>
+          <TD class=tab vAlign=top>Font Subfamily name. The Font Subfamily name distiguishes the font in a group with the same Font Family name (name ID 1). This is assumed to address style (italic, oblique) and 
+            weight (light, bold, black, etc.). A font with no 
+            particular differences in weight or style (e.g. medium weight, not 
+            italic and fsSelection bit 6 set) should have the string "Regular" 
+            stored in this position.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>3</TD>
+          <TD class=tab vAlign=top>Unique font identifier</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>4</TD>
+          <TD class=tab vAlign=top>Full font name; this should be a 
+            combination of strings 1 and 2. Exception: if the font is "Regular" 
+            as indicated in string 2, then use only the family name contained in 
+            string 1. <BR>  An exception to the above definition of Full font name is for
+    Microsoft platform strings for CFF OpenType fonts: in this case, the
+    Full font name string must be identical to the PostScript FontName in the CFF Name INDEX.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>5</TD>
+          <TD class=tab vAlign=top>Version string. Should begin with the syntax 
+            'Version &lt;number&gt;.&lt;number&gt;' (upper case, lower case, or mixed, with a space 
+            between "Version" and the number). <BR> 
+The string must contain a version 
+            number of the following form: one or more digits (0-9) of value less than 65,535, followed by a 
+            period, followed by one or more digits of value less than 65,535. Any character other than a digit will terminate the minor number. A character such as ";" is helpful to separate different pieces of version information. <BR>The first such match in the 
+            string can be used by installation software to compare font 
+            versions. Note that some installers may require the string to 
+            start with "Version ", followed by a version number as above. 
+          </TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>6</TD>
+          <TD class=tab vAlign=top>Postscript name for the font; Name ID 6 specifies a string which is used to invoke a 
+            PostScript language font that corresponds to this OpenType font. If 
+            no name ID 6 is present, then there is no defined method for 
+            invoking this font on a PostScript interpreter.<BR>OpenType fonts 
+            which include a name with name ID of 6 shall include these two names 
+            with name ID 6, and characteristics as follows:<BR>
+            <OL type=a>
+              <LI>Platform: 1 [Macintosh]; Platform-specific encoding: 0 
+              [Roman]; Language: 0 [English]. 
+              <LI>Platform: 3 [Microsoft]; Platform-specific encoding: 1 
+              [Unicode]; Language: 0x409 [English (American)]. </LI></OL>Names 
+            with name ID 6 other than the above two, if present, must be 
+            ignored.<BR><BR>When translated to ASCII, these two name strings 
+            must be identical; no longer than 63 characters; and restricted to 
+            the printable ASCII subset, codes 33 through 126, except for the 10 
+            characters: '[', ']', '(', ')', '{', '}', '&lt;', '&gt;', '/', 
+            '%'.<BR><BR>In CFF OpenType fonts, these two name strings, when 
+            translated to ASCII, must also be identical to the font name as 
+            stored in the CFF's Name INDEX.<BR><BR>The term "PostScript Name" 
+            here means a string identical to the two identical name ID 6 strings 
+            described above.<BR><BR>Depending on the particular font format that 
+            PostScript language font uses, the invocation method for the 
+            PostScript font differs, and the semantics of the resulting 
+            PostScript language font differ. The method used to invoke this font 
+            depends on the presence of name ID 20.<BR><BR>If a name ID 20 is 
+            present in this font, then the default assumption should be that the 
+            PostScript Name defined by name ID 6 should be used with the 
+            "composefont" invocation. This PostScript Name is then the name of a 
+            PostScript language CIDFont resource which corresponds to the glyphs 
+            of the OpenType font. This name is valid to pass, with an 
+            appropriate PostScript language CMap reference, and an instance 
+            name, to the PostScript language "composefont" operator.<BR><BR>If 
+            no name ID 20 is present in this font, then the default assumption 
+            should be that the PostScript Name defined by name ID 6 should be 
+            used with the "findfont" invocation, for locating the font in the 
+            context of a PostScript interpreter. This PostScript Name is then 
+            the name of a PostScript language Font resource which corresponds to 
+            the glyphs of the OpenType font. This name is valid to pass to the 
+            PostScript language "findfont" operator. Note that this does 
+            <I>not</I> necessarily imply that the resulting font dictionary 
+            accepts an /Encoding array, such as when the font referenced is a 
+            Type 0 PostScript font.<BR><BR>Note that this specification applies 
+            only to data fork OpenType fonts. Macintosh resource-fork TrueType 
+            and other Macintosh sfnt-wrapped fonts supply the PostScript font 
+            name to be used with the "findfont" invocation, in order to invoke 
+            the font in a PostScript interpreter, in the FOND resource 
+            style-mapping table.<BR><BR>Developers may choose to ignore the 
+            default usage when appropriate. For example, PostScript printers 
+            whose version is earlier than 2015 cannot process CID font 
+            resources, and a CJK OpenType/CFF-CID font can be downloaded only as 
+            a set of Type 1 PostScript fonts. Legacy CJK TrueType fonts, which 
+            do not have a name ID 20, may still be most effectively downloaded 
+            as a CID font resource. Definition of the full set of situations in 
+            which the defaults should not be followed is outside the scope of 
+            this document.<BR></TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>7</TD>
+          <TD class=tab vAlign=top>Trademark; this is used to save any 
+            trademark notice/information for this font. Such information should 
+            be based on legal advice. This is <I>distinctly</I> separate from 
+            the copyright. </TD>
+        <TR>
+          <TD class=tab vAlign=top>8</TD>
+          <TD class=tab vAlign=top>Manufacturer Name.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>9</TD>
+          <TD class=tab vAlign=top>Designer; name of the designer of the 
+            typeface.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>10</TD>
+          <TD class=tab vAlign=top>Description; description of the typeface. 
+            Can contain revision information, usage recommendations, history, 
+            features, etc.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>11</TD>
+          <TD class=tab vAlign=top>URL Vendor; URL of font vendor (with 
+            protocol, e.g., http://, ftp://). If a unique serial number is 
+            embedded in the URL, it can be used to register the font.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>12</TD>
+          <TD class=tab vAlign=top>URL Designer; URL of typeface designer 
+            (with protocol, e.g., http://, ftp://).</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>13</TD>
+          <TD class=tab vAlign=top>License Description; description of how the 
+            font may be legally used, or different example scenarios for 
+            licensed use. This field should be written in plain language, not 
+            legalese.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>14</TD>
+          <TD class=tab vAlign=top>License Info URL; URL where additional 
+            licensing information can be found.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>15</TD>
+          <TD class=tab vAlign=top>Reserved; Set to zero.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>16</TD>
+          <TD class=tab vAlign=top>Preferred Family; For
+            historical reasons, font families have contained a maximum of four styles, but 
+            font designers may group more than four fonts to a single family. 
+            The Preferred Family  allows font designers to include the preferred family grouping which contains
+            more than four fonts. This ID is only present if it is different from ID 1.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>17</TD>
+          <TD class=tab vAlign=top>
+            Preferred Subfamily; Allows font designers to include the preferred subfamily grouping that is
+            more descriptive than ID 2. This ID is only present if it is different from ID 2 and must be
+            unique for the the Preferred Family.</TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>18</TD>
+          <TD class=tab vAlign=top>Compatible Full (Macintosh only); On the 
+            Macintosh, the menu name is constructed using the FOND resource. 
+            This usually matches the Full Name. If you want the name of the font 
+            to appear differently than the Full Name, you can insert the 
+            Compatible Full Name in ID 18. </TD></TR>
+        <TR>
+          <TD class=tab vAlign=top>19</TD>
+          <TD class=tab vAlign=top>Sample text; This can 
+            be the font name, or any other text that the designer thinks is the 
+            best sample to display the font in.
+        <TR>
+          <TD class=tab vAlign=top>20</TD>
+          <TD class=tab vAlign=top>PostScript CID findfont 
+            name; Its presence in a font means that the nameID 6 holds a 
+            PostScript font name that is meant to be used with the "composefont" 
+            invocation in order to invoke the font in a PostScript interpreter. 
+            See the definition of name ID 6.<BR><BR>The value held in the name 
+            ID 20 string is interpreted as a PostScript font name that is meant 
+            to be used with the "findfont" invocation, in order to invoke the 
+            font in a PostScript interpreter.<BR><BR>If the name ID 20 is 
+            present in a font, there must be one name ID 20 record for every 
+            Macintosh platform cmap subtable in that font. A particular name ID 
+            20 record is associated with the encoding specified by the matching 
+            cmap subtable. A name ID 20 record is matched to a cmap subtable 
+            when they have the same platform and platform-specific encoding IDs, 
+            and corresponding language/version IDs. Name ID 20 records are meant 
+            to be used only with Macintosh cmap subtables. The version field for 
+            a cmap subtable is one more than the language ID value for the 
+            corresponding name ID 20 record, with the exception of the cmap 
+            subtable version field 0. This version field, meaning "not 
+            language-specific", corresponds to the language ID value 0xFFFF, or 
+            decimal 65535, for the corresponding name ID 20 record.<BR><BR>When 
+            translated to ASCII, this name string must be restricted to the 
+            printable ASCII subset, codes 33 through 126, except for the 10 
+            characters: '[', ']', '(', ')', '{', '}', '&lt;', '&gt;', '/', 
+            '%'.<BR><BR>Note that this specification applies only to data fork 
+            OpenType fonts. Macintosh resource-fork TrueType and other Macintosh 
+            sfnt-wrapped fonts supply the PostScript font name to be used with 
+            the "findfont" invocation, in order to invoke the font in a 
+            PostScript interpreter, in the FOND resource style-mapping 
+            table.<BR><BR>Note that a particular Name ID 20 string always 
+            corresponds to a particular Macintosh cmap subtable. However, some 
+            host OpenType/TTF fonts also contain a post table, format 4, which 
+            provides a mapping from glyph ID to encoding value, and also 
+            corresponds to a particular Macintosh cmap subtable. Unfortunately, 
+            the post table format 4 contains no provision for identifying which 
+            Macintosh cmap subtable it matches, nor for providing more than one 
+            mapping. Host fonts which contain a post table format 4, should also 
+            contain only a single Macintosh cmap subtable, and a single Name ID 
+            20 string. In the case where there is more than one Macintosh cmap 
+            subtable and more than one Name ID 20 string, there is no definition 
+            of which one matches the post table format 4.
+      <BR><BR></TD></TR></TBODY></TABLE>
+      <P>Note that while both Apple and Microsoft support the same set of name 
+      strings, the interpretations may be somewhat different. But since name 
+      strings are stored by platform, encoding and language (placing separate 
+      strings for both Apple and MS platforms), this should not present a 
+      problem. 
+      <P>The key information for this table for MS fonts relates to the use of 
+      strings 1, 2 and 4. To better help understand, some <A href="namesmp.htm">examples of name usage, weight class and style flags have been created.</A>
+      <P>Note that OS/2 and Windows both require that all name strings be 
+      defined in Unicode. Thus all 'name' table strings for platform ID = 3 
+      (Microsoft) will require two bytes per character. Macintosh fonts require 
+      single byte strings. 
+      <P>Examples of how these strings might be defined: 
+      <P>0. The copyright string from the font vendor. <I>© Copyright the 
+      Monotype Corporation plc, 1990</I>
+      <P>1. The name the user sees. <I>Times New Roman</I>
+      <P>2. The name of the style. <I>Bold</I>
+      <P>3. A unique identifier that applications can store to identify the font 
+      being used. <I>Monotype: Times New Roman Bold:1990</I>
+      <P>4. The complete, hopefully unique, human readable name of the font. 
+      This name is used by Windows. <I>Times New Roman Bold</I> 
+<BR> (If this were the Microsoft platform string for a CFF OpenType font,
+    then the value would be TimesNewRoman-Bold, as described in the
+    definition of name ID 4 above.)
+      <P>5. Release and version information from the font vendor. <I>Version 
+      1.00 June 1, 1990, initial release</I>
+      <P>6. The name the font will be known by on a PostScript printer. 
+      <I>TimesNewRoman-Bold</I>
+      <P>7. Trademark string. <I>Times New Roman is a registered trademark of 
+      the Monotype Corporation.</I>
+      <P>8. Manufacturer. <I>Monotype Corporation plc</I>
+      <P>9. Designer. <I>Stanley Morison</I>
+      <P>10. Description. <I>Designed in 1932 for the Times of London newspaper. 
+      Excellent readability and a narrow overall width, allowing more words per 
+      line than most fonts.</I>
+      <P>11. URL of Vendor. <I>http://www.monotype.com</I>
+      <P>12. URL of Designer. <I>http://www.monotype.com</I>
+      <P>13. License Description. <I>This font may be installed on all of your 
+      machines and printers, but you may not sell or give these fonts to anyone 
+      else.</I>
+      <P>14. License Info URL. <I>http://www.monotype.com/license/</I>
+      <P>15. Reserved. Set to zero.
+      <P>16. Preferred Family. No name string present, since it 
+      is the same as name ID 1 (Font Family name).
+      <P>17. Preferred Subfamily. No name string present, since 
+      it is the same as name ID 2 (Font Subfamily name).
+      <P>18. Compatible Full (Macintosh only). No name string present, since it 
+      is the same as name ID 4 (Full name). 
+      <P>19. Sample text. The quick brown fox jumps over the 
+      lazy dog. 
+      <P>20. PostScript CID findfont name. No name string present. Thus, the 
+      PostScript Name defined by name ID 6 should be used with the "findfont" 
+      invocation for locating the font in the context of a PostScript 
+      interpreter. 
+      <P>The following is an example of only name IDs 6 and 20 in the CFF 
+      OpenType Japanese font Kozuka Mincho Std Regular (other name IDs are also 
+      present in this font): <BR>6. PostScript name: <I>KozMinStd-Regular</I>. 
+      Since a name ID 20 is present in the font (see below), then the PostScript 
+      name defined by name ID 6 should be used with the "composefont" invocation 
+      for locating the font in the context of a PostScript interpreter. <BR>20. 
+      PostScript CID findfont name: <I>KozMinStd-Regular-83pv-RKSJ-H</I>, in a 
+      name record of Platform 1 [Macintosh], Platform-specific script 1 
+      [Japanese], Language: 0xFFFF [English]. This name string is a PostScript 
+      name that should be used with the "findfont" invocation for locating the 
+      font in the context of a PostScript interpreter, and is associated with 
+      the encoding specified by the following cmap subtable, which must be 
+      present in the font: Platform: 1 [Macintosh]; Platform-specific encoding: 
+      1 [Japanese]; Language: 0 [not language-specific]. 
+      <P>
+      <P><FONT face="Verdana, Arial, Helvetica" size=1>
+      <P class=detail><BR><BR>this page was last updated 14 October 2002<BR>© 
+      2001 Microsoft Corporation. All rights reserved. <A 
+      href="http://www.microsoft.com/Misc/cpyright.htm">Terms of 
+      use</A>.<BR>comments to the MST group: 
+     	<A HREF="/typography/about.htm">how to contact us</A>.
+      <P>&nbsp; </FONT></P></TD>
+    <TD width=20></TD></TR>
+  <TR>
+    <TD width=20></TD>
+    <TD colSpan=2 width=540></TD>
+    <TD width=20></TD></TR>
+  <TR>
+    <TD colSpan=4 height=10 width=580><IMG alt="" height=10 src="midrule.gif" 
+      width=580></TD></TR>
+  <TR>
+    <TD width=20></TD>
+    <TD colSpan=3 vAlign=top width=560><FONT class=detail 
+      face="Verdana, Arial, Helvetica" size=1><A 
+      href="http://www.microsoft.com/typography/default.asp">Microsoft 
+      Typography</A> | <A 
+      href="http://www.microsoft.com/typography/creators.htm">Developer...</A> | 
+      <A href="default.htm">OpenType specification</A> | <A 
+      href="otff.htm#otttables">OpenType tables</A> | The NAME table 
+  </FONT></TD></TR>
+  <TR>
+    <TD colSpan=4 height=20 width=580><IMG height=20 src="baserule.gif" 
+      width=580></TD></TR></TBODY></TABLE></CENTER></P></BODY></HTML>

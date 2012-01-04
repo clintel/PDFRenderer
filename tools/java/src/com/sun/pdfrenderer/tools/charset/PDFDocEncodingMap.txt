@@ -1,0 +1,1480 @@
+## Copied and pasted from the table in Appendix D of PDF Reference 1.7
+## Each mapping is expressed by a series of columns, which have been mapped
+## to single lines.
+## The columns are:
+##   Character representation
+##   Decimal value
+##   Hex Value
+##   Octal Value
+##   Unicode codepoint
+##   Unicode character name (optional)
+##   Notes (optional; U=undefined, SR=special representation in XML)
+##
+## The copy and paste mechanism skips empty columns, so each record varies from
+## between 5 and 7 lines. Some character representations are actually not
+## present in the PDF, but have been manually inserted with <Undefined> or
+## <Something>. Other minor corrections have been made so that unicode names
+## agree with those in UnicodeData.txt, and to correct obvious transcription
+## errors. These are recorded in comments, which are lines starting with two
+## hashes, like this message.
+^@
+0
+0x00
+0000
+U+0000
+(NULL)
+U
+^A
+1
+0x01
+0001
+U+0001
+(START OF HEADING)
+U
+^B
+2
+0x02
+0002
+U+0002
+(START OF TEXT)
+U
+^C
+3
+0x03
+0003
+U+0003
+(END OF TEXT)
+U
+^D
+4
+0x04
+0004
+U+0004
+## was (END OF TEXT)
+(END OF TRANSMISSION)
+U
+^E
+5
+0x05
+0005
+U+0005
+## was (END OF TRANSMISSION)
+(ENQUIRY)
+U
+^F
+6
+0x06
+0006
+U+0006
+(ACKNOWLEDGE)
+U
+^G
+7
+0x07
+0007
+U+0007
+(BELL)
+U
+^H
+8
+0x08
+0010
+U+0008
+(BACKSPACE)
+U
+^I
+9
+0x09
+0011
+U+0009
+(CHARACTER TABULATION)
+SR
+^J
+10
+0x0a
+0012
+U+000A
+## was (LINE FEED)
+(LINE FEED (LF))
+SR
+^K
+11
+0x0b
+0013
+U+000B
+(LINE TABULATION)
+U
+^L
+12
+0x0c
+0014
+U+000C
+## was (FORM FEED)
+(FORM FEED (FF))
+U
+^M
+13
+0x0d
+0015
+U+000D
+## was (CARRIAGE RETURN)
+(CARRIAGE RETURN (CR))
+SR
+^N
+14
+0x0e
+0016
+U+000E
+(SHIFT OUT)
+U
+^O
+15
+0x0f
+0017
+U+000F
+(SHIFT IN)
+U
+^P
+16
+0x10
+0020
+U+0010
+(DATA LINK ESCAPE)
+U
+^Q
+17
+0x11
+0021
+U+0011
+(DEVICE CONTROL ONE)
+U
+^R
+18
+0x12
+0022
+U+0012
+(DEVICE CONTROL TWO)
+U
+^S
+19
+0x13
+0023
+U+0013
+(DEVICE CONTROL THREE)
+U
+^T
+20
+0x14
+0024
+U+0014
+(DEVICE CONTROL FOUR)
+U
+^U
+21
+0x15
+0025
+U+0015
+(NEGATIVE ACKNOWLEDGE)
+U
+^V
+22
+0x16
+0026
+## was U+0017, which is mapped below; its identity mapping to U+0016
+## agrees (mostly!) with the unicode name
+U+0016
+## was (SYNCRONOUS IDLE)
+(SYNCHRONOUS IDLE)
+U
+^W
+23
+0x17
+0027
+U+0017
+(END OF TRANSMISSION BLOCK)
+U
+u
+24
+0x18
+0030
+U+02D8
+BREVE
+v
+25
+0x19
+0031
+U+02C7
+CARON
+^
+26
+0x1a
+0032
+U+02C6
+MODIFIER LETTER CIRCUMFLEX ACCENT
+Â·
+27
+0x1b
+0033
+U+02D9
+DOT ABOVE
+â
+28
+0x1c
+0034
+U+02DD
+DOUBLE ACUTE ACCENT
+,
+29
+0x1d
+0035
+U+02DB
+OGONEK
+Â°
+30
+0x1e
+0036
+U+02DA
+RING ABOVE
+~
+31
+0x1f
+0037
+U+02DC
+SMALL TILDE
+## inserted line for space
+ 
+32
+0x20
+0040
+U+0020
+SPACE (&#32;)
+!
+33
+0x21
+0041
+U+0021
+EXCLAMATION MARK
+SR
+"
+34
+0x22
+0042
+U+0022
+QUOTATION MARK (&quot;)
+SR
+#
+35
+0x23
+0043
+U+0023
+NUMBER SIGN
+$
+36
+0x24
+0044
+U+0024
+DOLLAR SIGN
+%
+37
+0x25
+0045
+U+0025
+PERCENT SIGN
+&
+38
+0x26
+0046
+U+0026
+AMPERSAND (&amp;)
+'
+39
+0x27
+0047
+U+0027
+APOSTROPHE (&apos;)
+(
+40
+0x28
+0050
+U+0028
+LEFT PARENTHESIS
+)
+41
+0x29
+0051
+U+0029
+RIGHT PARENTHESIS
+*
+42
+0x2a
+0052
+U+002A
+ASTERISK
++
+43
+0x2b
+0053
+U+002B
+PLUS SIGN
+,
+44
+0x2c
+0054
+U+002C
+COMMA
+-
+45
+0x2d
+0055
+U+002D
+HYPHEN-MINUS
+.
+46
+0x2e
+0056
+U+002E
+FULL STOP (period)
+/
+47
+0x2f
+0057
+U+002F
+SOLIDUS (slash)
+0
+48
+0x30
+0060
+U+0030
+DIGIT ZERO
+1
+49
+0x31
+0061
+U+0031
+DIGIT ONE
+2
+50
+0x32
+0062
+U+0032
+DIGIT TWO
+3
+51
+0x33
+0063
+U+0033
+DIGIT THREE
+4
+52
+0x34
+0064
+U+0034
+DIGIT FOUR
+5
+53
+0x35
+0065
+U+0035
+DIGIT FIVE
+6
+54
+0x36
+0066
+U+0036
+DIGIT SIX
+7
+55
+0x37
+0067
+U+0037
+DIGIT SEVEN
+8
+56
+0x38
+0070
+U+0038
+DIGIT EIGHT
+9
+57
+0x39
+0071
+U+0039
+DIGIT NINE
+:
+58
+0x3a
+0072
+U+003A
+COLON
+;
+59
+0x3b
+0073
+U+003B
+SEMICOLON
+<
+60
+0x3c
+0074
+U+003C
+## was LESS THAN SIGN (&lt;)
+LESS-THAN SIGN (&lt;)
+SR
+=
+61
+0x3d
+0075
+U+003D
+EQUALS SIGN
+>
+62
+0x3e
+0076
+U+003E
+## was GREATER THAN SIGN (&gt;)
+GREATER-THAN SIGN (&gt;)
+?
+63
+0x3f
+0077
+U+003F
+QUESTION MARK
+@
+64
+0x40
+0100
+U+0040
+COMMERCIAL AT
+A
+65
+0x41
+0101
+U+0041
+B
+66
+0x42
+0102
+U+0042
+C
+67
+0x43
+0103
+U+0043
+D
+68
+0x44
+0104
+U+0044
+E
+69
+0x45
+0105
+U+0045
+F
+70
+0x46
+0106
+U+0046
+G
+71
+0x47
+0107
+U+0047
+H
+72
+0x48
+0110
+U+0048
+I
+73
+0x49
+0111
+U+0049
+J
+74
+0x4a
+0112
+U+004A
+K
+75
+0x4b
+0113
+U+004B
+L
+76
+0x4c
+0114
+U+004C
+M
+77
+0x4d
+0115
+U+004D
+N
+78
+0x4e
+0116
+U+004E
+O
+79
+0x4f
+0117
+U+004F
+P
+80
+0x50
+0120
+U+0050
+Q
+81
+0x51
+0121
+U+0051
+R
+82
+0x52
+0122
+U+0052
+S
+83
+0x53
+0123
+U+0053
+T
+84
+0x54
+0124
+U+0054
+U
+85
+0x55
+0125
+U+0055
+V
+86
+0x56
+0126
+U+0056
+W
+87
+0x57
+0127
+U+0057
+X
+88
+0x58
+0130
+U+0058
+Y
+89
+0x59
+0131
+U+0059
+Z
+90
+0x5a
+0132
+U+005A
+[
+91
+0x5b
+0133
+U+005B
+LEFT SQUARE BRACKET
+\
+92
+0x5c
+0134
+U+005C
+REVERSE SOLIDUS (backslash)
+]
+93
+0x5d
+0135
+U+005D
+RIGHT SQUARE BRACKET
+^
+94
+0x5e
+0136
+U+005E
+CIRCUMFLEX ACCENT (hat)
+_
+95
+0x5f
+0137
+U+005F
+LOW LINE (SPACING UNDERSCORE)
+`
+96
+0x60
+0140
+U+0060
+GRAVE ACCENT
+a
+97
+0x61
+0141
+U+0061
+b
+98
+0x62
+0142
+U+0062
+c
+99
+0x63
+0143
+U+0063
+d
+100
+0x64
+0144
+U+0064
+e
+101
+0x65
+0145
+U+0065
+f
+102
+0x66
+0146
+U+0066
+g
+103
+0x67
+0147
+U+0067
+h
+104
+0x68
+0150
+U+0068
+i
+105
+0x69
+0151
+U+0069
+j
+106
+0x6a
+0152
+U+006A
+k
+107
+0x6b
+0153
+U+006B
+l
+108
+0x6c
+0154
+U+006C
+m
+109
+0x6d
+0155
+U+006D
+n
+110
+0x6e
+0156
+U+006E
+o
+111
+0x6f
+0157
+U+006F
+p
+112
+0x70
+0160
+U+0070
+q
+113
+0x71
+0161
+U+0071
+r
+114
+0x72
+0162
+U+0072
+s
+115
+0x73
+0163
+U+0073
+t
+116
+0x74
+0164
+U+0074
+u
+117
+0x75
+0165
+U+0075
+v
+118
+0x76
+0166
+U+0076
+w
+119
+0x77
+0167
+U+0077
+x
+120
+0x78
+0170
+U+0078
+y
+121
+0x79
+0171
+U+0079
+z
+122
+0x7a
+0172
+U+007A
+{
+123
+0x7b
+0173
+U+007B
+LEFT CURLY BRACKET
+|
+124
+0x7c
+0174
+U+007C
+VERTICAL LINE
+}
+125
+0x7d
+0175
+U+007D
+RIGHT CURLY BRACKET
+~
+126
+0x7e
+0176
+U+007E
+TILDE
+<Undefined>
+127
+0x7f
+0177
+Undefined
+U
+â¢
+128
+0x80
+0200
+U+2022
+BULLET
+â 
+129
+0x81
+0201
+U+2020
+DAGGER
+â¡
+130
+0x82
+0202
+U+2021
+DOUBLE DAGGER
+â¦
+131
+0x83
+0203
+U+2026
+HORIZONTAL ELLIPSIS
+â
+132
+0x84
+0204
+U+2014
+EM DASH
+â
+133
+0x85
+0205
+U+2013
+EN DASH
+Æ
+134
+0x86
+0206
+U+0192
+## was not present; added to avoid our check of unnamed chars 
+LATIN SMALL LETTER F WITH HOOK
+<solidus>
+135
+0x87
+0207
+U+2044
+FRACTION SLASH (solidus)
+â¹
+136
+0x88
+0210
+U+2039
+SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+âº
+137
+0x89
+0211
+U+203A
+SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+## was Å  in PDF Reference; weird font encoding? Minus sign seems correct given unicode and surrounding chars
+â
+138
+0x8a
+0212
+U+2212
+## name not identified in PDF reference
+MINUS SIGN
+â°
+139
+0x8b
+0213
+U+2030
+PER MILLE SIGN
+â
+140
+0x8c
+0214
+U+201E
+DOUBLE LOW-9 QUOTATION MARK (quotedblbase)
+â
+141
+0x8d
+0215
+U+201C
+LEFT DOUBLE QUOTATION MARK (double quote left)
+â
+142
+0x8e
+0216
+U+201D
+RIGHT DOUBLE QUOTATION MARK (quotedblright)
+â
+143
+0x8f
+0217
+U+2018
+LEFT SINGLE QUOTATION MARK (quoteleft)
+â
+144
+0x90
+0220
+U+2019
+RIGHT SINGLE QUOTATION MARK (quoteright)
+â
+145
+0x91
+0221
+U+201A
+SINGLE LOW-9 QUOTATION MARK (quotesinglbase)
+â¢
+146
+0x92
+0222
+U+2122
+TRADE MARK SIGN
+fi
+147
+0x93
+0223
+U+FB01
+LATIN SMALL LIGATURE FI
+fl
+148
+0x94
+0224
+U+FB02
+LATIN SMALL LIGATURE FL
+<StrokedL>
+149
+0x95
+0225
+U+0141
+LATIN CAPITAL LETTER L WITH STROKE
+OE
+150
+0x96
+0226
+U+0152
+LATIN CAPITAL LIGATURE OE
+Å 
+151
+0x97
+0227
+U+0160
+LATIN CAPITAL LETTER S WITH CARON
+Å¸
+152
+0x98
+0230
+U+0178
+LATIN CAPITAL LETTER Y WITH DIAERESIS
+Z hat
+153
+0x99
+0231
+U+017D
+LATIN CAPITAL LETTER Z WITH CARON
+i
+154
+0x9a
+0232
+U+0131
+LATIN SMALL LETTER DOTLESS I
+l/
+155
+0x9b
+0233
+U+0142
+LATIN SMALL LETTER L WITH STROKE
+oe
+156
+0x9c
+0234
+U+0153
+LATIN SMALL LIGATURE OE
+Å¡
+157
+0x9d
+0235
+U+0161
+LATIN SMALL LETTER S WITH CARON
+Å¾
+158
+0x9e
+0236
+U+017E
+LATIN SMALL LETTER Z WITH CARON
+<Undefined>
+159
+0x9f
+0237
+Undefined
+U
+â¬
+160
+0xa0
+0240
+U+20AC
+EURO SIGN
+Â¡
+161
+0xa1
+0241
+U+00A1
+INVERTED EXCLAMATION MARK
+Â¢
+162
+0xa2
+0242
+U+00A2
+CENT SIGN
+Â£
+163
+0xa3
+0243
+U+00A3
+POUND SIGN (sterling)
+Â¤
+164
+0xa4
+0244
+U+00A4
+CURRENCY SIGN
+Â¥
+165
+0xa5
+0245
+U+00A5
+YEN SIGN
+Â¦
+166
+0xa6
+0246
+U+00A6
+BROKEN BAR
+Â§
+167
+0xa7
+0247
+U+00A7
+SECTION SIGN
+Â¨
+168
+0xa8
+0250
+U+00A8
+DIAERESIS
+Â©
+169
+0xa9
+0251
+U+00A9
+COPYRIGHT SIGN
+Âª
+170
+0xaa
+0252
+U+00AA
+FEMININE ORDINAL INDICATOR
+Â«
+171
+0xab
+0253
+U+00AB
+LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+Â¬
+172
+0xac
+0254
+U+00AC
+NOT SIGN
+<Undefined>
+173
+0xad
+0255
+Undefined
+U
+Â®
+174
+0xae
+0256
+U+00AE
+REGISTERED SIGN
+Â¯
+175
+0xaf
+0257
+U+00AF
+MACRON
+Â°
+176
+0xb0
+0260
+U+00B0
+DEGREE SIGN
+Â±
+177
+0xb1
+0261
+U+00B1
+PLUS-MINUS SIGN
+2
+178
+0xb2
+0262
+U+00B2
+SUPERSCRIPT TWO
+3
+179
+0xb3
+0263
+U+00B3
+SUPERSCRIPT THREE
+Â´
+180
+0xb4
+0264
+U+00B4
+ACUTE ACCENT
+Î¼
+181
+0xb5
+0265
+U+00B5
+MICRO SIGN
+Â¶
+182
+0xb6
+0266
+U+00B6
+PILCROW SIGN
+Â·
+183
+0xb7
+0267
+U+00B7
+MIDDLE DOT
+Â¸
+184
+0xb8
+0270
+U+00B8
+CEDILLA
+1
+185
+0xb9
+0271
+U+00B9
+SUPERSCRIPT ONE
+Âº
+186
+0xba
+0272
+U+00BA
+MASCULINE ORDINAL INDICATOR
+Â»
+187
+0xbb
+0273
+U+00BB
+RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+Â¼
+188
+0xbc
+0274
+U+00BC
+VULGAR FRACTION ONE QUARTER
+Â½
+189
+0xbd
+0275
+U+00BD
+VULGAR FRACTION ONE HALF
+Â¾
+190
+0xbe
+0276
+U+00BE
+VULGAR FRACTION THREE QUARTERS
+Â¿
+191
+0xbf
+0277
+U+00BF
+INVERTED QUESTION MARK
+Ã
+192
+0xc0
+0300
+U+00C0
+Ã
+193
+0xc1
+0301
+U+00C1
+Ã
+194
+0xc2
+0302
+U+00C2
+Ã
+195
+0xc3
+0303
+U+00C3
+Ã
+196
+0xc4
+0304
+U+00C4
+Ã
+197
+0xc5
+0305
+U+00C5
+Ã
+198
+0xc6
+0306
+U+00C6
+Ã
+199
+0xc7
+0307
+U+00C7
+Ã
+200
+0xc8
+0310
+U+00C8
+Ã
+201
+0xc9
+0311
+U+00C9
+Ã
+202
+0xca
+0312
+U+00CA
+Ã
+203
+0xcb
+0313
+U+00CB
+Ã
+204
+0xcc
+0314
+U+00CC
+Ã
+205
+0xcd
+0315
+U+00CD
+Ã
+206
+0xce
+0316
+U+00CE
+Ã
+207
+0xcf
+0317
+U+00CF
+Ã
+208
+0xd0
+0320
+U+00D0
+Ã
+209
+0xd1
+0321
+U+00D1
+Ã
+210
+0xd2
+0322
+U+00D2
+Ã
+211
+0xd3
+0323
+U+00D3
+Ã
+212
+0xd4
+0324
+U+00D4
+Ã
+213
+0xd5
+0325
+U+00D5
+Ã
+214
+0xd6
+0326
+U+00D6
+Ã
+215
+0xd7
+0327
+U+00D7
+Ã
+216
+0xd8
+0330
+U+00D8
+Ã
+217
+0xd9
+0331
+U+00D9
+Ã
+218
+0xda
+0332
+U+00DA
+Ã
+219
+0xdb
+0333
+U+00DB
+Ã
+220
+0xdc
+0334
+U+00DC
+Ã
+221
+0xdd
+0335
+U+00DD
+Ã
+222
+0xde
+0336
+U+00DE
+Ã
+223
+0xdf
+0337
+U+00DF
+Ã 
+224
+0xe0
+0340
+U+00E0
+Ã¡
+225
+0xe1
+0341
+U+00E1
+Ã¢
+226
+0xe2
+0342
+U+00E2
+Ã£
+227
+0xe3
+0343
+U+00E3
+Ã¤
+228
+0xe4
+0344
+U+00E4
+Ã¥
+229
+0xe5
+0345
+U+00E5
+Ã¦
+230
+0xe6
+0346
+U+00E6
+Ã§
+231
+0xe7
+0347
+U+00E7
+Ã¨
+232
+0xe8
+0350
+U+00E8
+Ã©
+233
+0xe9
+0351
+U+00E9
+Ãª
+234
+0xea
+0352
+U+00EA
+Ã«
+235
+0xeb
+0353
+U+00EB
+Ã¬
+236
+0xec
+0354
+U+00EC
+Ã­
+237
+0xed
+0355
+U+00ED
+Ã®
+238
+0xee
+0356
+U+00EE
+Ã¯
+239
+0xef
+0357
+U+00EF
+Ã°
+240
+0xf0
+0360
+U+00F0
+Ã±
+241
+0xf1
+0361
+U+00F1
+Ã²
+242
+0xf2
+0362
+U+00F2
+Ã³
+243
+0xf3
+0363
+U+00F3
+Ã´
+244
+0xf4
+0364
+U+00F4
+Ãµ
+245
+0xf5
+0365
+U+00F5
+Ã¶
+246
+0xf6
+0366
+U+00F6
+Ã·
+247
+0xf7
+0367
+U+00F7
+Ã¸
+248
+0xf8
+0370
+U+00F8
+Ã¹
+249
+0xf9
+0371
+U+00F9
+Ãº
+250
+0xfa
+0372
+U+00FA
+Ã»
+251
+0xfb
+0373
+U+00FB
+Ã¼
+252
+0xfc
+0374
+U+00FC
+Ã½
+253
+0xfd
+0375
+U+00FD
+Ã¾
+254
+0xfe
+0376
+U+00FE
+Ã¿
+255
+0xff
+0377
+U+00FF

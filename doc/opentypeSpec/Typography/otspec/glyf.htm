@@ -1,0 +1,419 @@
+<HTML>
+<HEAD>
+
+<TITLE>The Glyph Data Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The glyf table 
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>glyf - Glyf Data</FONT>
+<P>
+This table contains information that describes the glyphs in the
+font in the TrueType outline format. Information regarding the rasterizer (scaler) refers to the TrueType rasterizer.
+
+<P>Each glyph begins with the following header:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=60% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>numberOfContours</TD>
+<TD CLASS=tab VALIGN=TOP>If the number of contours is greater than or equal to zero, this is a single glyph; if negative, this is a composite glyph.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>xMin</TD>
+<TD CLASS=tab VALIGN=TOP>Minimum x for coordinate data.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yMin</TD>
+<TD CLASS=tab VALIGN=TOP>Minimum y for coordinate data.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>xMax</TD>
+<TD CLASS=tab VALIGN=TOP>Maximum x for coordinate data.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yMax</TD>
+<TD CLASS=tab VALIGN=TOP>Maximum y for coordinate data.</TD>
+</TR>
+</TABLE>
+<P>
+Note that the bounding rectangle from each
+character is defined as the rectangle with a lower left corner
+of (xMin, yMin) and an upper right corner of (xMax, yMax).
+<P>
+<I>Note: The scaler will perform better if
+the glyph coordinates have been created such that the xMin is
+equal to the lsb. For example, if the lsb is 123, then xMin for
+the glyph should be 123. If the lsb is -12 then the xMin should
+be -12. If the lsb is 0 then xMin is 0. If all glyphs are done
+like this, set bit 1 of flags field in the 'head' table.</I>
+<P><BR>
+<B>Simple Glyph Description</B>
+<P>
+This is the table information needed if numberOfContours
+is greater than zero, that is, a glyph is not a composite.
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=60% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>endPtsOfContours[<I>n</I>]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of last points of each contour; <I>n</I>  is the number of contours.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>instructionLength</TD>
+<TD CLASS=tab VALIGN=TOP>Total number of bytes for instructions.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>instructions[<I>n</I>]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of instructions for each glyph; <I>n  </I>is the number of instructions.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>flags[<I>n</I>]</TD>
+<TD CLASS=tab VALIGN=TOP>Array of flags for each coordinate in outline; <I>n</I>  is the number of flags.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE or SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>xCoordinates[ ]</TD>
+<TD CLASS=tab VALIGN=TOP>First coordinates relative to (0,0); others are relative to previous point.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE or SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yCoordinates[ ]</TD>
+<TD CLASS=tab VALIGN=TOP>First coordinates relative to (0,0); others are relative to previous point.</TD>
+</TR>
+</TABLE>
+<P>
+Note: In the glyf table, the position of a
+point is not stored in absolute terms but as a vector relative
+to the previous point. The delta-x and delta-y vectors represent
+these (often small) changes in position.
+<P>
+Each flag is a single byte. Their meanings are shown below.<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+
+<TR>
+<TD CLASS=tab WIDTH=35% BGCOLOR="#C0C0C0">Flags</TD>
+<TD CLASS=tab WIDTH=5% BGCOLOR="#C0C0C0">Bit</TD>
+<TD CLASS=tab WIDTH=60% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>On Curve</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>If set, the point is on the curve; otherwise, it is off the curve.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>x-Short Vector</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>If set, the corresponding x-coordinate is 1 byte long. If not set, 2 bytes.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>y-Short Vector</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>If set, the corresponding y-coordinate is 1 byte long. If not set, 2 bytes.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>Repeat</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>If set, the next byte specifies the number of additional times this set of flags is to be repeated. In this way, the number of flags listed can be smaller than the number of points in a character.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>This x is same<BR>(Positive x-Short Vector)</TD>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>This flag has two meanings, depending on how the x-Short Vector flag is set. If x-Short Vector is set, this bit describes the sign of the value, with 1 equalling positive and 0 negative. If the x-Short Vector bit is not set and this bit is set, then the current x-coordinate is the same as the previous x-coordinate. If the x-Short Vector bit is not set and this bit is also not set, the current x-coordinate is a signed 16-bit delta vector.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>This y is same<BR>(Positive y-Short Vector)</TD>
+<TD CLASS=tab VALIGN=TOP>5</TD>
+<TD CLASS=tab VALIGN=TOP>This flag has two meanings, depending on how the y-Short Vector flag is set. If y-Short Vector is set, this bit describes the sign of the value, with 1 equalling positive and 0 negative. If the y-Short Vector bit is not set and this bit is set, then the current y-coordinate is the same as the previous y-coordinate. If the y-Short Vector bit is not set and this bit is also not set, the current y-coordinate is a signed 16-bit delta vector.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>Reserved</TD>
+<TD CLASS=tab VALIGN=TOP>6</TD>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>This bit is reserved. Set it to zero.</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>Reserved</TD>
+<TD CLASS=tab VALIGN=TOP>7</TD>
+<TD CLASS=tab VALIGN=TOP NOWRAP=NOWRAP>This bit is reserved. Set it to zero.</TD>
+</TR>
+</TABLE>
+<P>
+<BR>
+<B>Composite Glyph Description</B>
+<P>
+This is the table information needed for composite
+glyphs (numberOfContours is -1). A composite glyph starts with
+two USHORT values (&quot;flags&quot; and &quot;glyphIndex,&quot;
+i.e. the index of the first contour in this composite glyph);
+the data then varies according to &quot;flags&quot;).
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Name</TD>
+<TD CLASS=tab WIDTH=60% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>flags</TD>
+<TD CLASS=tab VALIGN=TOP>component flag</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>glyphIndex</TD>
+<TD CLASS=tab VALIGN=TOP>glyph index of component</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>VARIABLE</TD>
+<TD CLASS=tab VALIGN=TOP>argument1</TD>
+<TD CLASS=tab VALIGN=TOP>x-offset for component or point number; type depends on bits 0 and 1 in component flags</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>VARIABLE</TD>
+<TD CLASS=tab VALIGN=TOP>argument2</TD>
+<TD CLASS=tab VALIGN=TOP>y-offset for component or point number; type depends on bits 0 and 1 in component flags</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>Transformation Option</TD>
+<TD CLASS=tab VALIGN=TOP></TD>
+<TD CLASS=tab VALIGN=TOP></TD>
+</TR>
+</TABLE>
+<P>
+The C pseudo-code
+fragment below shows how the composite glyph information is stored
+and parsed; definitions for &quot;flags&quot; bits follow this
+fragment:
+<PRE CLASS=smallcode>
+do {
+	USHORT flags;
+	USHORT glyphIndex;
+	if ( flags &amp; ARG_1_AND_2_ARE_WORDS) {
+	(SHORT or FWord) argument1;
+	(SHORT or FWord) argument2;
+	} else {
+		USHORT arg1and2; /* (arg1 &lt;&lt; 8) | arg2 */
+	}
+	if ( flags &amp; WE_HAVE_A_SCALE ) {
+		F2Dot14  scale;    /* Format 2.14 */
+	} else if ( flags &amp; WE_HAVE_AN_X_AND_Y_SCALE ) {
+		F2Dot14  xscale;    /* Format 2.14 */
+		F2Dot14  yscale;    /* Format 2.14 */
+	} else if ( flags &amp; WE_HAVE_A_TWO_BY_TWO ) {
+		F2Dot14  xscale;    /* Format 2.14 */
+		F2Dot14  scale01;   /* Format 2.14 */
+		F2Dot14  scale10;   /* Format 2.14 */
+		F2Dot14  yscale;    /* Format 2.14 */
+	}
+} while ( flags &amp; MORE_COMPONENTS ) 
+if (flags &amp; WE_HAVE_INSTR){
+	USHORT numInstr
+	BYTE instr[numInstr]
+</PRE>
+<P>
+Argument1 and argument2 can be either x and
+y offsets to be added to the glyph or two point numbers. In the
+latter case, the first point number indicates the point that is
+to be matched to the new glyph. The second number indicates the
+new glyph's &quot;matched&quot; point. Once a glyph is added,
+its point numbers begin directly after the last glyphs (endpoint
+of first glyph + 1).
+<P>
+When arguments 1 and 2 are an x and a y offset
+instead of points and the bit ROUND_XY_TO_GRID is set to 1, the
+values are rounded to those of the closest grid lines before they
+are added to the glyph. X and Y offsets are described in FUnits.
+<P>
+If the bit WE_HAVE_A_SCALE is set, the scale value is read in
+2.14 format-the value can be between -2 to almost +2. The glyph
+will be scaled by this value before grid-fitting.
+<P>
+The bit WE_HAVE_A_TWO_BY_TWO allows for an interrelationship between
+the x and y coordinates. This could be used for 90-degree rotations,
+for example. 
+<P>
+These are the constants for the flags field:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=35% BGCOLOR="#C0C0C0">Flags</TD>
+<TD CLASS=tab WIDTH=5% BGCOLOR="#C0C0C0">Bit</TD>
+<TD CLASS=tab WIDTH=60% BGCOLOR="#C0C0C0">Description</TD>
+</TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ARG_1_AND_2_ARE_WORDS</TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>If this is set, the arguments are words; otherwise, they are bytes.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ARGS_ARE_XY_VALUES</TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>If this is set, the arguments are xy values; otherwise, they are points.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ROUND_XY_TO_GRID</TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>For the xy values if the preceding is true.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>WE_HAVE_A_SCALE</TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>This indicates that there is a simple scale for the component. Otherwise, scale = 1.0.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>RESERVED</TD>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>This bit is reserved. Set it to 0.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>MORE_COMPONENTS</TD>
+<TD CLASS=tab VALIGN=TOP>5</TD>
+<TD CLASS=tab VALIGN=TOP>Indicates at least one more glyph after this one.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>WE_HAVE_AN_X_AND_Y_SCALE</TD>
+<TD CLASS=tab VALIGN=TOP>6</TD>
+<TD CLASS=tab VALIGN=TOP>The x direction will use a different scale from the y direction.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>WE_HAVE_A_TWO_BY_TWO</TD>
+<TD CLASS=tab VALIGN=TOP>7</TD>
+<TD CLASS=tab VALIGN=TOP>There is a 2 by 2 transformation that will be used to scale the component.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>WE_HAVE_INSTRUCTIONS</TD>
+<TD CLASS=tab VALIGN=TOP>8</TD>
+<TD CLASS=tab VALIGN=TOP>Following the last component are instructions for the composite character.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USE_MY_METRICS</TD>
+<TD CLASS=tab VALIGN=TOP>9</TD>
+<TD CLASS=tab VALIGN=TOP>If set, this forces the aw and lsb (and rsb) for the composite to be equal to those from this original glyph. This works for hinted and unhinted characters.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>OVERLAP_COMPOUND</TD>
+<TD CLASS=tab VALIGN=TOP>10</TD>
+<TD CLASS=tab VALIGN=TOP>Used by Apple in GX fonts.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>SCALED_COMPONENT_OFFSET</TD>
+<TD CLASS=tab VALIGN=TOP>11</TD>
+<TD CLASS=tab VALIGN=TOP> Composite designed to have the component offset scaled (designed for Apple rasterizer).</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>UNSCALED_COMPONENT_OFFSET</TD>
+<TD CLASS=tab VALIGN=TOP>12</TD>
+<TD CLASS=tab VALIGN=TOP> Composite designed not to have the component offset scaled (designed for the Microsoft TrueType rasterizer).</TD></TR>
+</TABLE>
+<P>
+The purpose of USE_MY_METRICS is to force
+the lsb and rsb to take on a desired value. For example, an i-circumflex
+(U+00EF) is often composed of the circumflex and a dotless-i.
+In order to force the composite to have the same metrics as the
+dotless-i, set USE_MY_METRICS for the dotless-i component of the
+composite. Without this bit, the rsb and lsb would be calculated
+from the hmtx entry for the composite (or would need to be explicitly
+set with TrueType instructions).
+<P>
+Note that the behavior of the USE_MY_METRICS operation is undefined
+for rotated composite components.
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 3 November 1998<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The glyf table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,821 @@
+<HTML>
+<HEAD>
+
+<TITLE>The PCL 5 Table</TITLE>
+
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+
+<BODY BGCOLOR=#FFFFFF LINK=#000090 VLINK=#AA00CC TOPMARGIN=0 LEFTMARGIN=0 STYLE="background: #FFFFFF">
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+
+<P>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The PCLT table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>PCLT - PCL 5 Table
+</FONT>
+
+<P>
+The 'PCLT' table is strongly discouraged for OpenType<FONT COLOR="#999999" STYLE="font-size: 7pt; color:#999999"><SUP>TM</SUP></FONT> fonts with TrueType outlines. Extra information
+on many of these fields can be found in the <I>HP PCL 5 Printer
+Language Technical Reference Manual</I> available from Hewlett-Packard
+Boise Printer Division.
+<P>
+The format for the table is:
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Type</TD>
+<TD CLASS=tab WIDTH=80% BGCOLOR="#C0C0C0">Name of Entry</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>FIXED</TD>
+<TD CLASS=tab VALIGN=TOP>Version</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>FontNumber</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>Pitch</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>xHeight</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>Style</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>TypeFamily</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>CapHeight</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>SymbolSet</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>CHAR</TD>
+<TD CLASS=tab VALIGN=TOP>Typeface[16]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>CHAR</TD>
+<TD CLASS=tab VALIGN=TOP>CharacterComplement[8]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>CHAR</TD>
+<TD CLASS=tab VALIGN=TOP>FileName[6]</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>CHAR</TD>
+<TD CLASS=tab VALIGN=TOP>StrokeWeight</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>CHAR</TD>
+<TD CLASS=tab VALIGN=TOP>WidthType</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>SerifStyle</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>BYTE</TD>
+<TD CLASS=tab VALIGN=TOP>Reserved (pad)</TD></TR>
+</TABLE>
+<P>
+<BR>
+<B>Version</B>
+<P>
+Table version number 1.0 is represented as 0x00010000.
+
+<P>
+<BR>
+<B>FontNumber</B>
+<P>
+This 32-bit number is segmented in two parts. The most significant
+bit indicates native versus converted format. Only font vendors
+should create fonts with this bit zeroed. The 7 next most significant
+bits are assigned by Hewlett-Packard Boise Printer Division to
+major font vendors. The least significant 24 bits are assigned
+by the vendor. Font vendors should attempt to insure that each
+of their fonts are marked with unique values.
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% BGCOLOR="#C0C0C0">Code</TD>
+<TD CLASS=tab WIDTH=80% BGCOLOR="#C0C0C0">Vendor</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>A</TD>
+<TD CLASS=tab VALIGN=TOP>Adobe Systems</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>B</TD>
+<TD CLASS=tab VALIGN=TOP>Bitstream Inc.</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>C</TD>
+<TD CLASS=tab VALIGN=TOP>Agfa Corporation</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>H</TD>
+<TD CLASS=tab VALIGN=TOP>Bigelow &amp; Holmes</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>L</TD>
+<TD CLASS=tab VALIGN=TOP>Linotype Company</TD></TR>
+<TR>
+<TD CLASS=TAB VALIGN=TOP>M</TD>
+<TD CLASS=tab VALIGN=TOP>Monotype Typography Ltd.</TD></TR>
+</TABLE>
+
+<P><BR><B>Pitch</B>
+<P>
+The width of the space in FUnits (FUnits are described by the unitsPerEm
+field of the 'head' table). Monospace fonts derive the width of
+all characters from this field.
+
+<P><BR><B>xHeight</B>
+<P>
+The height
+of the optical line describing the height of the lowercase x in
+FUnits. This might not be the same as the measured height of the
+lowercase x.
+
+<P><BR><B>Style</B>
+<P>
+The most
+significant 6 bits are reserved. The 5 next most significant bits
+encode structure. The next 3 most significant bits encode appearance
+width. The 2 least significant bits encode posture.
+<P>
+
+<P><BR><I>Structure</I> (bits 5-9)
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>0</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>Solid (normal, black)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>Outline (hollow)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>Inline (incised, engraved)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>Contour, edged (antique, distressed)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>Solid with shadow</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>5</TD>
+<TD CLASS=tab VALIGN=TOP>Outline with shadow</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>6</TD>
+<TD CLASS=tab VALIGN=TOP>Inline with shadow</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>7</TD>
+<TD CLASS=tab VALIGN=TOP>Contour, or edged, with shadow</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>8</TD>
+<TD CLASS=tab VALIGN=TOP>Pattern filled</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>9</TD>
+<TD CLASS=tab VALIGN=TOP>Pattern filled #1 (when more than one pattern)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>10</TD>
+<TD CLASS=tab VALIGN=TOP>Pattern filled #2 (when more than two patterns)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>11</TD>
+<TD CLASS=tab VALIGN=TOP>Pattern filled #3 (when more than three patterns)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>12</TD>
+<TD CLASS=tab VALIGN=TOP>Pattern filled with shadow</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>13</TD>
+<TD CLASS=tab VALIGN=TOP>Pattern filled with shadow #1 (when more than one pattern or shadow)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>14</TD>
+<TD CLASS=tab VALIGN=TOP>Pattern filled with shadow #2 (when more than two patterns or shadows)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>15</TD>
+<TD CLASS=tab VALIGN=TOP>Pattern filled with shadow #3 (when more than three patterns or shadows)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>16</TD>
+<TD CLASS=tab VALIGN=TOP>Inverse</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>17</TD>
+<TD CLASS=tab VALIGN=TOP>Inverse with border</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>18-31</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD></TR>
+</TABLE>
+<P>
+<BR>
+
+<I>Width</I> (bits 2-4)
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>0</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>normal</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>condensed</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>compressed, extra condensed</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>extra compressed</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>ultra compressed</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>5</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>6</TD>
+<TD CLASS=tab VALIGN=TOP>expanded, extended</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>7</TD>
+<TD CLASS=tab VALIGN=TOP>extra expanded, extra extended</TD></TR>
+</TABLE>
+<P>
+<BR>
+<I>Posture</I> (bits 0-1)
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>0</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>upright</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>oblique, italic</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>alternate italic (backslanted, cursive, swash)</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD></TR>
+</TABLE>
+<P>
+
+<P><BR><B>TypeFamily</B>
+<P>
+The 4 most
+significant bits are font vendor codes. The 12 least significant
+bits are typeface family codes. Both are assigned by HP Boise
+Division.
+<P>
+<BR>
+<I>Vendor Codes</I> (bits 12-15)
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>0</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>reserved</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>Agfa Corporation</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>Bitstream Inc.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>Linotype Company</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>Monotype Typography Ltd.</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>5</TD>
+<TD CLASS=tab VALIGN=TOP>Adobe Systems</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>6</TD>
+<TD CLASS=tab VALIGN=TOP>font repackagers</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>7</TD>
+<TD CLASS=tab VALIGN=TOP>vendors of unique typefaces</TD></TR>
+<TR>
+<TD CLASS=tab VALIGN=TOP>8-15</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD></TR>
+</TABLE>
+<P>
+<P><BR><B>CapHeight</B>
+<P>
+The height
+of the optical line describing the top of the uppercase H in FUnits.
+This might not be the same as the measured height of the uppercase
+H.
+<P>
+<BR><B>SymbolSet</B>
+<P>
+The most significant 11 bits are the value of the symbol set
+&quot;number&quot; field. The value of the least significant 5
+bits, when added to 64, is the ASCII value of the symbol set &quot;ID&quot;
+field. Symbol set values are assigned by HP Boise Division. Unbound
+fonts, or &quot;typefaces&quot; should have a symbol set value
+of 0. See the <I>PCL 5 Printer Language Technical Reference Manual</I>
+or the <I>PCL 5 Comparison Guide</I> for the most recent published
+list of codes.
+<P>
+<BR>
+<I>Examples</I>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=50% VALIGN=TOP>&nbsp;</TD>
+<TD CLASS=tab WIDTH=25% VALIGN=TOP><B>PCL</B></TD>
+<TD CLASS=tab WIDTH=25% VALIGN=TOP><B>decimal</B></TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>Windows 3.1 &quot;ANSI&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>19U</TD>
+<TD CLASS=tab VALIGN=TOP>629</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>Windows 3.0 &quot;ANSI&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>9U</TD>
+<TD CLASS=tab VALIGN=TOP>309</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>Adobe &quot;Symbol&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>19M</TD>
+<TD CLASS=tab VALIGN=TOP>621</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>Macintosh</TD>
+<TD CLASS=tab VALIGN=TOP>12J</TD>
+<TD CLASS=tab VALIGN=TOP>394</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>PostScript ISO Latin 1</TD>
+<TD CLASS=tab VALIGN=TOP>11J</TD>
+<TD CLASS=tab VALIGN=TOP>362</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>PostScript Std. Encoding</TD>
+<TD CLASS=tab VALIGN=TOP>10J</TD>
+<TD CLASS=tab VALIGN=TOP>330</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>Code Page 1004</TD>
+<TD CLASS=tab VALIGN=TOP>9J</TD>
+<TD CLASS=tab VALIGN=TOP>298</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>DeskTop</TD>
+<TD CLASS=tab VALIGN=TOP>7J</TD>
+<TD CLASS=tab VALIGN=TOP>234</TD></TR>
+</TABLE>
+<P>
+<BR>
+<B>TypeFace</B>
+<P>
+This 16-byte
+ASCII string appears in the &quot;font print&quot; of PCL printers.
+Care should be taken to insure that the base string for all typefaces
+of a family are consistent, and that the designators for bold,
+italic, etc. are standardized.
+
+<P>
+<BR>
+<I>Example</I>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>&nbsp;Times New</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>&nbsp;</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Times New</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Bd</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Times New</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;It</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Times New</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;BdIt</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Courier New</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Courier New</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Bd</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Courier New</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;It</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;Courier New</TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;BdIt</TD></TR>
+</TABLE>
+<P>
+<BR>
+<B>CharacterComplement</B>
+<P>
+This 8-byte
+field identifies the symbol collections provided by the font,
+each bit identifies a symbol collection and is independently interpreted.
+Symbol set bound fonts should have this field set to all F's (except
+bit 0).
+<P>
+<BR>
+<I>Example</I>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=50% VALIGN=TOP>DOS/PCL Complement</TD>
+<TD CLASS=tab WIDTH=50% VALIGN=TOP>0xFFFFFFFF003FFFFE</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>Windows 3.1 &quot;ANSI&quot;</TD>
+<TD CLASS=tab VALIGN=TOP>0xFFFFFFFF37FFFFFE</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>Macintosh</TD>
+<TD CLASS=tab VALIGN=TOP>0xFFFFFFFF36FFFFFE</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>ISO 8859-1 Latin 1</TD>
+<TD CLASS=tab VALIGN=TOP>0xFFFFFFFF3BFFFFFE</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>ISO 8859-1,2,9 Latin 1,2,5</TD>
+<TD CLASS=tab VALIGN=TOP>0xFFFFFFFF0BFFFFFE</TD></TR>
+</TABLE>
+<P>
+The character collections identified by each
+bit are as follows:
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>31</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>ASCII (supports several standard interpretations)</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>30</TD>
+<TD CLASS=tab VALIGN=TOP>Latin 1 extensions</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>29</TD>
+<TD CLASS=tab VALIGN=TOP>Latin 2 extensions</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>28</TD>
+<TD CLASS=tab VALIGN=TOP>Latin 5 extensions</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>27</TD>
+<TD CLASS=tab VALIGN=TOP>Desktop Publishing Extensions</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>26</TD>
+<TD CLASS=tab VALIGN=TOP>Accent Extensions (East and West Europe)</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>25</TD>
+<TD CLASS=tab VALIGN=TOP>PCL Extensions</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>24</TD>
+<TD CLASS=tab VALIGN=TOP>Macintosh Extensions</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>23</TD>
+<TD CLASS=tab VALIGN=TOP>PostScript Extensions</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>22</TD>
+<TD CLASS=tab VALIGN=TOP>Code Page Extensions</TD></TR>
+</TABLE>
+<P>
+The character complement field also indicates
+the index mechanism used with an unbound font. Bit 0 must always
+be cleared when the font elements are provided in Unicode order.
+<P>
+<BR>
+<B>FileName</B>
+<P>
+This 6-byte
+field is composed of 3 parts. The first 3 bytes are an industry
+standard typeface family string. The fourth byte is a treatment
+character, such as R, B, I. The last two characters are either
+zeroes for an unbound font or a two character mnemonic for a symbol
+set if symbol set found.
+<P>
+<BR>
+<I>Examples</I>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>&nbsp;TNRR00</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>Times New (text weight, upright)</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;TNRI00</TD>
+<TD CLASS=tab VALIGN=TOP>Times New Italic</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;TNRB00</TD>
+<TD CLASS=tab VALIGN=TOP>Times New Bold</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;TNRJ00</TD>
+<TD CLASS=tab VALIGN=TOP>Times New Bold Italic</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;COUR00</TD>
+<TD CLASS=tab VALIGN=TOP>Courier</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;COUI00</TD>
+<TD CLASS=tab VALIGN=TOP>Courier Italic</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;COUB00</TD>
+<TD CLASS=tab VALIGN=TOP>Courier Bold</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>&nbsp;COUJ00</TD>
+<TD CLASS=tab VALIGN=TOP>Courier Bold Italic</TD></TR>
+</TABLE>
+<P>
+<BR>
+<I>Treatment Flags</I>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>R</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>Text, normal, book, etc.</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>I</TD>
+<TD CLASS=tab VALIGN=TOP>Italic, oblique, slanted, etc.</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>B</TD>
+<TD CLASS=tab VALIGN=TOP>Bold</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>J</TD>
+<TD CLASS=tab VALIGN=TOP>Bold Italic, Bold Oblique</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>D</TD>
+<TD CLASS=tab VALIGN=TOP>Demibold</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>E</TD>
+<TD CLASS=tab VALIGN=TOP>Demibold Italic, Demibold Oblique</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>K</TD>
+<TD CLASS=tab VALIGN=TOP>Black</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>G</TD>
+<TD CLASS=tab VALIGN=TOP>Black Italic, Black Oblique</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>L</TD>
+<TD CLASS=tab VALIGN=TOP>Light</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>P</TD>
+<TD CLASS=tab VALIGN=TOP>Light Italic, Light Oblique</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>C</TD>
+<TD CLASS=tab VALIGN=TOP>Condensed</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>A</TD>
+<TD CLASS=tab VALIGN=TOP>Condensed Italic, Condensed Oblique</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>F</TD>
+<TD CLASS=tab VALIGN=TOP>Bold Condensed</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>H</TD>
+<TD CLASS=tab VALIGN=TOP>Bold Condensed Italic, Bold Condensed Oblique</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>S</TD>
+<TD CLASS=tab VALIGN=TOP>Semibold (lighter than demibold)</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>T</TD>
+<TD CLASS=tab VALIGN=TOP>Semibold Italic, Semibold Oblique</TD></TR>
+</TABLE>
+<P>
+other treatment flags are assigned over time.
+<P>
+<BR>
+<B>StrokeWeight</B>
+<P>
+This signed
+1-byte field contains the PCL stroke weight value. Only values
+in the range -7 to 7 are valid:
+
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>-7</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>Ultra Thin</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-6</TD>
+<TD CLASS=tab VALIGN=TOP>Extra Thin</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-5 </TD>
+<TD CLASS=tab VALIGN=TOP>Thin</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-4</TD>
+<TD CLASS=tab VALIGN=TOP>Extra Light</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-3</TD>
+<TD CLASS=tab VALIGN=TOP>Light</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-2</TD>
+<TD CLASS=tab VALIGN=TOP>Demilight</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-1</TD>
+<TD CLASS=tab VALIGN=TOP>Semilight</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>Book, text, regular, etc.</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>Semibold (Medium, when darker than Book)</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>Demibold</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>Bold</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>Extra Bold</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>5</TD>
+<TD CLASS=tab VALIGN=TOP>Black</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>6</TD>
+<TD CLASS=tab VALIGN=TOP>Extra Black</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>7</TD>
+<TD CLASS=tab VALIGN=TOP>Ultra Black, or Ultra</TD></TR>
+</TABLE> 
+<P>
+Type designers often use interesting names
+for weights or combinations of weights and styles, such as Heavy,
+Compact, Inserat, Bold No. 2, etc. PCL stroke weights are assigned
+on the basis of the entire family and use of the faces. Typically,
+display faces don't have a &quot;text&quot; weight assignment.
+
+<P>
+<BR>
+<B>WidthType</B>
+<P>
+This signed
+1-byte field contains the PCL appearance width value. The values
+are not directly related to those in the appearance with field
+of the style word above. Only values in the range -5 to 5 are
+valid.
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>-5</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>Ultra Compressed</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-4</TD>
+<TD CLASS=tab VALIGN=TOP>Extra Compressed</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-3</TD>
+<TD CLASS=tab VALIGN=TOP>Compressed, or Extra Condensed</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>-2</TD>
+<TD CLASS=tab VALIGN=TOP>Condensed</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>0</TD>
+<TD CLASS=tab VALIGN=TOP>Normal</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>Expanded</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>Extra Expanded</TD></TR>
+</TABLE> 
+<P>
+<BR>
+<B>SerifStyle</B>
+<P>
+This signed
+1-byte field contains the PCL serif style value. The most significant
+2 bits of this byte specify the serif/sans or contrast/monoline
+characterisitics of the typeface.
+<P>
+<BR>
+<I>Bottom 6 bit values:</I>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>0</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>Sans Serif Square</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>Sans Serif Round</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>Serif Line</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>Serif Triangle</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>4</TD>
+<TD CLASS=tab VALIGN=TOP>Serif Swath</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>5</TD>
+<TD CLASS=tab VALIGN=TOP>Serif Block</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>6</TD>
+<TD CLASS=tab VALIGN=TOP>Serif Bracket</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>7</TD>
+<TD CLASS=tab VALIGN=TOP>Rounded Bracket</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>8</TD>
+<TD CLASS=tab VALIGN=TOP>Flair Serif, Modified Sans</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>9</TD>
+<TD CLASS=tab VALIGN=TOP>Script Nonconnecting</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>10</TD>
+<TD CLASS=tab VALIGN=TOP>Script Joining</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>11</TD>
+<TD CLASS=tab VALIGN=TOP>Script Calligraphic</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>12</TD>
+<TD CLASS=tab VALIGN=TOP>Script Broken Letter</TD></TR>
+</TABLE>
+<P>
+<BR><I>Top 2 bit values:</I>
+<P>
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR></TD>
+<TD CLASS=tab WIDTH=20% VALIGN=TOP>0</TD>
+<TD CLASS=tab WIDTH=80% VALIGN=TOP>reserved</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>1</TD>
+<TD CLASS=tab VALIGN=TOP>Sans Serif/Monoline</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>2</TD>
+<TD CLASS=tab VALIGN=TOP>Serif/Contrasting</TD></TR>
+<TR></TD>
+<TD CLASS=tab VALIGN=TOP>3</TD>
+<TD CLASS=tab VALIGN=TOP>reserved</TD></TR>
+</TABLE>
+<P>
+<BR>
+<B>Reserved</B>
+<P>
+Should be set to zero.
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 21 August 2002<BR>
+	&copy; 1998 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The PCLT table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+</BODY></HTML>
+
+
+

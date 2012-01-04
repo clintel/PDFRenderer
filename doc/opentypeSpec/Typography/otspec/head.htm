@@ -1,0 +1,222 @@
+<HTML>
+<HEAD>
+
+<TITLE>Font Header</TITLE>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1">
+<LINK REL=STYLESHEET HREF="otspec.css" TYPE="text/css"></HEAD>
+<BODY BGCOLOR="#FFFFFF" BOTTOMMARGIN="20" TOPMARGIN="0" LEFTMARGIN="0">
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+	
+<!--TOOLBAR_START--><!--TOOLBAR_EXEMPT--><!--TOOLBAR_END--><P><BR>
+
+<CENTER><P>
+
+<TABLE WIDTH=580 CELLSPACING=0 CELLPADDING=0 BORDER=0>
+
+<TR>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=60><IMG SRC="pixel.gif" WIDTH=60 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=480><IMG SRC="pixel.gif" WIDTH=480 HEIGHT=1 ALT=""></TD>
+<TD HEIGHT=1 WIDTH=20><IMG SRC="pixel.gif" WIDTH=20 HEIGHT=1 ALT=""></TD>
+</TR>
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=5><IMG SRC="toprule.gif" WIDTH=580 HEIGHT=5></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The head table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=60 VALIGN=TOP></TD>
+<TD WIDTH=480 VALIGN=TOP>
+<P><BR>
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=5 CLASS=heading>head - Font Header</FONT>
+<P>
+
+This table gives global information about
+the font. The bounding box values should be computed using <I>only</I>
+glyphs that have contours. Glyphs with no contours should be ignored
+for the purposes of these calculations.
+
+<P>
+
+<TABLE WIDTH=460 BGCOLOR="#F0F0F0">
+<TR>
+<TD WIDTH=18% CLASS=tab BGCOLOR="#C0C0C0">Type</TD>
+<TD WIDTH=26% CLASS=tab BGCOLOR="#C0C0C0">Name</TD>
+<TD WIDTH=56% CLASS=tab BGCOLOR="#C0C0C0">Description</TD></TR>
+
+<TR><TD CLASS=tab VALIGN=TOP>Fixed</TD>
+<TD CLASS=tab VALIGN=TOP>Table version number</TD>
+<TD CLASS=tab VALIGN=TOP>0x00010000 for version 1.0.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>Fixed</TD>
+<TD CLASS=tab VALIGN=TOP>fontRevision</TD>
+<TD CLASS=tab VALIGN=TOP>Set by font manufacturer.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>checkSumAdjustment</TD>
+<TD CLASS=tab VALIGN=TOP>To compute: set it to 0, sum the entire font as ULONG, then store 0xB1B0AFBA - sum.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>ULONG</TD>
+<TD CLASS=tab VALIGN=TOP>magicNumber</TD>
+<TD CLASS=tab VALIGN=TOP>Set to 0x5F0F3CF5.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>flags</TD>
+<TD CLASS=tab VALIGN=TOP>Bit 0: Baseline for font at y=0;<BR>
+Bit 1: Left sidebearing point at x=0;<BR>
+Bit 2: Instructions may depend on point size; <BR>
+Bit 3: Force ppem to integer values for all internal scaler math; may use fractional ppem sizes if this bit is clear; <BR>
+Bit 4: Instructions may alter advance width (the advance widths might not scale linearly); <BR>
+Bits 5-10: These should be set according to <a
+href="http://developer.apple.com/fonts/TTRefMan/RM06/Chap6head.html"> Apple's specification </a>. However, they are not implemented in OpenType.
+<BR>
+Bit 11: Font data is 'lossless,' as a result of having been compressed and decompressed with the Agfa MicroType Express engine.<BR>
+Bit 12: Font converted (produce compatible metrics)<BR>
+Bit 13: Font optimised for ClearType<BR>
+Bit 14: Reserved, set to 0<BR>
+Bit 15: Reserved, set to 0 <BR> 
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>unitsPerEm</TD>
+<TD CLASS=tab VALIGN=TOP>Valid range is from 16 to 16384. This value should be a power of 2 for fonts that have TrueType outlines.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>LONGDATETIME</TD>
+<TD CLASS=tab VALIGN=TOP>created</TD>
+<TD CLASS=tab VALIGN=TOP>Number of seconds since 12:00 midnight, January 1, 1904. 64-bit integer</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>LONGDATETIME</TD>
+<TD CLASS=tab VALIGN=TOP>modified</TD>
+<TD CLASS=tab VALIGN=TOP>Number of seconds since 12:00 midnight, January 1, 1904. 64-bit integer</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>xMin</TD>
+<TD CLASS=tab VALIGN=TOP>For all glyph bounding boxes.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yMin</TD>
+<TD CLASS=tab VALIGN=TOP>For all glyph bounding boxes.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>xMax</TD>
+<TD CLASS=tab VALIGN=TOP>For all glyph bounding boxes.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>yMax</TD>
+<TD CLASS=tab VALIGN=TOP>For all glyph bounding boxes.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>macStyle</TD>
+<TD CLASS=tab VALIGN=TOP>Bit 0: Bold (if set to 1); <BR>Bit 1: Italic (if set to 1) <BR>  
+Bit 2: Underline (if set to 1) <BR> Bit 3: Outline (if set to 1) <BR> Bit 4: Shadow (if set to 1) <BR> Bit 5: Condensed (if set to 1) <BR> Bit 6: Extended (if set to 1) <BR> Bits 7-15: Reserved (set to 0).  
+</TD> 
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>USHORT</TD>
+<TD CLASS=tab VALIGN=TOP>lowestRecPPEM</TD>
+<TD CLASS=tab VALIGN=TOP>Smallest readable size in pixels.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>fontDirectionHint</TD>
+<TD CLASS=tab VALIGN=TOP> 0: Fully mixed directional glyphs;
+<BR>
+ 1: Only strongly left to right; <BR>
+ 2: Like 1 but also contains neutrals; <BR>
+-1: Only strongly right to left; <BR>
+-2: Like -1 but also contains neutrals. <SUP>1</SUP></TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>indexToLocFormat</TD>
+<TD CLASS=tab VALIGN=TOP>0 for short offsets, 1 for long.</TD>
+</TR>
+<TR><TD CLASS=tab VALIGN=TOP>SHORT</TD>
+<TD CLASS=tab VALIGN=TOP>glyphDataFormat</TD>
+<TD CLASS=tab VALIGN=TOP>0 for current format.</TD>
+</TR>
+</TABLE>
+<P>
+<HR>
+<P><SUP>1</SUP> A neutral character has no inherent directionality; it is not a character with zero (0) width.  Spaces and punctuation are examples of neutral characters.  Non-neutral characters are those with inherent directionality.  For example, Roman letters (left-to-right) and Arabic letters(right-to-left) have directionality.  In a &quot;normal&quot; Roman font where spaces and punctuation are present, the font direction hints should be set to two (2).
+<P><HR>
+
+<P>
+Note that the macStyle bits must agree with the <a href="os2.htm#fss">
+'OS/2' table fsSelection </a> bits. The fsSelection bits are used over
+the macStyle bits in Microsoft Windows. The PANOSE values and
+'post' table values are ignored for determining bold or italic
+fonts.
+<P>
+For historical reasons, the fontRevision value contained in this table is not used by Windows to determine the version of a font. Instead, Windows evaluates the version string (id 5) in the 'name' table.
+
+
+<FONT FACE="Verdana, Arial, Helvetica" SIZE=1><P CLASS=detail><BR><BR>
+	this page was last updated 6 September 2002<BR>
+	&copy; 2001 Microsoft Corporation. All rights reserved. <A HREF="http://www.microsoft.com/Misc/cpyright.htm">Terms of use</A>.<BR>
+	comments to the MST group: 
+	<A HREF="/typography/about.htm">how to contact us</A>.
+	<P>&nbsp;
+</FONT>
+</TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD COLSPAN=2 WIDTH=540></TD>
+<TD WIDTH=20></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=10><IMG SRC="midrule.gif" WIDTH=580 HEIGHT=10 ALT=""></TD>
+</TR>
+
+<TR>
+<TD WIDTH=20></TD>
+<TD WIDTH=560 COLSPAN=3 VALIGN=TOP><FONT FACE="Verdana, Arial, Helvetica" SIZE=1 CLASS=detail>
+	<A HREF="http://www.microsoft.com/typography/default.asp">Microsoft Typography</A>
+	 | <A HREF="http://www.microsoft.com/typography/creators.htm">Developer...</A>
+	 | <A HREF="default.htm">OpenType specification</A>
+	 | <A HREF="otff.htm#otttables">OpenType tables</A>
+	 | The head table
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=4 WIDTH=580 HEIGHT=20><IMG SRC="baserule.gif" WIDTH=580 HEIGHT=20></TD>
+</TR>
+</TABLE>
+
+</CENTER>
+</BODY>
+</HTML>
+
+
